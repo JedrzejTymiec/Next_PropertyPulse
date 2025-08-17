@@ -16,7 +16,8 @@ export const MobileMenuLink = ({ path, text }: MobileMenuLinkProps) => {
       href={path}
       className={`${
         isActive ? 'bg-black' : ''
-      } text-white block rounded-md px-3 py-2 text-base font-medium`}>
+      } text-white block rounded-md px-3 py-2 text-base font-medium`}
+    >
       {text}
     </Link>
   );

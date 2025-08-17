@@ -1,3 +1,5 @@
+'use client';
+
 interface MobileMenuButtonProps {
   onClick: () => void;
 }
@@ -11,7 +13,8 @@ export const MobileMenuButton = ({ onClick }: MobileMenuButtonProps) => {
         className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
         aria-controls="mobile-menu"
         aria-expanded="false"
-        onClick={onClick}>
+        onClick={onClick}
+      >
         <span className="absolute -inset-0.5"></span>
         <span className="sr-only">Open main menu</span>
         <svg
@@ -20,7 +23,8 @@ export const MobileMenuButton = ({ onClick }: MobileMenuButtonProps) => {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          aria-hidden="true">
+          aria-hidden="true"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"

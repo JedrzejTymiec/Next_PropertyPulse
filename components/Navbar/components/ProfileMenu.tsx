@@ -21,7 +21,8 @@ export const ProfileMenu = () => {
           id="user-menu-button"
           aria-expanded="false"
           aria-haspopup="true"
-          onClick={toggleMenu}>
+          onClick={toggleMenu}
+        >
           <span className="absolute -inset-1.5"></span>
           <span className="sr-only">Open user menu</span>
           <Image className="h-8 w-8 rounded-full" src={profileDefault} alt="" />
@@ -34,13 +35,15 @@ export const ProfileMenu = () => {
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
-          tabIndex={-1}>
+          tabIndex={-1}
+        >
           <Link
             href="/profile"
             className="block px-4 py-2 text-sm text-gray-700"
             role="menuitem"
             tabIndex={-1}
-            id="user-menu-item-0">
+            id="user-menu-item-0"
+          >
             Your Profile
           </Link>
           <Link
@@ -48,14 +51,16 @@ export const ProfileMenu = () => {
             className="block px-4 py-2 text-sm text-gray-700"
             role="menuitem"
             tabIndex={-1}
-            id="user-menu-item-2">
+            id="user-menu-item-2"
+          >
             Saved Properties
           </Link>
           <button
             className="block px-4 py-2 text-sm text-gray-700"
             role="menuitem"
             tabIndex={-1}
-            id="user-menu-item-2">
+            id="user-menu-item-2"
+          >
             Sign Out
           </button>
         </div>

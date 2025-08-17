@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { paths } from '@/constants/paths';
 
@@ -6,7 +8,8 @@ export const Notifications = () => {
     <Link href={paths.messages} className="relative group">
       <button
         type="button"
-        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+      >
         <span className="absolute -inset-1.5"></span>
         <span className="sr-only">View notifications</span>
         <svg
@@ -15,7 +18,8 @@ export const Notifications = () => {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          aria-hidden="true">
+          aria-hidden="true"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"

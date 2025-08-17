@@ -17,7 +17,8 @@ export const NavbarLink = ({ path, text }: NavbarLink) => {
       href={path}
       className={`${
         isActive ? 'bg-black' : ''
-      } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}>
+      } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
+      >
       {text}
     </Link>
   );
