@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import { type Metadata } from 'next';
-import '@/assets/styles/globals.css';
+import '@/styles/globals.css';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { Footer } from '@/components/Footer';
 

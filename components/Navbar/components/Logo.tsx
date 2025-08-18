@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { paths } from '@/constants/paths';
-import LogoPng from '@/assets/images/logo-white.png';
+import LogoPng from '@/public/images/logo-white.png';
 
 export const Logo = () => {
   return (

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import profileDefault from '@/assets/images/profile.png';
+import profileDefault from '@/public/images/profile.png';
 import { useCallback, useState } from 'react';
 
 export const ProfileMenu = () => {
