@@ -2,6 +2,7 @@ import { type ReactNode } from 'react';
 import { type Metadata } from 'next';
 import '@/assets/styles/globals.css';
 import { Navbar } from '@/components/Navbar/Navbar';
+import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Property Pulse',
@@ -19,6 +20,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       <body>
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
