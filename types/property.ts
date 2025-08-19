@@ -30,7 +30,7 @@ export interface Property {
   amenities?: string[];
   rates: Rates;
   seller_info: Seller;
-  images?: string[];
+  images: string[];
   is_featured: boolean;
   createdAt: string;
   updatedAt: string;
