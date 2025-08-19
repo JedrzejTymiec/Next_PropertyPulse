@@ -1,11 +1,11 @@
-interface Location {
+export interface Location {
   street: string;
   city: string;
   state: string;
   zipcode: string;
 }
 
-interface Seller {
+export interface Seller {
   name: string;
   email: string;
   phone: string;
@@ -22,15 +22,15 @@ export interface Property {
   owner: string;
   name: string;
   type: string;
-  description: string;
+  description?: string;
   location: Location;
   beds: number;
   baths: number;
   square_feet: number;
-  amenities: string[];
+  amenities?: string[];
   rates: Rates;
   seller_info: Seller;
-  images: string[];
+  images?: string[];
   is_featured: boolean;
   createdAt: string;
   updatedAt: string;

@@ -8,7 +8,7 @@ import {
   FaMoneyBill,
   FaMapMarker,
 } from 'react-icons/fa';
-import { type Property } from './types';
+import { type Property } from '@/types/property';
 import { getRateDisplay } from './utils';
 
 interface PropertyCardProps {
