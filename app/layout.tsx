@@ -3,6 +3,7 @@ import { type Metadata } from 'next';
 import '@/styles/globals.css';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { Footer } from '@/components/Footer';
+import { AuthProvier } from '@/components/AuthProvider';
 
 export const metadata: Metadata = {
   title: 'Property Pulse',
@@ -16,13 +17,15 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html>
-      <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <AuthProvier>
+      <html>
+        <body>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </AuthProvier>
   );
 };
 

@@ -8,18 +8,16 @@ import { NavbarLink } from './components/NavbarLink';
 import { ProfileMenu } from './components/ProfileMenu';
 import { Notifications } from './components/Notifications';
 import { Logo } from './components/Logo';
-import { LogInButton } from './components/LogInButton';
+import { LogIn } from './components/LogIn/LogIn';
+import { useSession } from 'next-auth/react';
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
+  const { data: session } = useSession();
+  const isLoggedIn = session !== undefined && session !== null;
 
   const toggleMobileMenu = useCallback(() => {
     setIsMobileMenuOpen((prevState) => !prevState);
-  }, []);
-
-  const logIn = useCallback(() => {
-    setIsLoggedIn(true);
   }, []);
 
   return (
@@ -45,7 +43,7 @@ export const Navbar = () => {
               <ProfileMenu />
             </div>
           ) : (
-            <LogInButton onClick={logIn} />
+            <LogIn />
           )}
         </div>
       </div>
