@@ -1,7 +1,14 @@
-import { type AuthOptions } from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import { Session, type CallbacksOptions, type AuthOptions } from 'next-auth';
+import GoogleProvider, { type GoogleProfile } from 'next-auth/providers/google';
+import { connectDB } from '@/config/database';
+import User from '@/models/User';
 
-export const authOptions: AuthOptions = {
+interface AuthOptionsType {
+  providers: AuthOptions['providers'];
+  callbacks: Partial<CallbacksOptions<GoogleProfile>>;
+}
+
+export const authOptions: AuthOptionsType = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? '',
@@ -18,18 +25,25 @@ export const authOptions: AuthOptions = {
   callbacks: {
     // Invoked on successful sing in
     async signIn({ profile }) {
-      //TODO:
-      // Connect to DB
-      // Chech if user exists
-      // if not create user
-      // return true to allow sign in
+      connectDB();
+      const user = await User.findOne({ email: profile?.email });
+      console.log(profile);
+
+      if (user === null) {
+        await User.create({
+          email: profile?.email,
+          username: profile?.name,
+          image: profile?.picture,
+        });
+      }
+      return true;
     },
     //Session callback function that modifies session object
     async session({ session }) {
-      //TODO:
-      // Get user from db
-      // Assign user id from the session
-      // return session
+      const user = await User.findOne({ email: session.user?.email });
+      const newSession = { ...session, user: { ...session.user, id: '' } };
+      newSession.user!.id = user!._id.toString();
+      return newSession as Session;
     },
   },
 };
