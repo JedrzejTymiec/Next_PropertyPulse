@@ -13,8 +13,8 @@ import { useSession } from 'next-auth/react';
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const { data: session } = useSession();
-  const isLoggedIn = session !== undefined && session !== null;
+  const { status } = useSession();
+  const isLoggedIn = status === 'authenticated';
 
   const toggleMobileMenu = useCallback(() => {
     setIsMobileMenuOpen((prevState) => !prevState);
