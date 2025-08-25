@@ -5,7 +5,7 @@ import { MobileMenu } from './components/MobileMenu/MobileMenu';
 import { MobileMenuButton } from './components/MobileMenu/MobileMenuButton';
 import { menuItems } from './menuItems';
 import { NavbarLink } from './components/NavbarLink';
-import { ProfileMenu } from './components/ProfileMenu';
+import { ProfileMenu } from './components/ProfileMenu/ProfileMenu';
 import { Notifications } from './components/Notifications';
 import { Logo } from './components/Logo';
 import { LogIn } from './components/LogIn/LogIn';

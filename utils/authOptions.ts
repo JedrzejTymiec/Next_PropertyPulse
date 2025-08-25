@@ -27,7 +27,6 @@ export const authOptions: AuthOptionsType = {
     async signIn({ profile }) {
       connectDB();
       const user = await User.findOne({ email: profile?.email });
-      console.log(profile);
 
       if (user === null) {
         await User.create({

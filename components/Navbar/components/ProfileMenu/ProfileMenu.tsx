@@ -1,15 +1,25 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import profileDefault from '@/public/images/profile.png';
 import { useCallback, useState } from 'react';
+import { MenuItem } from './MenuItem';
+import { paths } from '@/constants/paths';
+import { useSession, signOut } from 'next-auth/react';
 
 export const ProfileMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { data: session } = useSession();
+
+  const profileImage = session?.user?.image;
 
   const toggleMenu = useCallback(() => {
     setIsOpen((prevState) => !prevState);
+  }, []);
+
+  const handleSiignOut = useCallback(() => {
+    signOut();
+    setIsOpen(false);
   }, []);
 
   return (
@@ -25,7 +35,13 @@ export const ProfileMenu = () => {
         >
           <span className="absolute -inset-1.5"></span>
           <span className="sr-only">Open user menu</span>
-          <Image className="h-8 w-8 rounded-full" src={profileDefault} alt="" />
+          <Image
+            className="h-8 w-8 rounded-full"
+            src={profileImage ?? profileDefault}
+            width={64}
+            height={64}
+            alt=""
+          />
         </button>
       </div>
       {isOpen ? (
@@ -37,32 +53,15 @@ export const ProfileMenu = () => {
           aria-labelledby="user-menu-button"
           tabIndex={-1}
         >
-          <Link
-            href="/profile"
-            className="block px-4 py-2 text-sm text-gray-700"
-            role="menuitem"
-            tabIndex={-1}
-            id="user-menu-item-0"
-          >
+          <MenuItem href={paths.profile} id="user-menu-item-0">
             Your Profile
-          </Link>
-          <Link
-            href="/properties/saved"
-            className="block px-4 py-2 text-sm text-gray-700"
-            role="menuitem"
-            tabIndex={-1}
-            id="user-menu-item-2"
-          >
+          </MenuItem>
+          <MenuItem href={paths.savedProperties} id="user-menu-item-1">
             Saved Properties
-          </Link>
-          <button
-            className="block px-4 py-2 text-sm text-gray-700"
-            role="menuitem"
-            tabIndex={-1}
-            id="user-menu-item-2"
-          >
+          </MenuItem>
+          <MenuItem onClick={handleSiignOut} id="user-menu-item-2">
             Sign Out
-          </button>
+          </MenuItem>
         </div>
       ) : null}
     </div>
