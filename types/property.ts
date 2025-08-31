@@ -35,3 +35,18 @@ export interface Property {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface PropertyData {
+  owner: string;
+  name: string;
+  type: string;
+  description: string | null;
+  location: Location;
+  beds: number;
+  baths: number;
+  square_feet: number;
+  amenities?: string[];
+  rates: Rates;
+  seller_info: Seller;
+  images: string[];
+}
