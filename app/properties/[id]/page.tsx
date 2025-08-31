@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { paths } from '@/constants/paths';
 import { FaArrowLeft } from 'react-icons/fa';
 import { PropertyDetails } from '@/components/PropertyDetails/PropertyDetails';
+import { Gallery } from '@/components/PropertyDetails/components/Gallery';
 
 interface Params {
   id: string;
@@ -48,6 +49,7 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
           </div>
         </div>
       </section>
+      <Gallery images={property.images} />
     </>
   );
 };

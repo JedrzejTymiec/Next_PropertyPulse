@@ -6,7 +6,6 @@ import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import cloudinary from '@/config/cloudinary';
-import { PropertyData } from '@/types/property';
 
 export async function addProperty(formData: FormData) {
   await connectDB();
@@ -32,7 +31,7 @@ export async function addProperty(formData: FormData) {
     beds: formData.get('beds'),
     baths: formData.get('baths'),
     square_feet: formData.get('square_feet'),
-    amanities: formData.getAll('amenities'),
+    amenities: formData.getAll('amenities'),
     rates: {
       nightly: formData.get('rates.nightly'),
       weekly: formData.get('rates.weekly'),
