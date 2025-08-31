@@ -27,7 +27,7 @@ export const LogIn = () => {
     <div className="hidden md:block md:ml-6">
       <div className="flex items-center">
         {Object.values(providers).map((provider: ClientSafeProvider) => (
-          <LogInButton id={provider.id} />
+          <LogInButton key={provider.id} id={provider.id} />
         ))}
       </div>
     </div>
