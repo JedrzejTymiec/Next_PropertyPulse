@@ -7,6 +7,7 @@ export const texts = {
       CabinOrCottage: 'CabinOrCottage',
       Room: 'Room',
       Studio: 'Studio',
+      Chalet: 'Chalet',
       Other: 'Other',
     },
   },

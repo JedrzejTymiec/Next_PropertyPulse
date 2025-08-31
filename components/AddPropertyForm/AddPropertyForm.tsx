@@ -227,6 +227,92 @@ export const PropertyAddForm = () => {
             />
             <label htmlFor="amenity_coffee_maker">Coffee Maker</label>
           </div>
+          <div>
+            <input
+              type="checkbox"
+              id="amenity_high_speed_internet"
+              name="amenities"
+              value="High Speed Internet"
+              className="mr-2"
+            />
+            <label htmlFor="amenity_high_speed_internet">
+              High Speed Internet
+            </label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="amenity_outdoor_grill_bbq"
+              name="amenities"
+              value="Outdoor Grill/BBQ"
+              className="mr-2"
+            />
+            <label htmlFor="amenity_outdoor_grill_bbq">Outdoor Grill/BBQ</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="amenity_fireplace"
+              name="amenities"
+              value="Fireplace"
+              className="mr-2"
+            />
+            <label htmlFor="amenity_fireplace">Fireplace</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="amenity_hiking_trials_access"
+              name="amenities"
+              value="Hiking Trials Access"
+              className="mr-2"
+            />
+            <label htmlFor="amenity_hiking_trials_access">
+              Hiking Trials Access
+            </label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="amenity_pet_friendly"
+              name="amenities"
+              value="Pet Friendly"
+              className="mr-2"
+            />
+            <label htmlFor="amenity_pet_friendly">Pet Friendly</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="amenity_beach_access"
+              name="amenities"
+              value="Beach Access"
+              className="mr-2"
+            />
+            <label htmlFor="amenity_beach_access">Beach Access</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="amenity_ski_equipment_storage"
+              name="amenities"
+              value="Ski Equipment Storage"
+              className="mr-2"
+            />
+            <label htmlFor="amenity_ski_equipment_storage">
+              Ski Equipment Storage
+            </label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="amenity_moutain_view"
+              name="amenities"
+              value="Moutain View"
+              className="mr-2"
+            />
+            <label htmlFor="amenity_moutain_view">Moutain View</label>
+          </div>
         </div>
       </div>
 

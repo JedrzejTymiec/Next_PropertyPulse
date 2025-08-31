@@ -14,5 +14,6 @@ export const propertyTypeSelectOptions = [
   },
   { value: ProprtyType.Room, label: texts.PropertyTypeSelect.Option.Room },
   { value: ProprtyType.Studio, label: texts.PropertyTypeSelect.Option.Studio },
+  { value: ProprtyType.Chalet, label: texts.PropertyTypeSelect.Option.Chalet },
   { value: ProprtyType.Other, label: texts.PropertyTypeSelect.Option.Other },
 ];
