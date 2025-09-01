@@ -4,6 +4,7 @@ import '@/styles/globals.css';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { Footer } from '@/components/Footer';
 import { AuthProvier } from '@/components/AuthProvider';
+import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
   title: 'Property Pulse',
@@ -23,6 +24,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <ToastContainer />
         </body>
       </html>
     </AuthProvier>

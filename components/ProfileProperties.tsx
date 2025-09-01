@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { paths } from '@/constants/paths';
 import { deleteProperty } from '@/app/actions/deleteProperty';
+import { toast } from 'react-toastify';
 
 interface ProfilePropertiesProps {
   initalProperties: Property[];
@@ -28,6 +29,7 @@ export const ProfileProperties = ({
       (property) => property._id !== id,
     );
     setProperties(updatedProperties);
+    toast.success('Property deleted');
   }, []);
 
   //TODO: poroperty as separate component, map returns compoenets instead of html
