@@ -73,6 +73,8 @@ export async function addProperty(formData: FormData) {
   const newProperty = new Property(propertyData);
   await newProperty.save();
 
+  //TODO: cache property data with tags, replace revalidatePath with revalidateTag
+
   revalidatePath('/', 'layout');
 
   redirect(`/properties/${newProperty._id}`);
