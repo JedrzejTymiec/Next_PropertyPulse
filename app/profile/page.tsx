@@ -4,6 +4,8 @@ import Property from '@/models/Property';
 import { getSessionUser } from '@/utils/getSessionUser';
 import profileDefault from '@/assets/images/profile.png';
 import { ProfileProperties } from '@/components/ProfileProperties';
+import { convertToSerializableObject } from '@/utils/convertToObject';
+import { Property as PropertyType } from '@/types/property';
 
 const ProfilePage = async () => {
   await connectDB();
@@ -15,7 +17,6 @@ const ProfilePage = async () => {
 
   const { userId } = sessionUser;
   const properties = await Property.find({ owner: userId }).lean();
-  console.log(properties);
 
   return (
     <section className="bg-blue-50">
@@ -46,7 +47,11 @@ const ProfilePage = async () => {
 
             <div className="md:w-3/4 md:pl-4">
               <h2 className="text-xl font-semibold mb-4">Your Listings</h2>
-              <ProfileProperties initalProperties={properties} />
+              <ProfileProperties
+                initalProperties={convertToSerializableObject<PropertyType[]>(
+                  properties,
+                )}
+              />
             </div>
           </div>
         </div>

@@ -69,7 +69,7 @@ export const PropertyDetails = ({
 
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 list-none">
           {amenities?.map((amenity) => (
-            <li>
+            <li key={amenity}>
               <FaCheck className="inline-block mr-2" />
               {amenity}
             </li>

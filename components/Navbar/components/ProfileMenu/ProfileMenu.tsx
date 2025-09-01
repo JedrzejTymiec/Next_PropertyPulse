@@ -17,7 +17,7 @@ export const ProfileMenu = () => {
     setIsOpen((prevState) => !prevState);
   }, []);
 
-  const handleSiignOut = useCallback(() => {
+  const handleSignOut = useCallback(() => {
     signOut();
     setIsOpen(false);
   }, []);
@@ -53,13 +53,21 @@ export const ProfileMenu = () => {
           aria-labelledby="user-menu-button"
           tabIndex={-1}
         >
-          <MenuItem href={paths.profile} id="user-menu-item-0">
+          <MenuItem
+            href={paths.profile}
+            onClick={toggleMenu}
+            id="user-menu-item-0"
+          >
             Your Profile
           </MenuItem>
-          <MenuItem href={paths.savedProperties} id="user-menu-item-1">
+          <MenuItem
+            href={paths.savedProperties}
+            onClick={toggleMenu}
+            id="user-menu-item-1"
+          >
             Saved Properties
           </MenuItem>
-          <MenuItem onClick={handleSiignOut} id="user-menu-item-2">
+          <MenuItem onClick={handleSignOut} id="user-menu-item-2">
             Sign Out
           </MenuItem>
         </div>

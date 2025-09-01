@@ -3,20 +3,12 @@
 import Link from 'next/link';
 import { type ReactNode } from 'react';
 
-interface MenuLinkProps {
+interface MenuItemProps {
+  id: string;
+  children: ReactNode;
   href?: string;
-  onClick?: never;
-}
-
-interface MenuButtonProps {
-  href?: never;
   onClick?: () => void;
 }
-
-type MenuItemProps = { id: string; children: ReactNode } & (
-  | MenuLinkProps
-  | MenuButtonProps
-);
 
 export const MenuItem = ({ id, children, href, onClick }: MenuItemProps) => {
   const isLink = typeof href === 'string';
