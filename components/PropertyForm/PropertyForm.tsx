@@ -8,6 +8,8 @@ import { propertyTypeSelectOptions } from './constans/propertyTypes';
 import { amenities } from './constans/amenities';
 import { Amenity } from './components/Amenity';
 import { Property } from '@/types/property';
+import { updateProperty } from '@/app/actions/updateProperty';
+import { useCallback } from 'react';
 
 interface PropertyFormProps {
   initialValue?: Property;
@@ -28,8 +30,17 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
     }
   });
 
+  const handleAction = useCallback(
+    (formData: FormData) => {
+      return isEdit
+        ? updateProperty(initialValue?._id ?? '', formData)
+        : addProperty(formData);
+    },
+    [isEdit, initialValue?._id],
+  );
+
   return (
-    <form action={addProperty}>
+    <form action={handleAction}>
       <h2 className="text-3xl text-center font-semibold mb-6">
         {isEdit ? 'Edit Property' : 'Add Property'}
       </h2>

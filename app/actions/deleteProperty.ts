@@ -6,7 +6,7 @@ import Property from '@/models/Property';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
 
-export const deleteProperty = async (id: string) => {
+export async function deleteProperty(id: string) {
   const sessionUser = await getSessionUser();
 
   if (sessionUser === null || !sessionUser.userId) {
@@ -38,4 +38,4 @@ export const deleteProperty = async (id: string) => {
 
   await property.deleteOne();
   revalidatePath('/', 'layout');
-};
+}
