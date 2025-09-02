@@ -13,7 +13,7 @@ interface Params {
   id: string;
 }
 
-interface PropertyPageProps {
+export interface PropertyPageProps {
   params: Params;
 }
 

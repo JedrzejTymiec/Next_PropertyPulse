@@ -3,6 +3,7 @@ export const paths = {
   properties: '/properties',
   property: '/properties/:id',
   addProperty: '/properties/add',
+  editProperty: '/properties/:id/edit',
   savedProperties: '/properties/saved',
   messages: '/messages',
   profile: '/profile',

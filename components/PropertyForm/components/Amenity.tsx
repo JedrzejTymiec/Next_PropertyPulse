@@ -1,9 +1,10 @@
 interface AmenityProps {
   id: string;
   value: string;
+  defaultChecked?: boolean;
 }
 
-export const Amenity = ({ id, value }: AmenityProps) => {
+export const Amenity = ({ id, value, defaultChecked }: AmenityProps) => {
   return (
     <div>
       <input
@@ -12,6 +13,7 @@ export const Amenity = ({ id, value }: AmenityProps) => {
         name="amenities"
         value={value}
         className="mr-2"
+        defaultChecked={defaultChecked}
       />
       <label htmlFor={id}>{value}</label>
     </div>

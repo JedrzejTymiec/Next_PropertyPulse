@@ -7,6 +7,7 @@ interface InputProps {
   placeholder?: string;
   name?: string;
   className?: string;
+  initialValue?: string;
 }
 
 export const Input = ({
@@ -16,8 +17,9 @@ export const Input = ({
   name,
   type,
   className,
+  initialValue,
 }: InputProps) => {
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>(initialValue ?? '');
 
   const handleOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();

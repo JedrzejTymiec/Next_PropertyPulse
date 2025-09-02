@@ -5,9 +5,16 @@ interface TextAreaProps {
   id: string;
   placeholder: string;
   rows: number;
+  initialValue?: string;
 }
 
-export const TextArea = ({ label, id, placeholder, rows }: TextAreaProps) => {
+export const TextArea = ({
+  label,
+  id,
+  placeholder,
+  rows,
+  initialValue,
+}: TextAreaProps) => {
   const [value, setValue] = useState<string>('');
 
   const handleOnChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -28,6 +35,7 @@ export const TextArea = ({ label, id, placeholder, rows }: TextAreaProps) => {
         className="border rounded w-full py-2 px-3"
         rows={rows}
         placeholder={placeholder}
+        defaultValue={initialValue}
       ></textarea>
     </div>
   );
