@@ -9,7 +9,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { PropertyDetails } from '@/components/PropertyDetails/PropertyDetails';
 import { Gallery } from '@/components/PropertyDetails/components/Gallery';
 import { BookmarkButton } from '@/components/BookmarkButton';
-import { ShareButton } from '@/components/ShareButton';
+import { ShareButtons } from '@/components/ShareButtons';
 import { ContactForm } from '@/components/ContactForm';
 import { convertToSerializableObject } from '@/utils/convertToObject';
 import { Property as PropertyType } from '@/types/property';
@@ -55,7 +55,11 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
             <PropertyDetails property={property} />
             <aside className="space-y-4">
               <BookmarkButton id={property._id} />
-              <ShareButton />
+              <ShareButtons
+                id={property._id}
+                name={property.name}
+                type={property.type}
+              />
               <ContactForm />
             </aside>
           </div>

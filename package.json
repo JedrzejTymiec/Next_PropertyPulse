@@ -20,6 +20,7 @@
     "react-dom": "^18",
     "react-geocode": "^2.0.1",
     "react-map-gl": "^8.0.4",
+    "react-share": "^5.2.2",
     "react-toastify": "^11.0.5"
   },
   "devDependencies": {
