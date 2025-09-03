@@ -7,13 +7,14 @@ import {
   FaMapMarker,
 } from 'react-icons/fa';
 import { Rate } from './components/Rate';
+import { Map } from './components/Map';
 
 interface PropertyDetailsProps {
   property: Property;
 }
 
-export const PropertyDetails = ({
-  property: {
+export const PropertyDetails = ({ property }: PropertyDetailsProps) => {
+  const {
     name,
     type,
     location,
@@ -23,8 +24,7 @@ export const PropertyDetails = ({
     square_feet,
     description,
     amenities,
-  },
-}: PropertyDetailsProps) => {
+  } = property;
   return (
     <main>
       <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
@@ -78,7 +78,7 @@ export const PropertyDetails = ({
       </div>
       {/* <!-- Map -->? */}
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-        <div id="map"></div>
+        <Map property={property} />
       </div>
     </main>
   );
