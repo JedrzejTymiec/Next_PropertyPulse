@@ -10,7 +10,7 @@ export async function deleteProperty(id: string) {
   const sessionUser = await getSessionUser();
 
   if (sessionUser === null || !sessionUser.userId) {
-    throw new Error('User cannot be null');
+    throw new Error('User id required');
   }
 
   await connectDB();

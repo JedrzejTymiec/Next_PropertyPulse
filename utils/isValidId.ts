@@ -1,3 +1,5 @@
+import { Types } from 'mongoose';
+
 export function isValidId(id: string): boolean {
-  return !!id.match(/^[0-9a-fA-F]{24}$/);
+  return Types.ObjectId.isValid(id);
 }

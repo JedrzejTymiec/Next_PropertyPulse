@@ -1,5 +1,9 @@
-import { Schema, model, models, type Model } from 'mongoose';
+import { Schema, model, models, type Model, type Types } from 'mongoose';
 import { type User as UserType } from '@/types/user';
+
+type UserDocument = Omit<UserType, 'bookmarks'> & {
+  bookmarks: Types.Array<Types.ObjectId>;
+};
 
 const UserSchema = new Schema(
   {
@@ -27,6 +31,6 @@ const UserSchema = new Schema(
   },
 );
 
-const User: Model<UserType> = models.User || model('User', UserSchema);
+const User: Model<UserDocument> = models.User || model('User', UserSchema);
 
 export default User;

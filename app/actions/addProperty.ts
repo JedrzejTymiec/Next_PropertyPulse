@@ -8,13 +8,13 @@ import { redirect } from 'next/navigation';
 import cloudinary from '@/config/cloudinary';
 
 export async function addProperty(formData: FormData) {
-  await connectDB();
-
   const sessionUser = await getSessionUser();
+
   if (!sessionUser || !sessionUser.userId) {
-    throw new Error('User ID is equired');
+    throw new Error('User id required');
   }
 
+  await connectDB();
   const { userId } = sessionUser;
 
   const propertyData = {

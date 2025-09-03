@@ -8,15 +8,14 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function updateProperty(id: string, formData: FormData) {
-  await connectDB();
-
   const sessionUser = await getSessionUser();
+
   if (!sessionUser || !sessionUser.userId) {
-    throw new Error('User ID is equired');
+    throw new Error('User id equired');
   }
 
+  await connectDB();
   const { userId } = sessionUser;
-
   const property = await Property.findById(id);
 
   if (property?.owner.toString() !== userId) {

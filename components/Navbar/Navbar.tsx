@@ -9,12 +9,11 @@ import { ProfileMenu } from './components/ProfileMenu/ProfileMenu';
 import { Notifications } from './components/Notifications';
 import { Logo } from './components/Logo';
 import { LogIn } from './components/LogIn/LogIn';
-import { useSession } from 'next-auth/react';
+import { useIsAuthenticated } from '@/hooks/useIsAuthenticated';
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const { status } = useSession();
-  const isLoggedIn = status === 'authenticated';
+  const { isAuthenticated } = useIsAuthenticated();
 
   const toggleMobileMenu = useCallback(() => {
     setIsMobileMenuOpen((prevState) => !prevState);
@@ -37,7 +36,7 @@ export const Navbar = () => {
             </div>
           </div>
           {/* Right Side Menu (Logged In/Out) */}
-          {isLoggedIn ? (
+          {isAuthenticated ? (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
               <Notifications />
               <ProfileMenu />

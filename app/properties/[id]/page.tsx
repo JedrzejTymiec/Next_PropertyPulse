@@ -11,6 +11,8 @@ import { Gallery } from '@/components/PropertyDetails/components/Gallery';
 import { BookmarkButton } from '@/components/BookmarkButton';
 import { ShareButton } from '@/components/ShareButton';
 import { ContactForm } from '@/components/ContactForm';
+import { convertToSerializableObject } from '@/utils/convertToObject';
+import { Property as PropertyType } from '@/types/property';
 
 interface Params {
   id: string;
@@ -26,11 +28,13 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
   }
 
   await connectDB();
-  const property = await Property.findById(id).exec();
+  const propertyDoc = await Property.findById(id).exec();
 
-  if (property === null) {
+  if (propertyDoc === null) {
     notFound();
   }
+
+  const property = convertToSerializableObject<PropertyType>(propertyDoc);
 
   return (
     <>
@@ -50,7 +54,7 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
           <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
             <PropertyDetails property={property} />
             <aside className="space-y-4">
-              <BookmarkButton />
+              <BookmarkButton id={property._id} />
               <ShareButton />
               <ContactForm />
             </aside>
