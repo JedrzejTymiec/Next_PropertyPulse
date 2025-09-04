@@ -1,19 +1,19 @@
-import { ProprtyType } from '@/types/proprtyType';
+import { PropertyType } from '@/types/proprtyType';
 import { texts } from './texts';
 
 export const propertyTypeSelectOptions = [
   {
-    value: ProprtyType.Apartment,
+    value: PropertyType.Apartment,
     label: texts.PropertyTypeSelect.Option.Apartment,
   },
-  { value: ProprtyType.Condo, label: texts.PropertyTypeSelect.Option.Condo },
-  { value: ProprtyType.House, label: texts.PropertyTypeSelect.Option.House },
+  { value: PropertyType.Condo, label: texts.PropertyTypeSelect.Option.Condo },
+  { value: PropertyType.House, label: texts.PropertyTypeSelect.Option.House },
   {
-    value: ProprtyType.CabinOrCottage,
+    value: PropertyType.CabinOrCottage,
     label: texts.PropertyTypeSelect.Option.CabinOrCottage,
   },
-  { value: ProprtyType.Room, label: texts.PropertyTypeSelect.Option.Room },
-  { value: ProprtyType.Studio, label: texts.PropertyTypeSelect.Option.Studio },
-  { value: ProprtyType.Chalet, label: texts.PropertyTypeSelect.Option.Chalet },
-  { value: ProprtyType.Other, label: texts.PropertyTypeSelect.Option.Other },
+  { value: PropertyType.Room, label: texts.PropertyTypeSelect.Option.Room },
+  { value: PropertyType.Studio, label: texts.PropertyTypeSelect.Option.Studio },
+  { value: PropertyType.Chalet, label: texts.PropertyTypeSelect.Option.Chalet },
+  { value: PropertyType.Other, label: texts.PropertyTypeSelect.Option.Other },
 ];

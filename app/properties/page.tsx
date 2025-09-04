@@ -1,3 +1,4 @@
+import { SearchForm } from '@/components/Forms/SearchForm';
 import { PropertyCard } from '@/components/PropertyCard/PropertyCard';
 import { connectDB } from '@/config/database';
 import PropertyModel from '@/models/Property';
@@ -39,17 +40,24 @@ const PropertiesPage = async ({
   }
 
   return (
-    <section className="container-xl lg:container m-auto px-4 py-6">
-      {properties.length === 0 ? (
-        <p>No properties found</p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {properties.map((property) => (
-            <PropertyCard key={property._id} property={property} />
-          ))}
+    <>
+      <section className="bg-blue-700 py-4">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col items-start ms:px-6 lg:px-8">
+          <SearchForm />
         </div>
-      )}
-    </section>
+      </section>
+      <section className="container-xl lg:container m-auto px-4 py-6">
+        {properties.length === 0 ? (
+          <p>No properties found</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {properties.map((property) => (
+              <PropertyCard key={property._id} property={property} />
+            ))}
+          </div>
+        )}
+      </section>
+    </>
   );
 };
 
