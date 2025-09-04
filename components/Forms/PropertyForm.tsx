@@ -45,6 +45,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         {isEdit ? 'Edit Property' : 'Add Property'}
       </h2>
       <Select
+        id="type"
         label="Property Type"
         options={propertyTypeSelectOptions}
         initialValue={initialValue?.type}

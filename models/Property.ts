@@ -67,6 +67,7 @@ const PropertySchema = new Schema(
   },
 );
 
+//typowanie Document
 const Property: Model<PropertyType> =
   models.Property || model('Property', PropertySchema);
 

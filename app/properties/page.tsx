@@ -1,10 +1,42 @@
 import { PropertyCard } from '@/components/PropertyCard/PropertyCard';
 import { connectDB } from '@/config/database';
-import Property from '@/models/Property';
+import PropertyModel from '@/models/Property';
+import { PropertyType } from '@/types/proprtyType';
+import { type FilterQuery } from 'mongoose';
 
-const PropertiesPage = async () => {
+interface PropertiesPageProps {
+  searchParams: {
+    search: string;
+    type: PropertyType;
+  };
+}
+
+const PropertiesPage = async ({
+  searchParams: { search, type },
+}: PropertiesPageProps) => {
   await connectDB();
-  const properties = await Property.find({}).lean();
+  let properties;
+
+  if (!search && !type) {
+    properties = await PropertyModel.find({}).lean();
+  } else {
+    const searchPattern = new RegExp(search, 'i');
+    const query: FilterQuery<typeof PropertyModel> = {
+      $or: [
+        { name: searchPattern },
+        { description: searchPattern },
+        { 'location.street': searchPattern },
+        { 'location.city': searchPattern },
+        { 'location.state': searchPattern },
+        { 'location.zipcode': searchPattern },
+      ],
+    };
+    if (type !== PropertyType.All) {
+      const typePattern = new RegExp(type, 'i');
+      query.type = typePattern;
+    }
+    properties = await PropertyModel.find(query);
+  }
 
   return (
     <section className="container-xl lg:container m-auto px-4 py-6">

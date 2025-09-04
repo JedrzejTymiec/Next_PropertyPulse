@@ -6,6 +6,7 @@ interface InputProps {
   label?: string;
   placeholder?: string;
   name?: string;
+  required?: boolean;
   className?: string;
   initialValue?: string;
 }
@@ -16,6 +17,7 @@ export const Input = ({
   id,
   name,
   type,
+  required = true,
   className,
   initialValue,
 }: InputProps) => {
@@ -41,8 +43,8 @@ export const Input = ({
         name={name ?? id}
         className="border rounded w-full py-2 px-3 mb-2"
         placeholder={placeholder}
-        required
-        {...(label === undefined ? { 'aria-label': id } : undefined)}
+        required={required}
+        {...(label ? undefined : { 'aria-label': id })}
       />
     </div>
   );

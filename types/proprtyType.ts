@@ -1,4 +1,4 @@
-export enum ProprtyType {
+export enum PropertyType {
   Apartment = 'Apartment',
   Condo = 'Condo',
   House = 'House',
@@ -7,4 +7,5 @@ export enum ProprtyType {
   Studio = 'Studio',
   Chalet = 'Chalet',
   Other = 'Other',
+  All = 'All',
 }

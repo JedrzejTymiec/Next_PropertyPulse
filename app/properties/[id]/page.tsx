@@ -10,7 +10,7 @@ import { PropertyDetails } from '@/components/PropertyDetails/PropertyDetails';
 import { Gallery } from '@/components/PropertyDetails/components/Gallery';
 import { BookmarkButton } from '@/components/BookmarkButton';
 import { ShareButtons } from '@/components/ShareButtons';
-import { ContactForm } from '@/components/ContactForm';
+import { ContactForm } from '@/components/Forms/ContactForm';
 import { convertToSerializableObject } from '@/utils/convertToObject';
 import { Property as PropertyType } from '@/types/property';
 
