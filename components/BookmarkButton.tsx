@@ -14,14 +14,19 @@ interface BookmarkButtonProps {
 export const BookmarkButton = ({ id }: BookmarkButtonProps) => {
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
   const { isAuthenticated } = useIsAuthenticated();
-  const color = isBookmarked ? 'green' : 'blue';
+  console.log(isAuthenticated);
+  const color = isBookmarked
+    ? 'bg-green-500 hover:bg-green-600'
+    : 'bg-blue-500 hover:bg-blue-600';
 
   useEffect(() => {
-    const check = async () => {
-      const bookmarked = await checkIfBookmarked(id);
-      setIsBookmarked(!!bookmarked);
-    };
-    check();
+    if (isAuthenticated) {
+      const check = async () => {
+        const bookmarked = await checkIfBookmarked(id);
+        setIsBookmarked(!!bookmarked);
+      };
+      check();
+    }
   }, []);
 
   const onClick = useCallback(async () => {
@@ -41,7 +46,7 @@ export const BookmarkButton = ({ id }: BookmarkButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className={`bg-${color}-500 hover:bg-${color}-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center`}
+      className={`${color} text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center`}
     >
       <FaBookmark className="mr-2" />{' '}
       {isBookmarked ? 'Remove Bookmark' : 'Bookmark Property'}

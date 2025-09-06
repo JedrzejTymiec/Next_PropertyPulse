@@ -60,7 +60,12 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
                 name={property.name}
                 type={property.type}
               />
-              <ContactForm />
+              {
+                <ContactForm
+                  ownerId={property.owner}
+                  propertyId={property._id}
+                />
+              }
             </aside>
           </div>
         </div>

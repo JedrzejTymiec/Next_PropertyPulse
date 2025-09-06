@@ -1,10 +1,57 @@
-import { FaPaperPlane } from 'react-icons/fa';
+'use client';
+import { useCallback, useState } from 'react';
+import { toast } from 'react-toastify';
+import { addMessage } from '@/app/actions/addMessage';
+import { useIsAuthenticated } from '@/hooks/useIsAuthenticated';
+import { SubmitButton } from './components/SubmitButton';
 
-export const ContactForm = () => {
+interface ContactFormProps {
+  ownerId: string;
+  propertyId: string;
+}
+
+export interface State {
+  submitted: boolean;
+}
+
+export const ContactForm = ({ propertyId, ownerId }: ContactFormProps) => {
+  const { isAuthenticated } = useIsAuthenticated();
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+  const handleFromSubmit = useCallback(async (formData: FormData) => {
+    try {
+      const { submitted } = await addMessage(formData);
+      setIsSubmitted(submitted);
+      toast.success('Message sent');
+    } catch (e) {
+      toast.error((e as Error).message);
+    }
+  }, []);
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  if (isSubmitted) {
+    return <p className="text-green-500 mb-4">Message sent</p>;
+  }
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
       <h3 className="text-xl font-bold mb-6">Contact Property Manager</h3>
-      <form>
+      <form action={handleFromSubmit}>
+        <input
+          type="hidden"
+          id="property"
+          name="property"
+          defaultValue={propertyId}
+        />
+        <input
+          type="hidden"
+          id="recipient"
+          name="recipient"
+          defaultValue={ownerId}
+        />
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -67,12 +114,7 @@ export const ContactForm = () => {
           ></textarea>
         </div>
         <div>
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline flex items-center justify-center"
-            type="submit"
-          >
-            <FaPaperPlane className="mr-2" /> Send Message
-          </button>
+          <SubmitButton />
         </div>
       </form>
     </div>

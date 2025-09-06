@@ -28,7 +28,7 @@ export async function addMessage(formData: FormData) {
     name: formData.get('name'),
     email: formData.get('email'),
     phone: formData.get('phone'),
-    body: formData.get('body'),
+    body: formData.get('message'),
   });
 
   await newMessage.save();
