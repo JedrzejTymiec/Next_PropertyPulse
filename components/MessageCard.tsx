@@ -1,6 +1,7 @@
 'use client';
 import { deleteMessage } from '@/app/actions/Message/deleteMessage';
 import { toggleMessageRead } from '@/app/actions/Message/markMessage';
+import { useMessagesContext } from '@/context/MessagesContext';
 import { PopulatedMessage } from '@/types/message';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -12,6 +13,7 @@ interface MessageCardProps {
 export const MessageCard = ({ message }: MessageCardProps) => {
   const [isRead, setIsRead] = useState<boolean>(message.read);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { setUnreadCount } = useMessagesContext();
   const recived = new Date(message.createdAt).toLocaleString();
 
   const handleSetRead = useCallback(async () => {
@@ -19,6 +21,7 @@ export const MessageCard = ({ message }: MessageCardProps) => {
     try {
       const read = await toggleMessageRead(message._id);
       setIsRead(read);
+      setUnreadCount((prev) => (read ? prev - 1 : prev + 1));
     } catch (e) {
       console.error(e);
     } finally {

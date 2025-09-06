@@ -1,9 +1,19 @@
 'use client';
-import { createContext, ReactNode, useContext, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { getUnreadCount } from '@/app/actions/Message/getUnreadCount';
+import { useIsAuthenticated } from '@/hooks/useIsAuthenticated';
 
 interface MessagesContextType {
   unreadCount: number;
-  setUnreadCount: (newCount: number) => void;
+  setUnreadCount: Dispatch<SetStateAction<number>>;
 }
 
 const MessagesContext = createContext<MessagesContextType | undefined>(
@@ -18,6 +28,17 @@ export const MessagesContextProvider = ({
   children,
 }: MessagesContextProviderProps) => {
   const [unreadCount, setUnreadCount] = useState<number>(0);
+  const { isAuthenticated } = useIsAuthenticated();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const getCount = async () => {
+        const count = await getUnreadCount();
+        setUnreadCount(count);
+      };
+      getCount();
+    }
+  }, [isAuthenticated]);
 
   return (
     <MessagesContext.Provider value={{ unreadCount, setUnreadCount }}>

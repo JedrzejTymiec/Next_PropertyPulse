@@ -6,7 +6,7 @@ import { MobileMenuButton } from './components/MobileMenu/MobileMenuButton';
 import { menuItems } from './menuItems';
 import { NavbarLink } from './components/NavbarLink';
 import { ProfileMenu } from './components/ProfileMenu/ProfileMenu';
-import { Notifications } from './components/Notifications';
+import { Notifications } from './components/Notifications/Notifications';
 import { Logo } from './components/Logo';
 import { LogIn } from './components/LogIn/LogIn';
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated';
