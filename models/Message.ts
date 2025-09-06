@@ -7,6 +7,11 @@ const MessageSchema = new Schema(
       ref: 'User',
       required: true,
     },
+    recipient: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      require: true,
+    },
     property: {
       type: Schema.Types.ObjectId,
       ref: 'Property',
@@ -36,6 +41,7 @@ const MessageSchema = new Schema(
 );
 
 //TODO: typ
-const UserModel: Model<any> = models.Message || model('Message', MessageSchema);
+const MessageModel: Model<any> =
+  models.Message || model('Message', MessageSchema);
 
-export default UserModel;
+export default MessageModel;
