@@ -5,6 +5,7 @@ import { Navbar } from '@/components/Navbar/Navbar';
 import { Footer } from '@/components/Footer';
 import { AuthProvier } from '@/components/AuthProvider';
 import { ToastContainer } from 'react-toastify';
+import { MessagesContextProvider } from '@/context/MessagesContext';
 
 export const metadata: Metadata = {
   title: 'Property Pulse',
@@ -19,14 +20,16 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <AuthProvier>
-      <html>
-        <body>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <ToastContainer />
-        </body>
-      </html>
+      <MessagesContextProvider>
+        <html>
+          <body>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <ToastContainer />
+          </body>
+        </html>
+      </MessagesContextProvider>
     </AuthProvier>
   );
 };

@@ -3,6 +3,7 @@ import { deleteMessage } from '@/app/actions/Message/deleteMessage';
 import { toggleMessageRead } from '@/app/actions/Message/markMessage';
 import { PopulatedMessage } from '@/types/message';
 import { useCallback, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface MessageCardProps {
   message: PopulatedMessage;
@@ -33,6 +34,7 @@ export const MessageCard = ({ message }: MessageCardProps) => {
     if (!confirmed) return;
 
     await deleteMessage(message._id);
+    toast.success('Message deleted');
   }, [message._id]);
 
   return (

@@ -1,5 +1,4 @@
 'use client';
-
 import { FaBookmark } from 'react-icons/fa';
 import { bookmarkProperty } from '@/app/actions/Property/bookmarkProperty';
 import { toast } from 'react-toastify';
@@ -14,7 +13,6 @@ interface BookmarkButtonProps {
 export const BookmarkButton = ({ id }: BookmarkButtonProps) => {
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
   const { isAuthenticated } = useIsAuthenticated();
-  console.log(isAuthenticated);
   const color = isBookmarked
     ? 'bg-green-500 hover:bg-green-600'
     : 'bg-blue-500 hover:bg-blue-600';
