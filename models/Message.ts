@@ -1,3 +1,4 @@
+import { Message } from '@/types/message';
 import { Schema, model, models, type Model } from 'mongoose';
 
 const MessageSchema = new Schema(
@@ -41,7 +42,7 @@ const MessageSchema = new Schema(
 );
 
 //TODO: typ
-const MessageModel: Model<any> =
+const MessageModel: Model<Message> =
   models.Message || model('Message', MessageSchema);
 
 export default MessageModel;
