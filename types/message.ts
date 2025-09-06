@@ -6,6 +6,7 @@ export interface Message {
   name: string;
   email: string;
   phone?: string;
+  read: boolean;
   body: string;
   createdAt: number;
   updatedAt: number;

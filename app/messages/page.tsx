@@ -33,7 +33,9 @@ const MessagesPage = async () => {
             {messages.length === 0 ? (
               <p>Tou have no messages</p>
             ) : (
-              messages.map((message) => <MessageCard message={message} />)
+              messages.map((message) => (
+                <MessageCard key={message._id} message={message} />
+              ))
             )}
           </div>
         </div>
