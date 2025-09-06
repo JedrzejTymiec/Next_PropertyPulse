@@ -1,7 +1,7 @@
 'use client';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
-import { addMessage } from '@/app/actions/addMessage';
+import { addMessage } from '@/app/actions/Message/addMessage';
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated';
 import { SubmitButton } from './components/SubmitButton';
 

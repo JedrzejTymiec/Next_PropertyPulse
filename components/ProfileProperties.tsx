@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { paths } from '@/constants/paths';
-import { deleteProperty } from '@/app/actions/deleteProperty';
+import { deleteProperty } from '@/app/actions/Property/deleteProperty';
 import { toast } from 'react-toastify';
 
 interface ProfilePropertiesProps {

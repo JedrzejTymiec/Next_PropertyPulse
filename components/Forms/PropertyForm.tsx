@@ -1,6 +1,6 @@
 'use client';
 
-import { addProperty } from '@/app/actions/addProperty';
+import { addProperty } from '@/app/actions/Property/addProperty';
 import { Select } from './components/Select';
 import { TextArea } from './components/TextArea';
 import { Input } from './components/Input';
@@ -8,7 +8,7 @@ import { propertyTypeSelectOptions } from './constans/propertyTypes';
 import { amenities } from './constans/amenities';
 import { Amenity } from './components/Amenity';
 import { Property } from '@/types/property';
-import { updateProperty } from '@/app/actions/updateProperty';
+import { updateProperty } from '@/app/actions/Property/updateProperty';
 import { useCallback } from 'react';
 
 interface PropertyFormProps {

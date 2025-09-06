@@ -42,7 +42,7 @@ const MessageSchema = new Schema(
 );
 
 //TODO: typ
-const Message: Model<MessageType> =
+const MessageModel: Model<MessageType> =
   models.Message || model('Message', MessageSchema);
 
-export default Message;
+export default MessageModel;

@@ -15,6 +15,7 @@ const MessagesPage = async () => {
 
   await connectDB();
   const { userId } = session;
+  //TODO: sort by unread
   const messagesDoc = await MessageModel.find({
     recipient: userId,
   })

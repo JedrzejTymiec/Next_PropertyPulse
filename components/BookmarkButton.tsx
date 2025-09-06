@@ -1,11 +1,11 @@
 'use client';
 
 import { FaBookmark } from 'react-icons/fa';
-import { bookmarkProperty } from '@/app/actions/bookmarkProperty';
+import { bookmarkProperty } from '@/app/actions/Property/bookmarkProperty';
 import { toast } from 'react-toastify';
 import { useCallback, useEffect, useState } from 'react';
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated';
-import { isBookmarked as checkIfBookmarked } from '@/app/actions/isBookmarked';
+import { isBookmarked as checkIfBookmarked } from '@/app/actions/Property/isBookmarked';
 
 interface BookmarkButtonProps {
   id: string;
