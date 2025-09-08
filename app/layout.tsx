@@ -19,18 +19,18 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <AuthProvier>
-      <MessagesContextProvider>
-        <html>
-          <body>
+    <html>
+      <body>
+        <AuthProvier>
+          <MessagesContextProvider>
             <Navbar />
             <main>{children}</main>
             <Footer />
             <ToastContainer />
-          </body>
-        </html>
-      </MessagesContextProvider>
-    </AuthProvier>
+          </MessagesContextProvider>
+        </AuthProvier>
+      </body>
+    </html>
   );
 };
 
