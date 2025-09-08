@@ -30,7 +30,6 @@ export const MessageCard = ({ message }: MessageCardProps) => {
   }, [message]);
 
   const handleDeleteMessage = useCallback(async () => {
-    //TODO: utils with confiramtion
     const confirmed = window.confirm(
       'Are you sure you want to delete this message',
     );

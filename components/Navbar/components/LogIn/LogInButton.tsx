@@ -1,5 +1,4 @@
 'use client';
-
 import { signIn } from 'next-auth/react';
 import { useCallback } from 'react';
 import { FaGoogle } from 'react-icons/fa';

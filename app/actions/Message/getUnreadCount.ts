@@ -16,5 +16,6 @@ export async function getUnreadCount(): Promise<number> {
     recipient: userId,
     read: false,
   });
+
   return unreadCount;
 }

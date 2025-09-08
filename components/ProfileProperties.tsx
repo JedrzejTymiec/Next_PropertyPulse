@@ -32,8 +32,6 @@ export const ProfileProperties = ({
     toast.success('Property deleted');
   }, []);
 
-  //TODO: poroperty as separate component, map returns compoenets instead of html
-
   return properties.map((property) => (
     <div key={property._id} className="mb-10">
       <Link href={paths.property.replace(':id', property._id)}>

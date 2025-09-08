@@ -1,5 +1,4 @@
 'use server';
-
 import { connectDB } from '@/config/database';
 import { paths } from '@/constants/paths';
 import Property from '@/models/Property';

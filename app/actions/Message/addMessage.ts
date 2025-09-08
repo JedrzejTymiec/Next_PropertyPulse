@@ -1,5 +1,4 @@
 'use server';
-
 import { connectDB } from '@/config/database';
 import MessageModel from '@/models/Message';
 import { getSessionUser } from '@/utils/getSessionUser';
@@ -13,8 +12,6 @@ export async function addMessage(formData: FormData) {
 
   await connectDB();
   const { userId } = sessionUser;
-
-  //TODO think about hiding form if user is owner/recipient, same for bookmark
 
   const recipient = formData.get('recipient');
   if (userId === recipient) {

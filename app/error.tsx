@@ -1,5 +1,4 @@
 'use client';
-
 import { paths } from '@/constants/paths';
 import Link from 'next/link';
 import { FaExclamationCircle } from 'react-icons/fa';

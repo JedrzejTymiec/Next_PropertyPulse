@@ -67,8 +67,7 @@ const PropertySchema = new Schema(
   },
 );
 
-//typowanie Document
-const Property: Model<PropertyType> =
+const PropertyModel: Model<PropertyType> =
   models.Property || model('Property', PropertySchema);
 
-export default Property;
+export default PropertyModel;

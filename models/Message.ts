@@ -41,7 +41,6 @@ const MessageSchema = new Schema(
   },
 );
 
-//TODO: typ
 const MessageModel: Model<MessageType> =
   models.Message || model('Message', MessageSchema);
 

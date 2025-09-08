@@ -1,5 +1,4 @@
 'use server';
-
 import { connectDB } from '@/config/database';
 import Property from '@/models/Property';
 import { getSessionUser } from '@/utils/getSessionUser';
@@ -72,8 +71,6 @@ export async function addProperty(formData: FormData) {
 
   const newProperty = new Property(propertyData);
   await newProperty.save();
-
-  //TODO: cache property data with tags, replace revalidatePath with revalidateTag
 
   revalidatePath('/', 'layout');
 
