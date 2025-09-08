@@ -1,5 +1,4 @@
 'use client';
-
 import { useMessagesContext } from '@/context/MessagesContext';
 
 export const UnreadCount = () => {

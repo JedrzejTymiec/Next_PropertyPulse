@@ -24,7 +24,10 @@ const SavedPropertiesPage = async () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {user?.bookmarks.map((bookmarked) => (
-              <PropertyCard property={bookmarked as unknown as Property} />
+              <PropertyCard
+                key={bookmarked._id.toString()}
+                property={bookmarked as unknown as Property}
+              />
             ))}
           </div>
         )}

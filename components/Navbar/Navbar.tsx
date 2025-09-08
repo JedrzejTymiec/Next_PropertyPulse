@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useCallback } from 'react';
 import { MobileMenu } from './components/MobileMenu/MobileMenu';
 import { MobileMenuButton } from './components/MobileMenu/MobileMenuButton';
@@ -26,7 +25,6 @@ export const Navbar = () => {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             <MobileMenuButton onClick={toggleMobileMenu} />
             <Logo />
-            {/* Desktop Menu Hidden below md screens */}
             <div className="hidden md:ml-6 md:block">
               <div className="flex space-x-2">
                 {menuItems.map((item) => (
@@ -35,7 +33,6 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-          {/* Right Side Menu (Logged In/Out) */}
           {isAuthenticated ? (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
               <Notifications />

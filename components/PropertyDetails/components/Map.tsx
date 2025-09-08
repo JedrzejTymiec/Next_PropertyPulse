@@ -22,7 +22,6 @@ interface Viewport {
 }
 
 export const Map = ({ property }: MapProps) => {
-  //TODO: useReducer
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
@@ -71,7 +70,7 @@ export const Map = ({ property }: MapProps) => {
       }
     };
     fetchCoords();
-  }, []);
+  }, [property.location]);
 
   if (error) return <div>No location data found</div>;
 

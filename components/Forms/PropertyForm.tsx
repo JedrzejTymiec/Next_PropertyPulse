@@ -1,5 +1,4 @@
 'use client';
-
 import { addProperty } from '@/app/actions/Property/addProperty';
 import { Select } from './components/Select';
 import { TextArea } from './components/TextArea';
@@ -14,10 +13,6 @@ import { useCallback } from 'react';
 interface PropertyFormProps {
   initialValue?: Property;
 }
-
-//TODO: all inputs controlled
-//TODO: texts to const
-//TODO: lower somehow file size
 
 export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
   const isEdit = initialValue !== undefined;

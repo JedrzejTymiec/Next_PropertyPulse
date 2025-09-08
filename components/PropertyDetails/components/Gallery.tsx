@@ -8,8 +8,6 @@ interface GalleryProps {
   images: string[];
 }
 
-//TODO: alt texts
-
 export const Gallery = ({ images }: GalleryProps) => {
   return (
     <PHGallery>

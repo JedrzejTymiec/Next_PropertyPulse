@@ -39,7 +39,6 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           <h3 className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 font-bold text-right md:text-center lg:text-right">
             {displayRate}
           </h3>
-
           <div className="flex justify-center gap-4 text-gray-500 mb-4">
             <p>
               <FaBed className="md:hidden lg:inline" /> {beds}
@@ -56,7 +55,6 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
 
           <div className="flex justify-center gap-4 text-green-900 text-sm mb-4">
-            {/* TODO: map rates correctly */}
             <p>
               <FaMoneyBill className="md:hidden lg:inline" /> Weekly
             </p>

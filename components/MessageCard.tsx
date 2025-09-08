@@ -27,7 +27,7 @@ export const MessageCard = ({ message }: MessageCardProps) => {
     } finally {
       setIsLoading(false);
     }
-  }, [message]);
+  }, [message, setUnreadCount]);
 
   const handleDeleteMessage = useCallback(async () => {
     const confirmed = window.confirm(

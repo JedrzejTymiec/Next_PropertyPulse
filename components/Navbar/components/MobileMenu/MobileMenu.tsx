@@ -1,5 +1,4 @@
 'use client';
-
 import { type ReactElement } from 'react';
 import { MobileMenuLink } from './MobileMenuLink';
 import { menuItems } from '../../menuItems';

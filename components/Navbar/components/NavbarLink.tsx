@@ -1,5 +1,4 @@
 'use-client';
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -18,7 +17,7 @@ export const NavbarLink = ({ path, text }: NavbarLink) => {
       className={`${
         isActive ? 'bg-black' : ''
       } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
-      >
+    >
       {text}
     </Link>
   );

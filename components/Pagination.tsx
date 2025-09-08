@@ -21,14 +21,14 @@ export const Pagination = ({ page, pageSize, total }: PaginationProps) => {
     newParams.set('page', (page + 1).toString());
     const url = `${paths.properties}?${newParams}`;
     router.replace(url);
-  }, [page]);
+  }, [page, router, searchParams]);
 
   const handlePrevious = useCallback(() => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set('page', (page - 1).toString());
     const url = `${paths.properties}?${newParams}`;
     router.replace(url);
-  }, [page]);
+  }, [page, router, searchParams]);
 
   return (
     <section className="container mx-auto flex justify-center items-center my-8">

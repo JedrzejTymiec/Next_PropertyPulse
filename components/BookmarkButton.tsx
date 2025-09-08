@@ -25,7 +25,7 @@ export const BookmarkButton = ({ id }: BookmarkButtonProps) => {
       };
       check();
     }
-  }, []);
+  }, [id, isAuthenticated]);
 
   const onClick = useCallback(async () => {
     try {
@@ -35,7 +35,7 @@ export const BookmarkButton = ({ id }: BookmarkButtonProps) => {
     } catch (e) {
       toast.error(e as string);
     }
-  }, []);
+  }, [id]);
 
   if (!isAuthenticated) {
     return null;

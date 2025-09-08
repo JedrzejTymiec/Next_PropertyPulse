@@ -16,21 +16,24 @@ export const ProfileProperties = ({
 }: ProfilePropertiesProps) => {
   const [properties, setProperties] = useState<Property[]>(initalProperties);
 
-  const handleDelete = useCallback(async (id: string) => {
-    const confirmed = window.confirm(
-      'Are you sure you want to delete this property',
-    );
+  const handleDelete = useCallback(
+    async (id: string) => {
+      const confirmed = window.confirm(
+        'Are you sure you want to delete this property',
+      );
 
-    if (!confirmed) return;
+      if (!confirmed) return;
 
-    await deleteProperty(id);
+      await deleteProperty(id);
 
-    const updatedProperties = properties.filter(
-      (property) => property._id !== id,
-    );
-    setProperties(updatedProperties);
-    toast.success('Property deleted');
-  }, []);
+      const updatedProperties = properties.filter(
+        (property) => property._id !== id,
+      );
+      setProperties(updatedProperties);
+      toast.success('Property deleted');
+    },
+    [properties],
+  );
 
   return properties.map((property) => (
     <div key={property._id} className="mb-10">

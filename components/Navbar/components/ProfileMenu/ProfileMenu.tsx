@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import profileDefault from '@/assets/images/profile.png';
 import { useCallback, useState } from 'react';

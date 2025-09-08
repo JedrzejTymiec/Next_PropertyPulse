@@ -10,8 +10,6 @@ interface SearchFormProps {
   initialType?: PropertyType;
 }
 
-//TODO: from components
-
 export const SearchForm = ({ initialSearch, initialType }: SearchFormProps) => {
   const [location, setLocation] = useState<string>(initialSearch ?? '');
   const [propertyType, setPropertyType] = useState<PropertyType>(
@@ -38,7 +36,7 @@ export const SearchForm = ({ initialSearch, initialType }: SearchFormProps) => {
       query.set('page', '1');
       router.push(`${paths.properties}?${query}`);
     },
-    [location, propertyType],
+    [location, propertyType, searchParams, router],
   );
 
   return (
