@@ -56,6 +56,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
 
           <div className="flex justify-center gap-4 text-green-900 text-sm mb-4">
+            {/* TODO: map rates correctly */}
             <p>
               <FaMoneyBill className="md:hidden lg:inline" /> Weekly
             </p>
