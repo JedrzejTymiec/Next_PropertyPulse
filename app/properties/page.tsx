@@ -1,4 +1,5 @@
 import { SearchForm } from '@/components/Forms/SearchForm';
+import { Pagination } from '@/components/Pagination';
 import { PropertyCard } from '@/components/PropertyCard/PropertyCard';
 import { connectDB } from '@/config/database';
 import PropertyModel from '@/models/Property';
@@ -9,17 +10,24 @@ interface PropertiesPageProps {
   searchParams: {
     search: string;
     type: PropertyType;
+    page: string;
+    size: string;
   };
 }
 
 const PropertiesPage = async ({
-  searchParams: { search, type },
+  searchParams: { search, type, page: pageParam = '1', size: sizeParam = '9' },
 }: PropertiesPageProps) => {
   await connectDB();
   let properties;
+  const page = Number(pageParam);
+  const size = Number(sizeParam);
+  const skip = (page - 1) * size;
+  let total;
 
   if (!search && !type) {
-    properties = await PropertyModel.find({}).lean();
+    properties = await PropertyModel.find({}).skip(skip).limit(size).lean();
+    total = await PropertyModel.countDocuments();
   } else {
     const searchPattern = new RegExp(search, 'i');
     const query: FilterQuery<typeof PropertyModel> = {
@@ -36,14 +44,15 @@ const PropertiesPage = async ({
       const typePattern = new RegExp(type, 'i');
       query.type = typePattern;
     }
-    properties = await PropertyModel.find(query);
+    properties = await PropertyModel.find(query).skip(skip).limit(size).lean();
+    total = await PropertyModel.countDocuments(query);
   }
 
   return (
     <>
       <section className="bg-blue-700 py-4">
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-start ms:px-6 lg:px-8">
-          <SearchForm />
+          <SearchForm initialSearch={search} initialType={type} />
         </div>
       </section>
       <section className="container-xl lg:container m-auto px-4 py-6">
@@ -56,6 +65,7 @@ const PropertiesPage = async ({
             ))}
           </div>
         )}
+        <Pagination page={page} pageSize={size} total={total} />
       </section>
     </>
   );

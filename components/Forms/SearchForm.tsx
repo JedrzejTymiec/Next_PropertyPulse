@@ -3,16 +3,22 @@ import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { PropertyType } from '@/types/proprtyType';
 import { paths } from '@/constants/paths';
+import { useSearchParams } from 'next/navigation';
+
+interface SearchFormProps {
+  initialSearch?: string;
+  initialType?: PropertyType;
+}
 
 //TODO: from components
 
-export const SearchForm = () => {
-  const [location, setLocation] = useState<string>('');
+export const SearchForm = ({ initialSearch, initialType }: SearchFormProps) => {
+  const [location, setLocation] = useState<string>(initialSearch ?? '');
   const [propertyType, setPropertyType] = useState<PropertyType>(
-    PropertyType.All,
+    initialType ?? PropertyType.All,
   );
-
   const router = useRouter();
+  const searchParams = useSearchParams().toString();
 
   const handleLocationChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,13 +32,11 @@ export const SearchForm = () => {
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      let query;
-      if (location === '' && propertyType === PropertyType.All) {
-        query = '';
-      } else {
-        query = `?search=${location}&type=${propertyType}`;
-      }
-      router.push(paths.properties + query);
+      const query = new URLSearchParams(searchParams);
+      query.set('search', location);
+      query.set('type', propertyType);
+      query.set('page', '1');
+      router.push(`${paths.properties}?${query}`);
     },
     [location, propertyType],
   );
