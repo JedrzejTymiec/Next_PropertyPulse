@@ -1,4 +1,4 @@
-import { Rates } from '@/types/property';
+import { type Rates } from '@/types/property';
 
 export const getRateDisplay = (rates: Rates) => {
   if (rates.monthly) {

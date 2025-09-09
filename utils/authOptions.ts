@@ -1,4 +1,4 @@
-import { Session, type CallbacksOptions, type AuthOptions } from 'next-auth';
+import { type Session, type CallbacksOptions, type AuthOptions } from 'next-auth';
 import GoogleProvider, { type GoogleProfile } from 'next-auth/providers/google';
 import { connectDB } from '@/config/database';
 import User from '@/models/User';

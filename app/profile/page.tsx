@@ -5,7 +5,7 @@ import { getSessionUser } from '@/utils/getSessionUser';
 import profileDefault from '@/assets/images/profile.png';
 import { ProfileProperties } from '@/components/ProfileProperties';
 import { convertToSerializableObject } from '@/utils/convertToObject';
-import { Property as PropertyType } from '@/types/property';
+import { type Property as PropertyType } from '@/types/property';
 
 const ProfilePage = async () => {
   await connectDB();

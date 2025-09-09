@@ -1,6 +1,6 @@
 import { connectDB } from '@/config/database';
 import Property from '@/models/Property';
-import { Property as PropertyType } from '@/types/property';
+import { type Property as PropertyType } from '@/types/property';
 import { isValidObjectId } from 'mongoose';
 import { NextResponse } from 'next/server';
 

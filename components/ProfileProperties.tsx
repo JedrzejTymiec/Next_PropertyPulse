@@ -1,5 +1,5 @@
 'use client';
-import { Property } from '@/types/property';
+import { type Property } from '@/types/property';
 import { useCallback, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';

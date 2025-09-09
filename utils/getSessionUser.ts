@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from './authOptions';
-import { Session } from 'next-auth';
+import { type Session } from 'next-auth';
 
 type MySession = Session & {
   user: {

@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import { type ChangeEvent, type FormEvent, useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { PropertyType } from '@/types/proprtyType';
 import { paths } from '@/constants/paths';

@@ -6,6 +6,7 @@ export const connectDB = async () => {
   mongoose.set('strictQuery', true);
 
   if (connected) {
+    // eslint-disable-next-line no-console
     console.error('MongoBD already connected');
     return;
   }
@@ -14,6 +15,7 @@ export const connectDB = async () => {
     await mongoose.connect(process.env.MONGODB_URI ?? '');
     connected = true;
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
   }
 };

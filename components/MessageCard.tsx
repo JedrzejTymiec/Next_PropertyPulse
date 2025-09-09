@@ -2,7 +2,7 @@
 import { deleteMessage } from '@/app/actions/Message/deleteMessage';
 import { toggleMessageRead } from '@/app/actions/Message/markMessage';
 import { useMessagesContext } from '@/context/MessagesContext';
-import { PopulatedMessage } from '@/types/message';
+import { type PopulatedMessage } from '@/types/message';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -21,18 +21,16 @@ export const MessageCard = ({ message }: MessageCardProps) => {
     try {
       const read = await toggleMessageRead(message._id);
       setIsRead(read);
-      setUnreadCount((prev) => (read ? prev - 1 : prev + 1));
+      setUnreadCount(prev => (read ? prev - 1 : prev + 1));
     } catch (e) {
-      console.error(e);
+      toast.error((e as Error).message);
     } finally {
       setIsLoading(false);
     }
   }, [message, setUnreadCount]);
 
   const handleDeleteMessage = useCallback(async () => {
-    const confirmed = window.confirm(
-      'Are you sure you want to delete this message',
-    );
+    const confirmed = window.confirm('Are you sure you want to delete this message');
     if (!confirmed) return;
 
     await deleteMessage(message._id);

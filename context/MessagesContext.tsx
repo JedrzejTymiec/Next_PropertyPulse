@@ -1,9 +1,9 @@
 'use client';
 import {
   createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
   useContext,
   useEffect,
   useState,
@@ -16,17 +16,13 @@ interface MessagesContextType {
   setUnreadCount: Dispatch<SetStateAction<number>>;
 }
 
-const MessagesContext = createContext<MessagesContextType | undefined>(
-  undefined,
-);
+const MessagesContext = createContext<MessagesContextType | undefined>(undefined);
 
 interface MessagesContextProviderProps {
   children: ReactNode;
 }
 
-export const MessagesContextProvider = ({
-  children,
-}: MessagesContextProviderProps) => {
+export const MessagesContextProvider = ({ children }: MessagesContextProviderProps) => {
   const [unreadCount, setUnreadCount] = useState<number>(0);
   const { isAuthenticated } = useIsAuthenticated();
 

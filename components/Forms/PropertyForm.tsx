@@ -6,7 +6,7 @@ import { Input } from './components/Input';
 import { propertyTypeSelectOptions } from './constans/propertyTypes';
 import { amenities } from './constans/amenities';
 import { Amenity } from './components/Amenity';
-import { Property } from '@/types/property';
+import { type Property } from '@/types/property';
 import { updateProperty } from '@/app/actions/Property/updateProperty';
 import { useCallback } from 'react';
 

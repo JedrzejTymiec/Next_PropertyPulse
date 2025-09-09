@@ -1,4 +1,4 @@
-import { Message as MessageType } from '@/types/message';
+import { type Message as MessageType } from '@/types/message';
 import { Schema, model, models, type Model } from 'mongoose';
 
 const MessageSchema = new Schema(
@@ -41,7 +41,6 @@ const MessageSchema = new Schema(
   },
 );
 
-const MessageModel: Model<MessageType> =
-  models.Message || model('Message', MessageSchema);
+const MessageModel: Model<MessageType> = models.Message || model('Message', MessageSchema);
 
 export default MessageModel;

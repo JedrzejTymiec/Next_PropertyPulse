@@ -1,10 +1,10 @@
 import { PropertyForm } from '@/components/Forms/PropertyForm';
 import PropertyModel from '@/models/Property';
 import { connectDB } from '@/config/database';
-import { PropertyPageProps } from '../page';
+import { type PropertyPageProps } from '../page';
 import { notFound } from 'next/navigation';
 import { convertToSerializableObject } from '@/utils/convertToObject';
-import { Property } from '@/types/property';
+import { type Property } from '@/types/property';
 
 const EditPropertyPage = async ({ params: { id } }: PropertyPageProps) => {
   await connectDB();

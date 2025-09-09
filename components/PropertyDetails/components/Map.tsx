@@ -1,6 +1,5 @@
 'use client';
-
-import { Property } from '@/types/property';
+import { type Property } from '@/types/property';
 import { setDefaults, fromAddress, OutputFormat } from 'react-geocode';
 import { useState, useEffect } from 'react';
 import MapGl, { Marker } from 'react-map-gl/mapbox';
@@ -57,13 +56,12 @@ export const Map = ({ property }: MapProps) => {
         const { lat, lng } = res.results[0].geometry.location;
         setLatitude(lat);
         setLongitude(lng);
-        setViewport((prev) => ({
+        setViewport(prev => ({
           ...prev,
           latitude: lat,
           longitude: lng,
         }));
       } catch (e) {
-        console.error(e);
         setError(!!e);
       } finally {
         setLoading(false);

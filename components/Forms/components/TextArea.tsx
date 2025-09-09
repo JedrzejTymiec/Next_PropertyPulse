@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { type ChangeEvent, useCallback, useState } from 'react';
 
 interface TextAreaProps {
   label: string;
@@ -8,13 +8,7 @@ interface TextAreaProps {
   initialValue?: string;
 }
 
-export const TextArea = ({
-  label,
-  id,
-  placeholder,
-  rows,
-  initialValue,
-}: TextAreaProps) => {
+export const TextArea = ({ label, id, placeholder, rows, initialValue }: TextAreaProps) => {
   const [value, setValue] = useState<string>('');
 
   const handleOnChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {

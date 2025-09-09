@@ -1,7 +1,7 @@
 import { PropertyCard } from '@/components/PropertyCard/PropertyCard';
 import { connectDB } from '@/config/database';
 import User from '@/models/User';
-import { Property } from '@/types/property';
+import { type Property } from '@/types/property';
 import { getSessionUser } from '@/utils/getSessionUser';
 
 const SavedPropertiesPage = async () => {

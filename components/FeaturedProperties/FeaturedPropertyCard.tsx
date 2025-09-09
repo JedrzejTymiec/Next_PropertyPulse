@@ -1,4 +1,4 @@
-import { Property } from '@/types/property';
+import { type Property } from '@/types/property';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaBed, FaBath, FaRulerCombined, FaMoneyBill } from 'react-icons/fa';
@@ -9,11 +9,8 @@ interface FreaturedPropertyCardProps {
   property: Property;
 }
 
-export const FeaturedPropertyCard = ({
-  property,
-}: FreaturedPropertyCardProps) => {
-  const { images, name, type, rates, beds, baths, square_feet, location, _id } =
-    property;
+export const FeaturedPropertyCard = ({ property }: FreaturedPropertyCardProps) => {
+  const { images, name, type, rates, beds, baths, square_feet, location, _id } = property;
   const displayRate = getRateDisplay(rates);
   return (
     <Link
