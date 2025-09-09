@@ -1,4 +1,8 @@
-name: CI - Build
+name: CI - Build, Lint, Type-check
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 on:
   push:
