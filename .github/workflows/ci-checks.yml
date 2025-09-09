@@ -3,7 +3,7 @@ name: CI Lint & Type-Checkout
 on:
   workflow_run:
     workflows: ['CI Build']
-    type:
+    types:
       - completed
 
 jobs:
