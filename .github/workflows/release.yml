@@ -32,5 +32,8 @@ jobs:
         run: npm run release
 
       - name: Push changes and tags
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
           git push --follow-tags origin master
