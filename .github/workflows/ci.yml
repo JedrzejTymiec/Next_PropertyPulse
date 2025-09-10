@@ -6,7 +6,9 @@ concurrency:
 
 on:
   push:
-    branches: ['*']
+    branches-ignore: []
+    branches:
+      - '**'
   pull_request:
     branches: ['*']
 
