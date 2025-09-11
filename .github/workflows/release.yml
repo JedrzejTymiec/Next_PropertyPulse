@@ -48,6 +48,11 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
+      - name: Stage release changes
+        run: |
+          git add .
+          git commit -m "chore(release): v${{ steps.version.outputs.version }}" || echo "No changes to commit"  
+
       - name: Rename release branch
         id: release-branch
         run: |
