@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/JedrzejTymiec/Next_PropertyPulse/compare/v1.1.0...v1.1.1) (2025-09-10)
+
+
+### Bug Fixes
+
+* ci release - GH_TOKEN ([3e67001](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/3e67001aa93c24cc070b64d304728c13ef8825ee))
+* ci trigger, added commitlint, readme status ([58c4f53](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/58c4f5324c90097ff6ca0686497add4d821b0963))
+
 ## 1.1.0 (2025-09-10)
 
 
