@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - '**'
+      - master
 
 jobs:
   release:
@@ -77,14 +77,14 @@ jobs:
           base: master
           branch: ${{ steps.release-branch.outputs.branch_name }}
 
-      # - name: Instal Github CLI
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install gh -y
+      - name: Instal Github CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install gh -y
 
-      # - name: Enable auto-merge
-      #   run: |
-      #     gh auth setup-git
-      #     gh pr merge "${{ steps.cpr.outputs.pull-request-url }}" --merge --auto
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Enable auto-merge
+        run: |
+          gh auth setup-git
+          gh pr merge "${{ steps.cpr.outputs.pull-request-url }}" --merge --auto
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
