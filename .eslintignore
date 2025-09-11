@@ -3,4 +3,4 @@ node_modules/
 dist/
 .next/
 coverage/
-commitLint.config.js
+commitlint.config.cjs

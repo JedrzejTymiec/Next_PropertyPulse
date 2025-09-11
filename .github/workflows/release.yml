@@ -31,9 +31,35 @@ jobs:
       - name: Run release
         run: npm run release
 
-      - name: Push changes and tags
+      - name: Create new release branch
+        id: release-branch
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          BRANCH_NAME=release/v$VERSION
+          git config user.name "Release Bot"
+          git config user.email "bot@users.noreply.githhub.com"
+          git checkout -b $BRANCH_NAME
+          git push origin $BRANCH_NAME
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
+      - name: Create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          title: "chore(release): v${{ steps.release-branch.outputs.branch_name }}"
+          body: "Automated PR for release version bump"
+          base: master
+          branch: ${{ steps.release-branch.outputs.branch_name }}
+
+      - name: Instal Github CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install gh -y
+
+      - name: Enable auto-merge
+        run: |
+          gh auth setup-git
+          gh pr merge "${{ steps.release-branch.outputs.pull-request-url }}" --merge --auto
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
-          git push --follow-tags origin master
