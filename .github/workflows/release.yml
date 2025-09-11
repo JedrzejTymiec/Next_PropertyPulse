@@ -72,9 +72,22 @@ jobs:
           sudo apt-get update
           sudo apt-get install gh -y
 
-      - name: Enable auto-merge
+      - name: Enable auto-merge via GraphQL
         run: |
-          gh auth setup-git
-          gh pr merge "${{ steps.cpr.outputs.pull-request-url }}" --merge --auto
+          PR_ID=$(gh pr view "${{ steps.cpr.outputs.pull-request-url }}" --json id -q .id)
+          gh api graphql -f query='
+            mutation($prId: ID!) {
+              enablePullRequestAutoMerge(input: {
+                pullRequestId: $prId,
+                mergeMethod: MERGE
+              }) {
+                pullRequest {
+                  autoMergeRequest {
+                    enabledAt
+                    enabledBy { login }
+                  }
+                }
+              }
+            }' -f prId=$PR_ID
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
