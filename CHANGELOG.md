@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/JedrzejTymiec/Next_PropertyPulse/compare/v1.1.1...v1.4.0) (2025-09-11)
+
+
+### Features
+
+* automatic versioning with pr request ([e660a76](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/e660a76593a6968ea0f997e2a49b7bc2c56d0037))
+
+
+### Bug Fixes
+
+* ci release ([#5](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/5)) ([24d8292](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/24d829274ea4b6090276fb3010aafa60d38f032a))
+
 ## [1.3.0](https://github.com/JedrzejTymiec/Next_PropertyPulse/compare/v1.1.1...v1.3.0) (2025-09-11)
 
 
