@@ -61,7 +61,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN_RELEASE }}
           title: "chore(release): ${{ steps.release-branch.outputs.branch_name }}"
           body: "Automated PR for release version bump"
           base: master
@@ -90,4 +90,4 @@ jobs:
               }
             }' -f prId=$PR_ID
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN_RELEASE }}
