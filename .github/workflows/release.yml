@@ -57,6 +57,14 @@ jobs:
           git branch -m $BRANCH_NAME
           echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
+      - name: Debug GH auth
+        run: |
+          git remote -v
+          gh auth status
+          gh repo view $GITHUB_REPOSITORY --json name,viewerPermission
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN_RELEASE }}
+
       - name: Force token use
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN_RELEASE }}@github.com/${{ github.repository }}
