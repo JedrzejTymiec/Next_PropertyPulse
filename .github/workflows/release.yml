@@ -40,16 +40,7 @@ jobs:
           git switch -c release-temp
 
       - name: Run release
-        run: npx standard-version --release-as patch
-
-      - name: Debug git log and branch
-        run: |
-          echo "Current branch:"
-          git branch --show-current
-          echo "Recent commits:"
-          git log -3 --oneline
-          echo "Status:"
-          git status
+        run: npx standard-version
 
       - name: Extract version after release
         id: version
@@ -57,14 +48,13 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Push version
+      - name: Rename release branch
         id: release-branch
         run: |
           BRANCH_NAME=release/${{ steps.version.outputs.version }}
           git config user.name "Release Bot"
           git config user.email "bot@users.noreply.github.com"
           git branch -m $BRANCH_NAME
-          git push origin $BRANCH_NAME --follow-tags
           echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
       - name: Create pull request

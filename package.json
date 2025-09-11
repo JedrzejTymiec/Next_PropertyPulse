@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx",
-    "type-check": "tsc --noEmit",
-    "release": "standard-version"
+    "type-check": "tsc --noEmit"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
