@@ -37,7 +37,7 @@ jobs:
 
       - name: Create branch
         run: |
-          git checkout -b release-temp
+          git switch -c release-temp
 
       - name: Run release
         run: npm run release
