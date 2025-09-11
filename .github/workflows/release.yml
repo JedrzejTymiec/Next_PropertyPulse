@@ -57,6 +57,10 @@ jobs:
           git branch -m $BRANCH_NAME
           echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
+      - name: Force token use
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN_RELEASE }}@github.com/${{ github.repository }}
+
       - name: Create pull request
         id: cpr
         uses: peter-evans/create-pull-request@v6
@@ -66,6 +70,7 @@ jobs:
           body: "Automated PR for release version bump"
           base: master
           branch: ${{ steps.release-branch.outputs.branch_name }}
+          signoff: false
 
       - name: Instal Github CLI
         run: |
