@@ -3,7 +3,7 @@ import { getProviders, type ClientSafeProvider } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { LogInButton } from './LogInButton';
 
-interface Providers {
+export interface Providers {
   google: ClientSafeProvider;
 }
 
@@ -25,9 +25,7 @@ export const LogIn = () => {
   return (
     <div className="hidden md:block md:ml-6">
       <div className="flex items-center">
-        {Object.values(providers).map((provider: ClientSafeProvider) => (
-          <LogInButton key={provider.id} id={provider.id} />
-        ))}
+        <LogInButton id={providers.google.id} />
       </div>
     </div>
   );
