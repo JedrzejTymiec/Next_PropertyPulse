@@ -78,12 +78,8 @@ jobs:
           body: "Automated PR for release version bump"
           base: master
           branch: ${{ steps.release-branch.outputs.branch_name }}
+          delete-branch: true
           signoff: false
-
-      - name: Instal Github CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install gh -y
 
       - name: Enable auto-merge via GraphQL
         run: |
