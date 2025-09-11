@@ -42,10 +42,15 @@ jobs:
       - name: Run release
         run: npm run release
 
+      - name: Extract version after release
+        id: version
+        run: |
+          echo "version=$(node -p \"require('./package.json').version\")" >> $GITHUB_OUTPUT
+
       - name: Push version
         id: release-branch
         run: |
-          BRANCH_NAME=release/v${{ steps.version.outputs.version }}
+          BRANCH_NAME=release/${{ steps.version.outputs.version }}
           git config user.name "Release Bot"
           git config user.email "bot@users.noreply.github.com"
           git branch -m $BRANCH_NAME
