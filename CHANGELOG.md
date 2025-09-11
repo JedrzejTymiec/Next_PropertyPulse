@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/JedrzejTymiec/Next_PropertyPulse/compare/v1.1.1...v1.5.0) (2025-09-11)
+
+
+### Features
+
+* automatic versioning with pr request ([e660a76](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/e660a76593a6968ea0f997e2a49b7bc2c56d0037))
+
+
+### Bug Fixes
+
+* branch name correct version ([#11](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/11)) ([021222a](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/021222aade1246869440cb79c4d0e7f6d0c48961))
+* ci release ([#5](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/5)) ([24d8292](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/24d829274ea4b6090276fb3010aafa60d38f032a))
+* mobile log in ([#12](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/12)) ([e5c19fb](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/e5c19fb41af178d9863340d0a18c5b6d9a5bca24))
+* release - check replaced with switch ([#15](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/15)) ([eeca3cd](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/eeca3cdc533c86db24fc0a8a8f1a5a6d445df2db))
+* release ([#18](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/18)) ([4bbc2d2](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/4bbc2d25af680a1bec20a61077ea7ee5db6685f7))
+* release as patch ([#16](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/16)) ([bf2c137](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/bf2c137a2de9785861b8211e0ed3788490baa97f))
+* release as patch ([#17](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/17)) ([47daee0](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/47daee012afbf23ed6e2f048a1db53cee276fd99))
+* release branch name, skip release after release ([#9](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/9)) ([29e0cf9](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/29e0cf986585f2ed957b0a3e6bdded3c47ee9951))
+* release ci ([#13](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/13)) ([f98df27](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/f98df2713fd65abb8b2f27ff8e974fc9cf85996a))
+* release ci ([#14](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/14)) ([394db2a](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/394db2ae90faeaf3a60070b3a757e6bf41f91363))
+
 ## [1.4.0](https://github.com/JedrzejTymiec/Next_PropertyPulse/compare/v1.1.1...v1.4.0) (2025-09-11)
 
 
