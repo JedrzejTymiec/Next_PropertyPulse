@@ -40,7 +40,7 @@ jobs:
           git switch -c release-temp
 
       - name: Run release
-        run: npm run release
+        run: npx standard-version --release-as patch
 
       - name: Debug git log and branch
         run: |
