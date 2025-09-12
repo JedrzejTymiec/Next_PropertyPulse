@@ -1,15 +1,12 @@
 'use server';
 import { connectDB } from '@/config/database';
 import MessageModel from '@/models/Message';
+import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
 
 export async function addMessage(formData: FormData) {
   const sessionUser = await getSessionUser();
-
-  if (!sessionUser || !sessionUser.userId) {
-    throw new Error('User id required');
-  }
-
+  assertUser(sessionUser);
   await connectDB();
   const { userId } = sessionUser;
 

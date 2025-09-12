@@ -1,25 +1,26 @@
 'use server';
 import { connectDB } from '@/config/database';
 import { paths } from '@/constants/paths';
+import { NotFoundEntity } from '@/exceptions/NotFoundEntities';
+import { NotFoundException } from '@/exceptions/NotFoundException';
 import User from '@/models/User';
+import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { isValidId } from '@/utils/isValidId';
 import { revalidatePath } from 'next/cache';
 
 export async function bookmarkProperty(id: string) {
-  const sesionUser = await getSessionUser();
+  const sessionUser = await getSessionUser();
+  assertUser(sessionUser);
 
-  if (!sesionUser || !sesionUser.userId) {
-    throw new Error('User id required');
-  }
   if (!isValidId(id)) {
-    throw new Error('Property not found');
+    throw new NotFoundException(NotFoundEntity.Property);
   }
 
   await connectDB();
-  const { userId } = sesionUser;
+  const { userId } = sessionUser;
   const user = await User.findById(userId);
-  const isBookmarked = user!.bookmarks?.some((bmrk) => bmrk.equals(id));
+  const isBookmarked = user!.bookmarks?.some(bmrk => bmrk.equals(id));
   let message;
 
   if (isBookmarked) {

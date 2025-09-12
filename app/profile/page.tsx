@@ -6,15 +6,12 @@ import profileDefault from '@/assets/images/profile.png';
 import { ProfileProperties } from '@/components/ProfileProperties';
 import { convertToSerializableObject } from '@/utils/convertToObject';
 import { type Property as PropertyType } from '@/types/property';
+import { assertUser } from '@/utils/asserts/assertUser';
 
 const ProfilePage = async () => {
   await connectDB();
   const sessionUser = await getSessionUser();
-
-  if (sessionUser === null) {
-    throw new Error('Session user required');
-  }
-
+  assertUser(sessionUser);
   const { userId } = sessionUser;
   const properties = await Property.find({ owner: userId }).lean();
 

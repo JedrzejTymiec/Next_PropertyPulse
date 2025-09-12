@@ -1,30 +1,30 @@
 'use server';
 import cloudinary from '@/config/cloudinary';
 import { connectDB } from '@/config/database';
+import { NotFoundEntity } from '@/exceptions/NotFoundEntities';
+import { NotFoundException } from '@/exceptions/NotFoundException';
+import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
 import Property from '@/models/Property';
+import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
 
 export async function deleteProperty(id: string) {
   const sessionUser = await getSessionUser();
-
-  if (sessionUser === null || !sessionUser.userId) {
-    throw new Error('User id required');
-  }
-
+  assertUser(sessionUser);
   await connectDB();
   const { userId } = sessionUser;
   const property = await Property.findById(id);
 
   if (property === null) {
-    throw new Error('Property not found');
+    throw new NotFoundException(NotFoundEntity.Property);
   }
 
   if (property.owner.toString() !== userId) {
-    throw new Error('Unauthorized');
+    throw new UnauthorizedException();
   }
 
-  const publicIds = property.images.map((imageUrl) => {
+  const publicIds = property.images.map(imageUrl => {
     const parts = imageUrl.split('/');
     return parts.at(-1)?.split('.').at(0);
   });

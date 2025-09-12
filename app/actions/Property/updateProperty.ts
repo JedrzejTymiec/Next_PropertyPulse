@@ -1,24 +1,22 @@
 'use server';
 import { connectDB } from '@/config/database';
 import { paths } from '@/constants/paths';
+import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
 import Property from '@/models/Property';
+import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function updateProperty(id: string, formData: FormData) {
   const sessionUser = await getSessionUser();
-
-  if (!sessionUser || !sessionUser.userId) {
-    throw new Error('User id equired');
-  }
-
+  assertUser(sessionUser);
   await connectDB();
   const { userId } = sessionUser;
   const property = await Property.findById(id);
 
   if (property?.owner.toString() !== userId) {
-    throw new Error('Unauthorized');
+    throw new UnauthorizedException();
   }
 
   const updatedPropertyData = {
