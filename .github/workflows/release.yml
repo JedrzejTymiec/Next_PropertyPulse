@@ -42,47 +42,21 @@ jobs:
       - name: Run release
         run: npx standard-version
 
-      - name: Extract version after release
+      - name: Extract version
         id: version
         run: |
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Stage release changes
-        run: |
-          git add .
-          git commit -m "chore(release): v${{ steps.version.outputs.version }}" || echo "No changes to commit"  
-
-      - name: Rename release branch
-        id: release-branch
-        run: |
-          BRANCH_NAME=release/${{ steps.version.outputs.version }}
-          git config user.name "Release Bot"
-          git config user.email "bot@users.noreply.github.com"
-          git branch -m $BRANCH_NAME
-          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
-
-      - name: Debug GH auth
-        run: |
-          git remote -v
-          gh auth status
-          gh repo view $GITHUB_REPOSITORY --json name,viewerPermission
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN_RELEASE }}
-
-      - name: Force token use
-        run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN_RELEASE }}@github.com/${{ github.repository }}
 
       - name: Create pull request
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GH_TOKEN_RELEASE }}
-          title: "chore(release): ${{ steps.release-branch.outputs.branch_name }}"
+          title: "chore(release): ${{ steps.version.outputs.version }}"
           body: "Automated PR for release version bump"
           base: master
-          branch: ${{ steps.release-branch.outputs.branch_name }}
+          branch: release/${{ steps.version.outputs.version }}
           delete-branch: true
           signoff: false
 
