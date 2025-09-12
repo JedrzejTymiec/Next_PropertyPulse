@@ -75,3 +75,11 @@ jobs:
             }' -f prId=$PR_ID
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN_RELEASE }}
+
+      - name: Push tags
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN_RELEASE }}@github.com/${{ github.repository }}
+          git push origin --tags
+        env:
+          GIT_TERMINAL_PROMPT: 0
+          GH_TOKEN: ${{ secrets.GH_TOKEN_RELEASE }}
