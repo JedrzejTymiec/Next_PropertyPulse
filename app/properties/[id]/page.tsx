@@ -54,18 +54,9 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
           <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
             <PropertyDetails property={property} />
             <aside className="space-y-4">
-              <BookmarkButton id={property._id} />
-              <ShareButtons
-                id={property._id}
-                name={property.name}
-                type={property.type}
-              />
-              {
-                <ContactForm
-                  ownerId={property.owner}
-                  propertyId={property._id}
-                />
-              }
+              <BookmarkButton id={property._id} ownerId={property.owner} />
+              <ShareButtons id={property._id} name={property.name} type={property.type} />
+              <ContactForm ownerId={property.owner} propertyId={property._id} />
             </aside>
           </div>
         </div>

@@ -15,8 +15,9 @@ export interface State {
 }
 
 export const ContactForm = ({ propertyId, ownerId }: ContactFormProps) => {
-  const { isAuthenticated } = useIsAuthenticated();
+  const { isAuthenticated, userId } = useIsAuthenticated();
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const isVisible = isAuthenticated && userId !== ownerId;
 
   const handleFromSubmit = useCallback(async (formData: FormData) => {
     try {
@@ -28,7 +29,7 @@ export const ContactForm = ({ propertyId, ownerId }: ContactFormProps) => {
     }
   }, []);
 
-  if (!isAuthenticated) {
+  if (!isVisible) {
     return null;
   }
 
