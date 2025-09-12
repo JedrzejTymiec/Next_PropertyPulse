@@ -1,25 +1,25 @@
 'use server';
 import { connectDB } from '@/config/database';
+import { NotFoundEntity } from '@/exceptions/NotFoundEntities';
+import { NotFoundException } from '@/exceptions/NotFoundException';
+import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
 import MessageModel from '@/models/Message';
+import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
 
 export async function toggleMessageRead(id: string) {
   const session = await getSessionUser();
-
-  if (!session || !session.userId) {
-    throw new Error('Unathorized');
-  }
-
+  assertUser(session);
   await connectDB();
   const { userId } = session;
   const message = await MessageModel.findById(id);
 
   if (message === null) {
-    throw new Error('Message not found');
+    throw new NotFoundException(NotFoundEntity.Message);
   }
   if (message.recipient.toString() !== userId) {
-    throw new Error('Unauthorized');
+    throw new UnauthorizedException();
   }
 
   message.read = !message.read;

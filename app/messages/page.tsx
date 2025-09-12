@@ -5,14 +5,11 @@ import { type PopulatedMessage } from '@/types/message';
 import { convertToSerializableObject } from '@/utils/convertToObject';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { MessageCard } from '@/components/MessageCard';
+import { assertUser } from '@/utils/asserts/assertUser';
 
 const MessagesPage = async () => {
   const session = await getSessionUser();
-
-  if (!session || !session.userId) {
-    throw new Error('Unauthorized');
-  }
-
+  assertUser(session);
   await connectDB();
   const { userId } = session;
   const messagesDoc = await MessageModel.find({
@@ -33,9 +30,7 @@ const MessagesPage = async () => {
             {messages.length === 0 ? (
               <p>Tou have no messages</p>
             ) : (
-              messages.map((message) => (
-                <MessageCard key={message._id} message={message} />
-              ))
+              messages.map(message => <MessageCard key={message._id} message={message} />)
             )}
           </div>
         </div>

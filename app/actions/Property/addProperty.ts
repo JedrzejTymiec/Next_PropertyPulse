@@ -5,14 +5,11 @@ import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import cloudinary from '@/config/cloudinary';
+import { assertUser } from '@/utils/asserts/assertUser';
 
 export async function addProperty(formData: FormData) {
   const sessionUser = await getSessionUser();
-
-  if (!sessionUser || !sessionUser.userId) {
-    throw new Error('User id required');
-  }
-
+  assertUser(sessionUser);
   await connectDB();
   const { userId } = sessionUser;
 
@@ -45,9 +42,7 @@ export async function addProperty(formData: FormData) {
   };
 
   const imageUrls = [];
-  const images = (formData.getAll('images') as File[]).filter(
-    (image) => image.name !== '',
-  );
+  const images = (formData.getAll('images') as File[]).filter(image => image.name !== '');
 
   for (const imageFile of images) {
     const imageBuffer = await imageFile.arrayBuffer();
@@ -57,12 +52,9 @@ export async function addProperty(formData: FormData) {
     //Convert to base64
     const imageBase64 = imageData.toString('base64');
 
-    const result = await cloudinary.uploader.upload(
-      `data:image/png;base64,${imageBase64}`,
-      {
-        folder: 'propertypulse',
-      },
-    );
+    const result = await cloudinary.uploader.upload(`data:image/png;base64,${imageBase64}`, {
+      folder: 'propertypulse',
+    });
 
     imageUrls.push(result.secure_url);
   }

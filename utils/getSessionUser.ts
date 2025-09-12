@@ -8,12 +8,12 @@ type MySession = Session & {
   };
 };
 
-interface SeesionUser {
+export interface SessionUser {
   user: Session['user'];
   userId: string;
 }
 
-export const getSessionUser = async (): Promise<SeesionUser | null> => {
+export const getSessionUser = async (): Promise<SessionUser | null> => {
   const session = (await getServerSession(authOptions)) as MySession;
 
   if (session === null || session.user === undefined) {
