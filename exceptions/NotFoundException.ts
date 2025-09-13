@@ -1,14 +1,11 @@
-import { type NotFoundEntity } from './NotFoundEntities';
+import { type Entity } from '../constants/Entity';
 
 export class NotFoundException extends Error {
   statusCode: number;
   errorCode: string;
   details?: Record<string, object>;
 
-  constructor(
-    entity: NotFoundEntity,
-    options?: { details?: Record<string, object>; errorCode?: string },
-  ) {
+  constructor(entity: Entity, options?: { details?: Record<string, object>; errorCode?: string }) {
     super(`${entity} Not Found`);
     this.name = 'NotFoundException';
     this.statusCode = 401;

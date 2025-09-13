@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
 import { NotFoundException } from '@/exceptions/NotFoundException';
-import { NotFoundEntity } from '@/exceptions/NotFoundEntities';
+import { Entity } from '@/constants/Entity';
 
 export async function deleteMessage(id: string) {
   const session = await getSessionUser();
@@ -16,7 +16,7 @@ export async function deleteMessage(id: string) {
   const message = await MessageModel.findById(id);
 
   if (message === null) {
-    throw new NotFoundException(NotFoundEntity.Message);
+    throw new NotFoundException(Entity.Message);
   }
   if (message.recipient.toString() !== userId) {
     throw new UnauthorizedException();

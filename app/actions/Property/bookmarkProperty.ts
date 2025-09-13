@@ -1,7 +1,7 @@
 'use server';
 import { connectDB } from '@/config/database';
 import { paths } from '@/constants/paths';
-import { NotFoundEntity } from '@/exceptions/NotFoundEntities';
+import { Entity } from '@/constants/Entity';
 import { NotFoundException } from '@/exceptions/NotFoundException';
 import User from '@/models/User';
 import { assertUser } from '@/utils/asserts/assertUser';
@@ -14,7 +14,7 @@ export async function bookmarkProperty(id: string) {
   assertUser(sessionUser);
 
   if (!isValidId(id)) {
-    throw new NotFoundException(NotFoundEntity.Property);
+    throw new NotFoundException(Entity.Property);
   }
 
   await connectDB();
