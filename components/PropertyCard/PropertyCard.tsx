@@ -1,24 +1,26 @@
 import { paths } from '@/constants/paths';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  FaBed,
-  FaBath,
-  FaRulerCombined,
-  FaMoneyBill,
-  FaMapMarker,
-} from 'react-icons/fa';
+import { FaBed, FaBath, FaRulerCombined, FaMapMarker } from 'react-icons/fa';
 import { type Property } from '@/types/property';
 import { getRateDisplay } from './utils';
 import { createUrl } from '@/utils/createUrl';
+import { type Rates } from '@/types/property';
+import { RentalType } from './RentalType';
+import { type RentalType as RentalTypeEnum } from '@/constants/RentalType';
 
 interface PropertyCardProps {
   property: Property;
 }
 
+type RateType = keyof Rates;
+
 export const PropertyCard = ({ property }: PropertyCardProps) => {
   const { images, type, name, beds, baths, square_feet, location, _id, rates } = property;
   const displayRate = getRateDisplay(rates);
+
+  const rentalTypes = Object.keys(rates) as Array<keyof Rates>;
+  const availableRentalTypes = rentalTypes.filter(type => rates[type as RateType] !== null);
 
   return (
     <Link href={createUrl(paths.property, { id: _id })}>
@@ -55,12 +57,9 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
 
           <div className="flex justify-center gap-4 text-green-900 text-sm mb-4">
-            <p>
-              <FaMoneyBill className="md:hidden lg:inline" /> Weekly
-            </p>
-            <p>
-              <FaMoneyBill className="md:hidden lg:inline" /> Monthly
-            </p>
+            {availableRentalTypes.map(type => (
+              <RentalType key={type} type={type as RentalTypeEnum} />
+            ))}
           </div>
 
           <div className="border border-gray-100 mb-5"></div>
