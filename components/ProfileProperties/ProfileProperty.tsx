@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { paths } from '@/constants/paths';
 import { type Property } from '@/types/property';
 import { useCallback } from 'react';
+import { createUrl } from '@/utils/createUrl';
 
 interface ProfilePropertyProps {
   property: Property;
@@ -16,7 +17,7 @@ export const ProfileProperty = ({ property, deleteProperty }: ProfilePropertyPro
 
   return (
     <div key={property._id} className="mb-10">
-      <Link href={paths.property.replace(':id', property._id)}>
+      <Link href={createUrl(paths.property, { id: property._id })}>
         <Image
           className="h-32 w-full rounded-md object-cover"
           src={property.images[0]}
@@ -33,7 +34,7 @@ export const ProfileProperty = ({ property, deleteProperty }: ProfilePropertyPro
       </div>
       <div className="mt-2">
         <Link
-          href={paths.editProperty.replace(':id', property._id)}
+          href={createUrl(paths.editProperty, { id: property._id })}
           className="bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600"
         >
           Edit
