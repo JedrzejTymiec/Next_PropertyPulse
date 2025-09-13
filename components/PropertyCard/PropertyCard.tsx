@@ -10,18 +10,18 @@ import {
 } from 'react-icons/fa';
 import { type Property } from '@/types/property';
 import { getRateDisplay } from './utils';
+import { createUrl } from '@/utils/createUrl';
 
 interface PropertyCardProps {
   property: Property;
 }
 
 export const PropertyCard = ({ property }: PropertyCardProps) => {
-  const { images, type, name, beds, baths, square_feet, location, _id, rates } =
-    property;
+  const { images, type, name, beds, baths, square_feet, location, _id, rates } = property;
   const displayRate = getRateDisplay(rates);
 
   return (
-    <Link href={paths.property.replace(':id', _id)}>
+    <Link href={createUrl(paths.property, { id: _id })}>
       <div className="rounded-xl shadow-md relative">
         <Image
           src={images[0]}

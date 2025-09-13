@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FaBed, FaBath, FaRulerCombined, FaMoneyBill } from 'react-icons/fa';
 import { getRateDisplay } from '../PropertyCard/utils';
 import { paths } from '@/constants/paths';
+import { createUrl } from '@/utils/createUrl';
 
 interface FreaturedPropertyCardProps {
   property: Property;
@@ -14,7 +15,7 @@ export const FeaturedPropertyCard = ({ property }: FreaturedPropertyCardProps) =
   const displayRate = getRateDisplay(rates);
   return (
     <Link
-      href={paths.property.replace(':id', _id)}
+      href={createUrl(paths.property, { id: _id })}
       className="bg-white rounded-xl shadow-md relative flex flex-col md:flex-row"
     >
       <Image

@@ -4,6 +4,7 @@ import { paths } from '@/constants/paths';
 import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
 import Property from '@/models/Property';
 import { assertUser } from '@/utils/asserts/assertUser';
+import { createUrl } from '@/utils/createUrl';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -49,5 +50,5 @@ export async function updateProperty(id: string, formData: FormData) {
   await Property.findByIdAndUpdate(id, updatedPropertyData);
 
   revalidatePath('/', 'layout');
-  redirect(paths.property.replace(':id', id));
+  redirect(createUrl(paths.property, { id }));
 }
