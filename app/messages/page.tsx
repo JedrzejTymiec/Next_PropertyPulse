@@ -19,7 +19,12 @@ const MessagesPage = async () => {
     .populate('sender', 'username')
     .populate('property', 'name')
     .lean();
-  const messages = convertToSerializableObject<PopulatedMessage[]>(messagesDoc);
+  const unreadMessages = messagesDoc.filter(message => message.read === false);
+  const readMessages = messagesDoc.filter(message => message.read === true);
+  const messages = convertToSerializableObject<PopulatedMessage[]>([
+    ...unreadMessages,
+    ...readMessages,
+  ]);
 
   return (
     <section className="bg-blue-50">
