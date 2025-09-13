@@ -1,7 +1,7 @@
 'use server';
 import cloudinary from '@/config/cloudinary';
 import { connectDB } from '@/config/database';
-import { NotFoundEntity } from '@/exceptions/NotFoundEntities';
+import { Entity } from '@/constants/Entity';
 import { NotFoundException } from '@/exceptions/NotFoundException';
 import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
 import Property from '@/models/Property';
@@ -17,7 +17,7 @@ export async function deleteProperty(id: string) {
   const property = await Property.findById(id);
 
   if (property === null) {
-    throw new NotFoundException(NotFoundEntity.Property);
+    throw new NotFoundException(Entity.Property);
   }
 
   if (property.owner.toString() !== userId) {

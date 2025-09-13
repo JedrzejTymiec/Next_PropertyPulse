@@ -1,8 +1,10 @@
 'use client';
 import { deleteMessage } from '@/app/actions/Message/deleteMessage';
 import { toggleMessageRead } from '@/app/actions/Message/markMessage';
+import { Entity } from '@/constants/Entity';
 import { useMessagesContext } from '@/context/MessagesContext';
 import { type PopulatedMessage } from '@/types/message';
+import { confirmDelete } from '@/utils/confirmDelete';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -30,9 +32,7 @@ export const MessageCard = ({ message }: MessageCardProps) => {
   }, [message, setUnreadCount]);
 
   const handleDeleteMessage = useCallback(async () => {
-    const confirmed = window.confirm('Are you sure you want to delete this message');
-    if (!confirmed) return;
-
+    confirmDelete(Entity.Message);
     await deleteMessage(message._id);
     toast.success('Message deleted');
   }, [message._id]);

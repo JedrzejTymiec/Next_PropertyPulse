@@ -4,6 +4,8 @@ import { useCallback, useState } from 'react';
 import { deleteProperty as deletePropertyAction } from '@/app/actions/Property/deleteProperty';
 import { toast } from 'react-toastify';
 import { ProfileProperty } from './ProfileProperty';
+import { confirmDelete } from '@/utils/confirmDelete';
+import { Entity } from '@/constants/Entity';
 
 interface ProfilePropertiesProps {
   initalProperties: Property[];
@@ -14,12 +16,8 @@ export const ProfileProperties = ({ initalProperties }: ProfilePropertiesProps) 
 
   const deleteProperty = useCallback(
     async (id: string) => {
-      const confirmed = window.confirm('Are you sure you want to delete this property');
-
-      if (!confirmed) return;
-
+      confirmDelete(Entity.Property);
       await deletePropertyAction(id);
-
       const updatedProperties = properties.filter(property => property._id !== id);
       setProperties(updatedProperties);
       toast.success('Property deleted');

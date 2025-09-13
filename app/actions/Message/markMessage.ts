@@ -1,6 +1,6 @@
 'use server';
 import { connectDB } from '@/config/database';
-import { NotFoundEntity } from '@/exceptions/NotFoundEntities';
+import { Entity } from '@/constants/Entity';
 import { NotFoundException } from '@/exceptions/NotFoundException';
 import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
 import MessageModel from '@/models/Message';
@@ -16,7 +16,7 @@ export async function toggleMessageRead(id: string) {
   const message = await MessageModel.findById(id);
 
   if (message === null) {
-    throw new NotFoundException(NotFoundEntity.Message);
+    throw new NotFoundException(Entity.Message);
   }
   if (message.recipient.toString() !== userId) {
     throw new UnauthorizedException();
