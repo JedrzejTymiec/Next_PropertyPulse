@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { connectDB } from '@/config/database';
-import Property from '@/models/Property';
+import { PropertyModel } from '@/models/Property';
 import { getSessionUser } from '@/utils/getSessionUser';
 import profileDefault from '@/assets/images/profile.png';
 import { ProfileProperties } from '@/components/ProfileProperties/ProfileProperties';
@@ -13,7 +13,7 @@ const ProfilePage = async () => {
   const sessionUser = await getSessionUser();
   assertUser(sessionUser);
   const { userId } = sessionUser;
-  const properties = await Property.find({ owner: userId }).lean();
+  const properties = await PropertyModel.find({ owner: userId }).lean();
 
   return (
     <section className="bg-blue-50">
@@ -33,21 +33,17 @@ const ProfilePage = async () => {
               </div>
 
               <h2 className="text-2xl mb-4">
-                <span className="font-bold block">Name: </span>{' '}
-                {sessionUser.user?.name}
+                <span className="font-bold block">Name: </span> {sessionUser.user?.name}
               </h2>
               <h2 className="text-2xl">
-                <span className="font-bold block">Email: </span>{' '}
-                {sessionUser.user?.email}
+                <span className="font-bold block">Email: </span> {sessionUser.user?.email}
               </h2>
             </div>
 
             <div className="md:w-3/4 md:pl-4">
               <h2 className="text-xl font-semibold mb-4">Your Listings</h2>
               <ProfileProperties
-                initalProperties={convertToSerializableObject<PropertyType[]>(
-                  properties,
-                )}
+                initalProperties={convertToSerializableObject<PropertyType[]>(properties)}
               />
             </div>
           </div>

@@ -1,5 +1,7 @@
 import { type Message as MessageType } from '@/types/message';
-import { Schema, model, models, type Model } from 'mongoose';
+import { type HydratedDocument, Schema, model, models, type Model } from 'mongoose';
+
+export type MessageDocument = HydratedDocument<MessageType>;
 
 const MessageSchema = new Schema(
   {
@@ -41,6 +43,4 @@ const MessageSchema = new Schema(
   },
 );
 
-const MessageModel: Model<MessageType> = models.Message || model('Message', MessageSchema);
-
-export default MessageModel;
+export const MessageModel: Model<MessageType> = models.Message || model('Message', MessageSchema);

@@ -1,6 +1,6 @@
 import { PropertyCard } from '@/components/PropertyCard/PropertyCard';
 import { connectDB } from '@/config/database';
-import User from '@/models/User';
+import {UserModel} from '@/models/User';
 import { type Property } from '@/types/property';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
@@ -10,7 +10,7 @@ const SavedPropertiesPage = async () => {
   assertUser(sessionUser);
   await connectDB();
   const { userId } = sessionUser;
-  const user = await User.findById(userId).populate('bookmarks');
+  const user = await UserModel.findById(userId).populate('bookmarks');
 
   return (
     <section className="px-4 py-6">

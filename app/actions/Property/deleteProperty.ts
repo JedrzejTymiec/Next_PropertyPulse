@@ -4,7 +4,7 @@ import { connectDB } from '@/config/database';
 import { Entity } from '@/constants/Entity';
 import { NotFoundException } from '@/exceptions/NotFoundException';
 import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
-import Property from '@/models/Property';
+import { PropertyModel } from '@/models/Property';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
@@ -14,7 +14,7 @@ export async function deleteProperty(id: string) {
   assertUser(sessionUser);
   await connectDB();
   const { userId } = sessionUser;
-  const property = await Property.findById(id);
+  const property = await PropertyModel.findById(id);
 
   if (property === null) {
     throw new NotFoundException(Entity.Property);

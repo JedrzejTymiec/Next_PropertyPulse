@@ -1,5 +1,5 @@
 import { PropertyForm } from '@/components/Forms/PropertyForm';
-import PropertyModel from '@/models/Property';
+import {PropertyModel} from '@/models/Property';
 import { connectDB } from '@/config/database';
 import { type PropertyPageProps } from '../page';
 import { notFound } from 'next/navigation';

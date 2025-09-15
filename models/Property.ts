@@ -1,5 +1,7 @@
-import { Schema, model, models, type Model } from 'mongoose';
+import { type HydratedDocument, Schema, model, models, type Model } from 'mongoose';
 import { type Property as PropertyType } from '@/types/property';
+
+export type PropertyDocument = HydratedDocument<PropertyType>;
 
 const PropertySchema = new Schema(
   {
@@ -67,7 +69,5 @@ const PropertySchema = new Schema(
   },
 );
 
-const PropertyModel: Model<PropertyType> =
+export const PropertyModel: Model<PropertyType> =
   models.Property || model('Property', PropertySchema);
-
-export default PropertyModel;
