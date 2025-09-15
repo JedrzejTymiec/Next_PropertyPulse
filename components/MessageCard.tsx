@@ -7,6 +7,7 @@ import { type PopulatedMessage } from '@/types/message';
 import { confirmDelete } from '@/utils/confirmDelete';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
+import { Spinner } from './Spinner';
 
 interface MessageCardProps {
   message: PopulatedMessage;
@@ -70,8 +71,12 @@ export const MessageCard = ({ message }: MessageCardProps) => {
       <button
         onClick={handleSetRead}
         className="mt-4 mr-3 bg-blue-500 text-white py-1 px-3 rounded-md"
+        disabled={isLoading}
       >
-        {isLoading ? 'Loading...' : isRead ? 'Mark as unread' : 'Mark as read'}
+        {isLoading ? (
+          <Spinner size={12} margin="0px 5px 0px 0px" display="inline-block" color="#FFF" />
+        ) : null}
+        {isRead ? 'Mark as unread' : 'Mark as read'}
       </button>
       <button
         onClick={handleDeleteMessage}
