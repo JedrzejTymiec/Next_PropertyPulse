@@ -1,9 +1,7 @@
 import { Schema, model, models, type Model, type Types } from 'mongoose';
 import { type User as UserType } from '@/types/user';
 
-type UserDocument = Omit<UserType, 'bookmarks'> & {
-  bookmarks: Types.Array<Types.ObjectId>;
-};
+export type UserDocument = Omit<UserType, 'bookmarks'> & { bookmarks: Types.Array<Types.ObjectId> };
 
 const UserSchema = new Schema(
   {
@@ -31,6 +29,4 @@ const UserSchema = new Schema(
   },
 );
 
-const UserModel: Model<UserDocument> = models.User || model('User', UserSchema);
-
-export default UserModel;
+export const UserModel: Model<UserDocument> = models.User || model('User', UserSchema);

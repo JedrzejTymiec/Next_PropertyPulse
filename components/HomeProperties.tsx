@@ -2,14 +2,11 @@ import { PropertyCard } from './PropertyCard/PropertyCard';
 import Link from 'next/link';
 import { paths } from '@/constants/paths';
 import { connectDB } from '@/config/database';
-import Property from '@/models/Property';
+import { PropertyModel } from '@/models/Property';
 
 export const HomeProperties = async () => {
   await connectDB();
-  const recentProperties = await Property.find({})
-    .sort({ createdAt: -1 })
-    .limit(3)
-    .lean();
+  const recentProperties = await PropertyModel.find({}).sort({ createdAt: -1 }).limit(3).lean();
 
   return (
     <>

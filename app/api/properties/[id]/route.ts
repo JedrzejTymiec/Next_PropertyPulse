@@ -1,5 +1,5 @@
 import { connectDB } from '@/config/database';
-import Property from '@/models/Property';
+import { PropertyModel } from '@/models/Property';
 import { type Property as PropertyType } from '@/types/property';
 import { isValidObjectId } from 'mongoose';
 import { NextResponse } from 'next/server';
@@ -17,7 +17,7 @@ export const GET = async (request: Request, { params }: Params) => {
   }
   try {
     await connectDB();
-    const property = await Property.findById(params.id);
+    const property = await PropertyModel.findById(params.id);
 
     if (property === null) {
       return notFound;

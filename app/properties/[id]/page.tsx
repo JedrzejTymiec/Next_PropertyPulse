@@ -1,5 +1,5 @@
 import { connectDB } from '@/config/database';
-import Property from '@/models/Property';
+import { PropertyModel } from '@/models/Property';
 import { isValidId } from '@/utils/isValidId';
 import { notFound } from 'next/navigation';
 import { PropertyHeaderImage } from '@/components/PropertyHeaderImage';
@@ -28,7 +28,7 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
   }
 
   await connectDB();
-  const propertyDoc = await Property.findById(id).exec();
+  const propertyDoc = await PropertyModel.findById(id).exec();
 
   if (propertyDoc === null) {
     notFound();

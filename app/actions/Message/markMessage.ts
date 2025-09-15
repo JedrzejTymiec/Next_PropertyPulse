@@ -3,7 +3,7 @@ import { connectDB } from '@/config/database';
 import { Entity } from '@/constants/Entity';
 import { NotFoundException } from '@/exceptions/NotFoundException';
 import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
-import MessageModel from '@/models/Message';
+import { MessageModel } from '@/models/Message';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';

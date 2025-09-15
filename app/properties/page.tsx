@@ -2,7 +2,7 @@ import { SearchForm } from '@/components/Forms/SearchForm';
 import { Pagination } from '@/components/Pagination';
 import { PropertyCard } from '@/components/PropertyCard/PropertyCard';
 import { connectDB } from '@/config/database';
-import PropertyModel from '@/models/Property';
+import { PropertyModel } from '@/models/Property';
 import { PropertyType } from '@/types/proprtyType';
 import { type FilterQuery } from 'mongoose';
 

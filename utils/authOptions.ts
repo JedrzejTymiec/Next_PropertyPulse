@@ -1,7 +1,7 @@
 import { type Session, type CallbacksOptions, type AuthOptions } from 'next-auth';
 import GoogleProvider, { type GoogleProfile } from 'next-auth/providers/google';
 import { connectDB } from '@/config/database';
-import User from '@/models/User';
+import { UserModel } from '@/models/User';
 
 interface AuthOptionsType {
   providers: AuthOptions['providers'];
@@ -26,10 +26,10 @@ export const authOptions: AuthOptionsType = {
     // Invoked on successful sing in
     async signIn({ profile }) {
       connectDB();
-      const user = await User.findOne({ email: profile?.email });
+      const user = await UserModel.findOne({ email: profile?.email });
 
       if (user === null) {
-        await User.create({
+        await UserModel.create({
           email: profile?.email,
           username: profile?.name,
           image: profile?.picture,
@@ -39,7 +39,7 @@ export const authOptions: AuthOptionsType = {
     },
     //Session callback function that modifies session object
     async session({ session }) {
-      const user = await User.findOne({ email: session.user?.email });
+      const user = await UserModel.findOne({ email: session.user?.email });
       const newSession = { ...session, user: { ...session.user, id: '' } };
       newSession.user!.id = user!._id.toString();
       return newSession as Session;

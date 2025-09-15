@@ -1,11 +1,11 @@
 import { connectDB } from '@/config/database';
-import PropertModel from '@/models/Property';
+import { PropertyModel } from '@/models/Property';
 import { FeaturedPropertyCard } from './FeaturedPropertyCard';
 
 export const FeaturedProperties = async () => {
   await connectDB();
 
-  const properties = await PropertModel.find({ is_featured: true }).lean();
+  const properties = await PropertyModel.find({ is_featured: true }).lean();
   return properties.length > 0 ? (
     <section className="bg-blue-50 px-4 pt-6 pb-10">
       <div className="container-xl lg:container m-auto">

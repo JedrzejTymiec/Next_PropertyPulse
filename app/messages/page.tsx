@@ -1,5 +1,5 @@
 import { connectDB } from '@/config/database';
-import MessageModel from '@/models/Message';
+import { MessageModel } from '@/models/Message';
 import '@/models/Property';
 import { type PopulatedMessage } from '@/types/message';
 import { convertToSerializableObject } from '@/utils/convertToObject';

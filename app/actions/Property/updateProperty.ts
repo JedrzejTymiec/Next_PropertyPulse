@@ -2,7 +2,7 @@
 import { connectDB } from '@/config/database';
 import { paths } from '@/constants/paths';
 import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
-import Property from '@/models/Property';
+import { PropertyModel } from '@/models/Property';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { createUrl } from '@/utils/createUrl';
 import { getSessionUser } from '@/utils/getSessionUser';
@@ -14,7 +14,7 @@ export async function updateProperty(id: string, formData: FormData) {
   assertUser(sessionUser);
   await connectDB();
   const { userId } = sessionUser;
-  const property = await Property.findById(id);
+  const property = await PropertyModel.findById(id);
 
   if (property?.owner.toString() !== userId) {
     throw new UnauthorizedException();
@@ -47,7 +47,7 @@ export async function updateProperty(id: string, formData: FormData) {
     },
   };
 
-  await Property.findByIdAndUpdate(id, updatedPropertyData);
+  await PropertyModel.findByIdAndUpdate(id, updatedPropertyData);
 
   revalidatePath('/', 'layout');
   redirect(createUrl(paths.property, { id }));

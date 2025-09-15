@@ -3,7 +3,7 @@ import { connectDB } from '@/config/database';
 import { paths } from '@/constants/paths';
 import { Entity } from '@/constants/Entity';
 import { NotFoundException } from '@/exceptions/NotFoundException';
-import User from '@/models/User';
+import { UserModel } from '@/models/User';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { isValidId } from '@/utils/isValidId';
@@ -19,7 +19,7 @@ export async function bookmarkProperty(id: string) {
 
   await connectDB();
   const { userId } = sessionUser;
-  const user = await User.findById(userId);
+  const user = await UserModel.findById(userId);
   const isBookmarked = user!.bookmarks?.some(bmrk => bmrk.equals(id));
   let message;
 
