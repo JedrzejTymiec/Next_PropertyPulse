@@ -1,6 +1,6 @@
 'use server';
 import { connectDB } from '@/config/database';
-import MessageModel from '@/models/Message';
+import { MessageModel } from '@/models/Message';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { getSessionUser } from '@/utils/getSessionUser';
 

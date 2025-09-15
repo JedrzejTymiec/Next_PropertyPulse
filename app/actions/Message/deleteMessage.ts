@@ -1,7 +1,7 @@
 'use server';
 import { connectDB } from '@/config/database';
 import { getSessionUser } from '@/utils/getSessionUser';
-import MessageModel from '@/models/Message';
+import { MessageModel } from '@/models/Message';
 import { revalidatePath } from 'next/cache';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
