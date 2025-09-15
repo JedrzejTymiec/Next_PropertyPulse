@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.6](https://github.com/JedrzejTymiec/Next_PropertyPulse/compare/v1.0.0...v1.0.6) (2025-09-15)
+
+
+### Bug Fixes
+
+* contact form, bookmark button hidden for property owners ([#46](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/46)) ([7f37f3a](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/7f37f3a29d4819e8ea2d61ab2276021fdcde33a1))
+* mapped rental types ([137af70](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/137af70471345d23bac0e4385ecdbd3b2de2e06e))
+* messages unread on top ([16e69ef](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/16e69efb7e2a3d4dcb38b4b4c6fe33497ac0fe4c))
+
 ### [1.0.5](https://github.com/JedrzejTymiec/Next_PropertyPulse/compare/v1.0.0...v1.0.5) (2025-09-13)
 
 
