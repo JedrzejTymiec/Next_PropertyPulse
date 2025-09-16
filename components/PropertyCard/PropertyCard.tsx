@@ -8,6 +8,7 @@ import { createUrl } from '@/utils/createUrl';
 import { type Rates } from '@/types/property';
 import { RentalType } from './RentalType';
 import { type RentalType as RentalTypeEnum } from '@/constants/RentalType';
+import { generateAltText } from '@/utils/generateAltText';
 
 interface PropertyCardProps {
   property: Property;
@@ -27,7 +28,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
       <div className="rounded-xl shadow-md relative">
         <Image
           src={images[0]}
-          alt=""
+          alt={generateAltText(location.city, type)}
           width="0"
           height="0"
           sizes="100vw"

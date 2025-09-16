@@ -5,6 +5,7 @@ import { FaBed, FaBath, FaRulerCombined, FaMoneyBill } from 'react-icons/fa';
 import { getRateDisplay } from '../PropertyCard/utils';
 import { paths } from '@/constants/paths';
 import { createUrl } from '@/utils/createUrl';
+import { generateAltText } from '@/utils/generateAltText';
 
 interface FreaturedPropertyCardProps {
   property: Property;
@@ -20,7 +21,7 @@ export const FeaturedPropertyCard = ({ property }: FreaturedPropertyCardProps) =
     >
       <Image
         src={images[0]}
-        alt=""
+        alt={generateAltText(location.city, type)}
         className="w-full h-auto rounded-t-xl md:rounded-tr-none md:rounded-l-xl w-full md:w-2/5"
         width="0"
         height="0"

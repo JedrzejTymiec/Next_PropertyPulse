@@ -38,7 +38,11 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
 
   return (
     <>
-      <PropertyHeaderImage image={property.images[0]} />
+      <PropertyHeaderImage
+        image={property.images[0]}
+        city={property.location.city}
+        type={property.type}
+      />
       <section>
         <div className="container m-auto py-6 px-6">
           <Link
@@ -61,7 +65,7 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
           </div>
         </div>
       </section>
-      <Gallery images={property.images} />
+      <Gallery images={property.images} city={property.location.city} type={property.type} />
     </>
   );
 };
