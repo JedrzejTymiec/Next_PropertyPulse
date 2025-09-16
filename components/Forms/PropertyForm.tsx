@@ -1,8 +1,8 @@
 'use client';
 import { addProperty } from '@/app/actions/Property/addProperty';
-import { Select } from './components/Select';
+import { Select } from './components/Select/Select';
 import { TextArea } from './components/TextArea';
-import { Input } from './components/Input/Input';
+import { Input } from './components/Input';
 import { propertyTypeSelectOptions } from './constans/propertyTypes';
 import { amenities } from './constans/amenities';
 import { Amenity } from './components/Amenity';

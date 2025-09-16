@@ -1,14 +1,23 @@
 import { type ChangeEvent, useCallback, useState } from 'react';
+import { textAreaVariants } from './textAreaVariants';
 
 interface TextAreaProps {
   label: string;
   id: string;
   placeholder: string;
   rows: number;
+  variant?: 'contact';
   initialValue?: string;
 }
 
-export const TextArea = ({ label, id, placeholder, rows, initialValue }: TextAreaProps) => {
+export const TextArea = ({
+  label,
+  id,
+  placeholder,
+  rows,
+  initialValue,
+  variant,
+}: TextAreaProps) => {
   const [value, setValue] = useState<string>('');
 
   const handleOnChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -26,7 +35,7 @@ export const TextArea = ({ label, id, placeholder, rows, initialValue }: TextAre
         onChange={handleOnChange}
         id={id}
         name={id}
-        className="border rounded w-full py-2 px-3"
+        className={textAreaVariants({ variant })}
         rows={rows}
         placeholder={placeholder}
         defaultValue={initialValue}

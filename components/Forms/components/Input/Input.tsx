@@ -1,5 +1,5 @@
 import { type ChangeEvent, useCallback, useState } from 'react';
-import { tv } from 'tailwind-variants';
+import { labelVariants, inputVariants } from './inputVariants';
 import { clsx } from 'clsx';
 
 interface Label {
@@ -10,29 +10,18 @@ interface Label {
 }
 
 interface InputProps {
-  type: 'text' | 'number' | 'file';
+  type: HTMLInputElement['type'];
   id: string;
+  variant?: 'property' | 'search' | 'contact';
   label?: Label;
   placeholder?: string;
   name?: string;
   required?: boolean;
   className?: string;
   initialValue?: string | number;
+  value?: string | number;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
-
-const labelVariants = tv({
-  base: 'block',
-  variants: {
-    font: { bold: 'font-bold', normal: 'font-normal' },
-    placement: { left: 'mr-2', top: 'mb-2' },
-    color: { grey: 'text-gray-700', black: 'text-black' },
-  },
-  defaultVariants: {
-    font: 'bold',
-    placement: 'top',
-    color: 'grey',
-  },
-});
 
 export const Input = ({
   label,
@@ -43,6 +32,9 @@ export const Input = ({
   required = true,
   className,
   initialValue,
+  variant = 'property',
+  value: externalValue,
+  onChange: externalOnChange,
 }: InputProps) => {
   const [value, setValue] = useState<string | number>(initialValue ?? '');
   const isLabelHorizontal = label?.placement === 'left';
@@ -68,12 +60,12 @@ export const Input = ({
         </label>
       ) : null}
       <input
-        value={value}
-        onChange={handleOnChange}
+        value={externalValue ?? value}
+        onChange={externalOnChange ?? handleOnChange}
         type={type}
         id={id}
         name={name ?? id}
-        className="border rounded w-full py-2 px-3"
+        className={inputVariants({ variant })}
         placeholder={placeholder}
         required={required}
         {...(isFileInput ? { accept: 'image/*', multiple: true } : undefined)}
