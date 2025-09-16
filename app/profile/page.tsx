@@ -28,7 +28,7 @@ const ProfilePage = async () => {
                   src={sessionUser.user?.image ?? profileDefault}
                   width={200}
                   height={200}
-                  alt="User"
+                  alt="User picture"
                 />
               </div>
 

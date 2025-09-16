@@ -1,4 +1,5 @@
 'use client';
+import { generateAltText } from '@/utils/generateAltText';
 import { isOddAndLast } from '@/utils/isOddAndLast';
 import Image from 'next/image';
 import 'photoswipe/dist/photoswipe.css';
@@ -6,9 +7,11 @@ import { Gallery as PHGallery, Item } from 'react-photoswipe-gallery';
 
 interface GalleryProps {
   images: string[];
+  city: string;
+  type: string;
 }
 
-export const Gallery = ({ images }: GalleryProps) => {
+export const Gallery = ({ images, city, type }: GalleryProps) => {
   return (
     <PHGallery>
       <section className="bg-blue-50 p-4">
@@ -19,13 +22,14 @@ export const Gallery = ({ images }: GalleryProps) => {
               thumbnail={images[0]}
               width="1000"
               height="600"
+              alt={generateAltText(city, type)}
             >
               {({ ref, open }) => (
                 <Image
                   src={images[0]}
                   ref={ref}
                   onClick={open}
-                  alt=""
+                  alt={generateAltText(city, type)}
                   className="object-cover h-[400px] mx-auto rounded-xl cursor-pointer"
                   width={1800}
                   height={400}
@@ -35,27 +39,24 @@ export const Gallery = ({ images }: GalleryProps) => {
             </Item>
           ) : (
             <div className="grid grid-cols-2 gap-4">
-              {images.map((image, index) => (
+              {images.map((image: string, index) => (
                 <div
                   key={image}
-                  className={
-                    isOddAndLast(index, images.length)
-                      ? 'col-span-2'
-                      : 'col-span-1'
-                  }
+                  className={isOddAndLast(index, images.length) ? 'col-span-2' : 'col-span-1'}
                 >
                   <Item
                     original={image}
                     thumbnail={image}
                     width="1280"
                     height="720"
+                    alt={generateAltText(city, type)}
                   >
                     {({ ref, open }) => (
                       <Image
                         src={image}
                         ref={ref}
                         onClick={open}
-                        alt=""
+                        alt={generateAltText(city, type)}
                         className="object-cover h-[400px] w-full rounded-xl cursor-pointer"
                         width={1800}
                         height={400}

@@ -4,6 +4,7 @@ import { paths } from '@/constants/paths';
 import { type Property } from '@/types/property';
 import { useCallback } from 'react';
 import { createUrl } from '@/utils/createUrl';
+import { generateAltText } from '@/utils/generateAltText';
 
 interface ProfilePropertyProps {
   property: Property;
@@ -23,7 +24,7 @@ export const ProfileProperty = ({ property, deleteProperty }: ProfilePropertyPro
           src={property.images[0]}
           width={1000}
           height={200}
-          alt="Property 1"
+          alt={generateAltText(property.location.city, property.type)}
         />
       </Link>
       <div className="mt-2">
