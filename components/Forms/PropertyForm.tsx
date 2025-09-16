@@ -2,7 +2,7 @@
 import { addProperty } from '@/app/actions/Property/addProperty';
 import { Select } from './components/Select';
 import { TextArea } from './components/TextArea';
-import { Input } from './components/Input';
+import { Input } from './components/Input/Input';
 import { propertyTypeSelectOptions } from './constans/propertyTypes';
 import { amenities } from './constans/amenities';
 import { Amenity } from './components/Amenity';
@@ -17,7 +17,7 @@ interface PropertyFormProps {
 export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
   const isEdit = initialValue !== undefined;
 
-  const initialAmenities = amenities.map((amenity) => {
+  const initialAmenities = amenities.map(amenity => {
     if (isEdit && initialValue?.amenities?.includes(amenity.value)) {
       return { ...amenity, defaultChecked: true };
     } else {
@@ -27,9 +27,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
 
   const handleAction = useCallback(
     (formData: FormData) => {
-      return isEdit
-        ? updateProperty(initialValue?._id ?? '', formData)
-        : addProperty(formData);
+      return isEdit ? updateProperty(initialValue?._id ?? '', formData) : addProperty(formData);
     },
     [isEdit, initialValue?._id],
   );
@@ -49,7 +47,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         type="text"
         id="name"
         placeholder="eg. Beautiful Apartment In Miami"
-        label="Listing Name"
+        label={{ text: 'Listing Name' }}
         initialValue={initialValue?.name}
       />
       <TextArea
@@ -76,6 +74,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
           name="location.city"
           placeholder="City"
           initialValue={initialValue?.location.city}
+          className="mb-4"
         />
         <Input
           type="text"
@@ -98,21 +97,21 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         <Input
           type="number"
           id="beds"
-          label="Beds"
+          label={{ text: 'Beds' }}
           className="w-full sm:w-1/3 pr-2"
           initialValue={initialValue?.beds.toString()}
         />
         <Input
           type="number"
           id="baths"
-          label="Baths"
+          label={{ text: 'Baths' }}
           className="w-full sm:w-1/3 pr-2"
           initialValue={initialValue?.baths.toString()}
         />
         <Input
           type="number"
           id="square_feet"
-          label="Square Feet"
+          label={{ text: 'Square Feet' }}
           className="w-full sm:w-1/3 pr-2"
           initialValue={initialValue?.square_feet.toString()}
         />
@@ -121,7 +120,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2">Amenities</label>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-          {initialAmenities.map((amenity) => (
+          {initialAmenities.map(amenity => (
             <Amenity key={amenity.id} {...amenity} />
           ))}
         </div>
@@ -132,113 +131,66 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
           Rates (Leave blank if not applicable)
         </label>
         <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-          <div className="flex items-center">
-            <label htmlFor="weekly_rate" className="mr-2">
-              Weekly
-            </label>
-            <input
-              type="number"
-              id="weekly_rate"
-              name="rates.weekly"
-              defaultValue={initialValue?.rates.weekly}
-              className="border rounded w-full py-2 px-3"
-            />
-          </div>
-          <div className="flex items-center">
-            <label htmlFor="monthly_rate" className="mr-2">
-              Monthly
-            </label>
-            <input
-              type="number"
-              id="monthly_rate"
-              name="rates.monthly"
-              className="border rounded w-full py-2 px-3"
-              defaultValue={initialValue?.rates.monthly}
-            />
-          </div>
-          <div className="flex items-center">
-            <label htmlFor="nightly_rate" className="mr-2">
-              Nightly
-            </label>
-            <input
-              type="number"
-              id="nightly_rate"
-              name="rates.nightly"
-              className="border rounded w-full py-2 px-3"
-              defaultValue={initialValue?.rates.nightly}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="mb-4">
-        <label
-          htmlFor="seller_name"
-          className="block text-gray-700 font-bold mb-2"
-        >
-          Seller Name
-        </label>
-        <input
-          type="text"
-          id="seller_name"
-          name="seller_info.name"
-          className="border rounded w-full py-2 px-3"
-          placeholder="Name"
-          defaultValue={initialValue?.seller_info.name}
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="seller_email"
-          className="block text-gray-700 font-bold mb-2"
-        >
-          Seller Email
-        </label>
-        <input
-          type="email"
-          id="seller_email"
-          name="seller_info.email"
-          className="border rounded w-full py-2 px-3"
-          placeholder="Email address"
-          defaultValue={initialValue?.seller_info.email}
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="seller_phone"
-          className="block text-gray-700 font-bold mb-2"
-        >
-          Seller Phone
-        </label>
-        <input
-          type="tel"
-          id="seller_phone"
-          name="seller_info.phone"
-          className="border rounded w-full py-2 px-3"
-          placeholder="Phone"
-          defaultValue={initialValue?.seller_info.phone}
-        />
-      </div>
-
-      {isEdit ? null : (
-        <div className="mb-4">
-          <label
-            htmlFor="images"
-            className="block text-gray-700 font-bold mb-2"
-          >
-            Images (Select up to 4 images)
-          </label>
-          <input
-            type="file"
-            id="images"
-            name="images"
-            className="border rounded w-full py-2 px-3"
-            accept="image/*"
-            multiple
-            required
+          <Input
+            type="number"
+            id="weekly_rate"
+            name="rates.weekly"
+            initialValue={initialValue?.rates.weekly}
+            label={{ text: 'Weekly', font: 'normal', color: 'black', placement: 'left' }}
+          />
+          <Input
+            type="number"
+            id="monthly_rate"
+            name="rates.monthly"
+            initialValue={initialValue?.rates.monthly}
+            label={{ text: 'Monthly', font: 'normal', color: 'black', placement: 'left' }}
+          />
+          <Input
+            type="number"
+            id="nightly_rate"
+            name="rates.nightly"
+            initialValue={initialValue?.rates.nightly}
+            label={{ text: 'Nightly', font: 'normal', color: 'black', placement: 'left' }}
           />
         </div>
+      </div>
+
+      <Input
+        type="text"
+        id="seller_name"
+        name="seller_info.name"
+        placeholder="Name"
+        className="mb-4"
+        label={{ text: 'Seller Name' }}
+        initialValue={initialValue?.seller_info.name}
+      />
+      <Input
+        type="text"
+        id="seller_email"
+        name="seller_info.email"
+        placeholder="Email address"
+        className="mb-4"
+        label={{ text: 'Seller Email' }}
+        initialValue={initialValue?.seller_info.email}
+      />
+      <Input
+        type="text"
+        id="seller_phone"
+        name="seller_info.phone"
+        placeholder="Phone"
+        className="mb-4"
+        label={{ text: 'Seller Phone' }}
+        initialValue={initialValue?.seller_info.phone}
+      />
+
+      {isEdit ? null : (
+        <Input
+          type="file"
+          id="images"
+          label={{ text: 'Images (Select up to 4)' }}
+          required={true}
+          className="mb-4"
+        />
       )}
 
       <div>
