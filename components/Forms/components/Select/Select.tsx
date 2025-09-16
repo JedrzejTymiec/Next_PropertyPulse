@@ -1,3 +1,6 @@
+import { type ChangeEvent } from 'react';
+import { selectVariants } from './selectVariants';
+
 interface Option {
   value: string;
   label: string;
@@ -6,11 +9,14 @@ interface Option {
 interface SelectProps {
   options: Option[];
   id: string;
+  variant?: 'property' | 'search';
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
   label?: string;
   name?: string;
   required?: boolean;
   initialValue?: string;
-  selectClassName?: string;
+  className?: string;
 }
 
 export const Select = ({
@@ -20,10 +26,13 @@ export const Select = ({
   name,
   required = true,
   initialValue,
-  selectClassName = 'border rounded w-full py-2 px-3',
+  value,
+  onChange,
+  className,
+  variant,
 }: SelectProps) => {
   return (
-    <div className="mb-4">
+    <div className={className}>
       {label ? (
         <label htmlFor={id} className="block text-gray-700 font-bold mb-2">
           {label}
@@ -31,8 +40,10 @@ export const Select = ({
       ) : null}
       <select
         id={id}
+        value={value}
+        onChange={onChange}
         name={name ?? id}
-        className={selectClassName}
+        className={selectVariants({ variant })}
         defaultValue={initialValue}
         required={required}
         {...(label ? undefined : { 'aria-label': id })}
