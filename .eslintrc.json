@@ -1,13 +1,18 @@
 {
   "root": true,
-  "extends": ["next", "next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import-x/recommended"
+  ],
   "plugins": ["@typescript-eslint", "import-x"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "settings": {
-    "import/resolver": {
+    "import-x/resolver": {
       "typescript": {
         "project": "./tsconfig.json",
         "alwaysTryTypes": true
@@ -20,10 +25,15 @@
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/consistent-type-imports": "warn",
     "prefer-const": "warn",
-    "import-x/no-relative-parent-imports": "warn",
     "import-x/no-useless-path-segments": "warn",
     "import-x/no-duplicates": "warn",
     "import-x/no-deprecated": "warn",
-    "import-x/no-unused-modules": "warn"
+    "import-x/no-unused-modules": "warn",
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": ["../**"]
+      }
+    ]
   }
 }

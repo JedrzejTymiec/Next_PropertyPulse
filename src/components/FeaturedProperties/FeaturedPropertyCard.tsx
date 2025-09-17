@@ -2,7 +2,7 @@ import { type Property } from '@/types/property';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaBed, FaBath, FaRulerCombined, FaMoneyBill } from 'react-icons/fa';
-import { getRateDisplay } from '../PropertyCard/utils';
+import { getRateDisplay } from '@/components/PropertyCard/utils';
 import { paths } from '@/constants/paths';
 import { createUrl } from '@/utils/createUrl';
 import { generateAltText } from '@/utils/generateAltText';

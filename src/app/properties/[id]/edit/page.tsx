@@ -1,7 +1,7 @@
 import { PropertyForm } from '@/components/Forms/PropertyForm';
 import { PropertyModel } from '@/models/Property';
 import { connectDB } from '@/lib/connectDB';
-import { type PropertyPageProps } from '../page';
+import { type PropertyPageProps } from '@/app/properties/[id]/page';
 import { notFound } from 'next/navigation';
 import { convertToSerializableObject } from '@/utils/convertToObject';
 import { type Property } from '@/types/property';

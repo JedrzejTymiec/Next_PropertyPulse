@@ -7,7 +7,7 @@ import { type PopulatedMessage } from '@/types/message';
 import { confirmDelete } from '@/utils/confirmDelete';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Spinner } from './Spinner';
+import { Spinner } from '@/components/Spinner';
 
 interface MessageCardProps {
   message: PopulatedMessage;

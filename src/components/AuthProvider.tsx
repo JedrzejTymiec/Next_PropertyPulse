@@ -1,7 +1,7 @@
 'use client';
 import { SessionProvider, useSession } from 'next-auth/react';
 import { type ReactNode } from 'react';
-import { Spinner } from './Spinner';
+import { Spinner } from '@/components/Spinner';
 
 interface AuthProviderProps {
   children: ReactNode;

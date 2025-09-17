@@ -1,11 +1,11 @@
 'use client';
 import { type ReactElement, useEffect, useState, useCallback } from 'react';
 import { MobileMenuLink } from './MobileMenuLink';
-import { menuItems } from '../../menuItems';
+import { menuItems } from '@/components/Navbar/menuItems';
 import { FaGoogle } from 'react-icons/fa';
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated';
 import { getProviders, signIn } from 'next-auth/react';
-import { type Providers } from '../LogIn/LogIn';
+import { type Providers } from '@/components/Navbar/components/LogIn/LogIn';
 
 interface MobileMenuProps {
   isOpen: boolean;

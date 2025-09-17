@@ -1,5 +1,5 @@
 import { paths } from '@/constants/paths';
-import { InfoBox } from './InfoBox/InfoBox';
+import { InfoBox } from '@/components/InfoBox/InfoBox';
 
 export const InfoBoxes = () => {
   return (

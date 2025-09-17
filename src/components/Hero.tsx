@@ -1,4 +1,4 @@
-import { SearchForm } from './Forms/SearchForm';
+import { SearchForm } from '@/components/Forms/SearchForm';
 
 export const Hero = () => {
   return (

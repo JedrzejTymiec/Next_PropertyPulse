@@ -3,9 +3,9 @@ import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 import { addMessage } from '@/actions/Message/addMessage';
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated';
-import { SubmitButton } from './components/SubmitButton';
-import { Input } from './components/Input';
-import { TextArea } from './components/TextArea';
+import { SubmitButton } from '@/components/Forms/components/SubmitButton';
+import { Input } from '@/components/Forms/components/Input';
+import { TextArea } from '@/components/Forms/components/TextArea';
 
 interface ContactFormProps {
   ownerId: string;

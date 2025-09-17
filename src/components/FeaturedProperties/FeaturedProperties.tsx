@@ -1,6 +1,6 @@
 import { connectDB } from '@/lib/connectDB';
 import { PropertyModel } from '@/models/Property';
-import { FeaturedPropertyCard } from './FeaturedPropertyCard';
+import { FeaturedPropertyCard } from '@/components/FeaturedProperties/FeaturedPropertyCard';
 import { unstable_cache } from 'next/cache';
 import { type Property } from '@/types/property';
 
