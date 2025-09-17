@@ -1,19 +1,10 @@
-import { connectDB } from '@/lib/connectDB';
-import { PropertyModel } from '@/models/Property';
+import { getFeaturedProperties } from '@/queries/getFeaturedProperties';
 import { FeaturedPropertyCard } from '@/components/FeaturedProperties/FeaturedPropertyCard';
-import { unstable_cache } from 'next/cache';
 import { type Property } from '@/types/property';
 
 export const FeaturedProperties = async () => {
-  const getProperties = unstable_cache(
-    async () => {
-      await connectDB();
-      return await PropertyModel.find({ is_featured: true }).lean();
-    },
-    ['properties'],
-    { revalidate: 86400 },
-  );
-  const properties = await getProperties();
+  const properties = await getFeaturedProperties();
+
   return properties.length > 0 ? (
     <section className="bg-blue-50 px-4 pt-6 pb-10">
       <div className="container-xl lg:container m-auto">

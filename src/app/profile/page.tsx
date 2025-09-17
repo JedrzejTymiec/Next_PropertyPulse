@@ -1,18 +1,17 @@
 import Image from 'next/image';
-import { connectDB, getSessionUser } from '@/lib';
-import { PropertyModel } from '@/models';
 import profileDefault from '@/assets/images/profile.png';
 import { ProfileProperties } from '@/components/ProfileProperties/ProfileProperties';
 import { convertToSerializableObject } from '@/utils';
 import { type Property as PropertyType } from '@/types/property';
+import { getUserProperties } from '@/queries';
+import { getSessionUser } from '@/lib';
 import { assertUser } from '@/utils/asserts/assertUser';
 
 const ProfilePage = async () => {
-  await connectDB();
   const sessionUser = await getSessionUser();
   assertUser(sessionUser);
   const { userId } = sessionUser;
-  const properties = await PropertyModel.find({ owner: userId }).lean();
+  const properties = await getUserProperties(userId);
 
   return (
     <section className="bg-blue-50">

@@ -1,12 +1,12 @@
 import { connectDB } from '@/lib/connectDB';
-import { PropertyModel } from '@/models/Property';
 import { type Property as PropertyType } from '@/types/property';
+import { getProperties } from '@/queries';
 import { NextResponse } from 'next/server';
 
 export const GET = async () => {
   try {
     await connectDB();
-    const properties = await PropertyModel.find({});
+    const properties = await getProperties();
     return new NextResponse<PropertyType[]>(JSON.stringify(properties), {
       status: 200,
     });
