@@ -1,7 +1,7 @@
 import { unstable_cache } from 'next/cache';
 import { PropertyModel } from '@/models';
 import { connectDB } from '@/lib';
-import { generatePropertiesQuery } from '@/utils/generatePropertiesQuery';
+import { generatePropertiesQuery } from '@/utils';
 import { CacheTag } from '@/constants/CacheTag';
 
 export const getPagedProperties = unstable_cache(

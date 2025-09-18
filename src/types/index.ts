@@ -1,4 +1,4 @@
-export * from './message';
-export * from './property';
-export * from './proprtyType';
-export * from './user';
+export type { Message, PopulatedMessage } from './message';
+export type { Property, PropertyData, Rates, Seller, Location } from './property';
+export { PropertyType } from './proprtyType';
+export type { User } from './user';
