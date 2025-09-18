@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import profileDefault from '@/assets/images/profile.png';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState, useEffect, type FocusEventHandler } from 'react';
 import { MenuItem } from './MenuItem';
 import { paths } from '@/constants/paths';
 import { useSession, signOut } from 'next-auth/react';
@@ -9,11 +9,24 @@ import { useSession, signOut } from 'next-auth/react';
 export const ProfileMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { data: session } = useSession();
-
+  const menuRef = useRef<HTMLDivElement>(null);
   const profileImage = session?.user?.image;
+
+  useEffect(() => {
+    if (isOpen) {
+      menuRef.current?.focus();
+    }
+  }, [isOpen]);
 
   const toggleMenu = useCallback(() => {
     setIsOpen(prevState => !prevState);
+  }, []);
+
+  const handleBlur: FocusEventHandler<HTMLDivElement> = useCallback(e => {
+    if (e.currentTarget.contains(e.relatedTarget as Node)) {
+      return;
+    }
+    setIsOpen(false);
   }, []);
 
   const handleSignOut = useCallback(() => {
@@ -45,11 +58,13 @@ export const ProfileMenu = () => {
       </div>
       {isOpen ? (
         <div
+          ref={menuRef}
           id="user-menu"
           className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
+          onBlur={handleBlur}
           tabIndex={-1}
         >
           <MenuItem href={paths.profile} onClick={toggleMenu} id="user-menu-item-0">
