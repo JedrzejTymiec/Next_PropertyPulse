@@ -1,0 +1,30 @@
+'use server';
+import { connectDB, getSessionUser } from '@/lib';
+import { MessageModel } from '@/models/Message';
+import { assertUser } from '@/utils/asserts/assertUser';
+
+export async function addMessage(formData: FormData) {
+  const sessionUser = await getSessionUser();
+  assertUser(sessionUser);
+  await connectDB();
+  const { userId } = sessionUser;
+
+  const recipient = formData.get('recipient');
+  if (userId === recipient) {
+    throw new Error('You cannot send message to yourself');
+  }
+
+  const newMessage = new MessageModel({
+    sender: userId,
+    recipient,
+    property: formData.get('property'),
+    name: formData.get('name'),
+    email: formData.get('email'),
+    phone: formData.get('phone'),
+    body: formData.get('message'),
+  });
+
+  await newMessage.save();
+
+  return { submitted: true };
+}
