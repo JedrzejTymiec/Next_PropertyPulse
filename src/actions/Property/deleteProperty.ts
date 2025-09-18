@@ -1,11 +1,11 @@
 'use server';
 import { connectDB, getSessionUser, cloudinaryClient } from '@/lib';
 import { Entity } from '@/constants/Entity';
-import { paths } from '@/constants/paths';
 import { NotFoundException, UnauthorizedException } from '@/exceptions';
 import { PropertyModel } from '@/models';
 import { assertUser } from '@/utils/asserts/assertUser';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
+import { CacheTag } from '@/constants/CacheTag';
 
 export async function deleteProperty(id: string) {
   const sessionUser = await getSessionUser();
@@ -34,5 +34,5 @@ export async function deleteProperty(id: string) {
   }
 
   await property.deleteOne();
-  revalidatePath(paths.home, 'layout');
+  revalidateTag(CacheTag.Properties);
 }

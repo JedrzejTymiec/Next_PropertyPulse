@@ -5,8 +5,9 @@ import { UnauthorizedException } from '@/exceptions';
 import { PropertyModel } from '@/models';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { createUrl } from '@/utils';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { CacheTag } from '@/constants/CacheTag';
 
 export async function updateProperty(id: string, formData: FormData) {
   const sessionUser = await getSessionUser();
@@ -48,6 +49,7 @@ export async function updateProperty(id: string, formData: FormData) {
 
   await PropertyModel.findByIdAndUpdate(id, updatedPropertyData);
 
-  revalidatePath(paths.home, 'layout');
+  revalidateTag(CacheTag.Properties);
+  revalidateTag(CacheTag.Property);
   redirect(createUrl(paths.property, { id }));
 }

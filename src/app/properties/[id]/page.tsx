@@ -28,7 +28,7 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
   }
 
   await connectDB();
-  const propertyDoc = await PropertyModel.findById(id).exec();
+  const propertyDoc = await PropertyModel.findById(id);
 
   if (propertyDoc === null) {
     notFound();

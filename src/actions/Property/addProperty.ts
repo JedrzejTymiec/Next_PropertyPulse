@@ -1,10 +1,10 @@
 'use server';
 import { connectDB, getSessionUser, cloudinaryClient } from '@/lib';
 import { PropertyModel } from '@/models';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { assertUser } from '@/utils/asserts/assertUser';
-import { paths } from '@/constants/paths';
+import { CacheTag } from '@/constants/CacheTag';
 
 export async function addProperty(formData: FormData) {
   const sessionUser = await getSessionUser();
@@ -63,7 +63,7 @@ export async function addProperty(formData: FormData) {
   const newProperty = new PropertyModel(propertyData);
   await newProperty.save();
 
-  revalidatePath(paths.home, 'layout');
+  revalidateTag(CacheTag.Properties);
 
   redirect(`/properties/${newProperty._id}`);
 }

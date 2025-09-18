@@ -2,6 +2,7 @@ import { unstable_cache } from 'next/cache';
 import { PropertyModel } from '@/models';
 import { connectDB } from '@/lib';
 import { generatePropertiesQuery } from '@/utils/generatePropertiesQuery';
+import { CacheTag } from '@/constants/CacheTag';
 
 export const getPagedProperties = unstable_cache(
   async (search: string, type: string, skip: number, size: number) => {
@@ -18,6 +19,6 @@ export const getPagedProperties = unstable_cache(
     }
     return { properties, total };
   },
-  ['properties'],
+  [CacheTag.Properties],
   { revalidate: 86400 },
 );

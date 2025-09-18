@@ -1,12 +1,10 @@
 'use server';
 import { connectDB, getSessionUser } from '@/lib';
 import { MessageModel } from '@/models/Message';
-import { revalidatePath } from 'next/cache';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { UnauthorizedException } from '@/exceptions/UnauthorizedException';
 import { NotFoundException } from '@/exceptions/NotFoundException';
 import { Entity } from '@/constants/Entity';
-import { paths } from '@/constants/paths';
 
 export async function deleteMessage(id: string) {
   const session = await getSessionUser();
@@ -23,5 +21,4 @@ export async function deleteMessage(id: string) {
   }
 
   await message.deleteOne();
-  revalidatePath(paths.messages, 'page');
 }

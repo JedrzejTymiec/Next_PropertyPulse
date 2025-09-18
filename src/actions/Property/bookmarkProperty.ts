@@ -1,12 +1,12 @@
 'use server';
 import { connectDB, getSessionUser } from '@/lib';
-import { paths } from '@/constants/paths';
 import { Entity } from '@/constants/Entity';
 import { NotFoundException } from '@/exceptions';
-import { UserModel } from '@/models';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { isValidId } from '@/utils';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
+import { getUser } from '@/queries';
+import { CacheTag } from '@/constants/CacheTag';
 
 export async function bookmarkProperty(id: string) {
   const sessionUser = await getSessionUser();
@@ -18,7 +18,7 @@ export async function bookmarkProperty(id: string) {
 
   await connectDB();
   const { userId } = sessionUser;
-  const user = await UserModel.findById(userId);
+  const user = await getUser(userId);
   const isBookmarked = user!.bookmarks?.some(bmrk => bmrk.equals(id));
   let message;
 
@@ -31,7 +31,8 @@ export async function bookmarkProperty(id: string) {
   }
 
   await user?.save();
-  revalidatePath(paths.savedProperties, 'page');
+  revalidateTag(CacheTag.User);
+  revalidateTag(CacheTag.Property);
 
   return message;
 }
