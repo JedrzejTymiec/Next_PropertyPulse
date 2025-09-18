@@ -5,7 +5,7 @@ import { PropertyModel } from '@/models';
 export const getUserProperties = unstable_cache(
   async (id: string) => {
     await connectDB();
-    return await PropertyModel.find({ owner: id });
+    return await PropertyModel.find({ owner: id }).lean();
   },
   ['properties'],
   { revalidate: 86400 },

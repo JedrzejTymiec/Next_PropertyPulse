@@ -1,10 +1,9 @@
 import { SearchForm } from '@/components/Forms/SearchForm';
 import { Pagination } from '@/components/Pagination';
 import { PropertyCard } from '@/components/PropertyCard/PropertyCard';
-import { connectDB } from '@/lib/connectDB';
-import { PropertyModel } from '@/models/Property';
-import { PropertyType } from '@/types/proprtyType';
-import { type FilterQuery } from 'mongoose';
+import { connectDB } from '@/lib';
+import { getPagedProperties } from '@/queries/getPagedProperties';
+import { type PropertyType } from '@/types';
 
 interface PropertiesPageProps {
   searchParams: {
@@ -19,34 +18,10 @@ const PropertiesPage = async ({
   searchParams: { search, type, page: pageParam = '1', size: sizeParam = '9' },
 }: PropertiesPageProps) => {
   await connectDB();
-  let properties;
   const page = Number(pageParam);
   const size = Number(sizeParam);
   const skip = (page - 1) * size;
-  let total;
-
-  if (!search && !type) {
-    properties = await PropertyModel.find({}).skip(skip).limit(size).lean();
-    total = await PropertyModel.countDocuments();
-  } else {
-    const searchPattern = new RegExp(search, 'i');
-    const query: FilterQuery<typeof PropertyModel> = {
-      $or: [
-        { name: searchPattern },
-        { description: searchPattern },
-        { 'location.street': searchPattern },
-        { 'location.city': searchPattern },
-        { 'location.state': searchPattern },
-        { 'location.zipcode': searchPattern },
-      ],
-    };
-    if (type !== PropertyType.All) {
-      const typePattern = new RegExp(type, 'i');
-      query.type = typePattern;
-    }
-    properties = await PropertyModel.find(query).skip(skip).limit(size).lean();
-    total = await PropertyModel.countDocuments(query);
-  }
+  const { properties, total } = await getPagedProperties(search, type, skip, size);
 
   return (
     <>
