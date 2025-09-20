@@ -21,9 +21,11 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
         <Image
           src={images[0]}
           alt={generateAltText(location.city, type)}
-          width="0"
-          height="0"
-          sizes="100vw"
+          width="1280"
+          height="720"
+          sizes="(max-width: 768px) 100vw,
+         (max-width: 1200px) 50vw,
+         33vw"
           className="w-full h-auto rounded-t-xl"
         />
         <div className="p-4">
@@ -37,15 +39,15 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
             aria-label="property-details"
           >
             <li>
-              <FaBed className="md:hidden lg:inline" /> {beds}
+              <FaBed className="md:hidden lg:inline" aria-hidden="true" /> {beds}
               <span className="md:hidden lg:inline">Beds</span>
             </li>
             <li>
-              <FaBath className="md:hidden lg:inline" /> {baths}
+              <FaBath className="md:hidden lg:inline" aria-hidden="true" /> {baths}
               <span className="md:hidden lg:inline">Baths</span>
             </li>
             <li>
-              <FaRulerCombined className="md:hidden lg:inline" />
+              <FaRulerCombined className="md:hidden lg:inline" aria-hidden="true" />
               {square_feet} <span className="md:hidden lg:inline">sqft</span>
             </li>
           </ul>
@@ -53,12 +55,15 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           <div className="border border-gray-100 mb-5"></div>
           <div className="flex flex-col lg:flex-row justify-between mb-4">
             <div className="flex align-middle gap-2 mb-4 lg:mb-0">
-              <FaMapMarker className="text-orange-700 mt-1" />
-              <p className="text-orange-700">
+              <FaMapMarker className="text-orange-700 mt-1" aria-hidden="true" />
+              <p aria-label="location" className="text-orange-700">
                 {location.city} {location.state}
               </p>
             </div>
-            <span className="h-[36px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center text-sm">
+            <span
+              aria-hidden="true"
+              className="h-[36px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center text-sm"
+            >
               Details
             </span>
           </div>

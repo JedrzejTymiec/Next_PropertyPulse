@@ -9,7 +9,7 @@ interface RentalTypeProps {
 export const RentalType = ({ type }: RentalTypeProps) => {
   return (
     <li>
-      <FaMoneyBill className="md:hidden lg:inline lg:mr-2" />
+      <FaMoneyBill className="md:hidden lg:inline lg:mr-2" aria-hidden="true" />
       {texts.RentalType[type]}
     </li>
   );
