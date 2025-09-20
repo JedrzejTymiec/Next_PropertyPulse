@@ -1,36 +1,33 @@
-import { paths } from '@/constants/paths';
+import { type Property } from '@/types/property';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaBed, FaBath, FaRulerCombined, FaMapMarker } from 'react-icons/fa';
-import { type Property } from '@/types/property';
+import { paths } from '@/constants/paths';
 import { createUrl } from '@/utils/createUrl';
 import { generateAltText } from '@/utils/generateAltText';
 import { DisplayRate } from './components/DisplayRate';
 import { AvailableRentalTypes } from './components/AvailableRentalTypes';
 
-interface PropertyCardProps {
+interface FreaturedPropertyCardProps {
   property: Property;
 }
 
-export const PropertyCard = ({ property }: PropertyCardProps) => {
-  const { images, type, name, beds, baths, square_feet, location, _id, rates } = property;
-
+export const FeaturedPropertyCard = ({ property }: FreaturedPropertyCardProps) => {
+  const { images, name, type, rates, beds, baths, square_feet, location, _id } = property;
   return (
     <Link href={createUrl(paths.property, { id: _id })}>
-      <article className="rounded-xl shadow-md relative">
+      <article className="bg-white rounded-xl shadow-md relative flex flex-col md:flex-row">
         <Image
           src={images[0]}
           alt={generateAltText(location.city, type)}
+          className="w-full h-auto rounded-t-xl md:rounded-tr-none md:rounded-l-xl w-full md:w-2/5"
           width="0"
           height="0"
           sizes="100vw"
-          className="w-full h-auto rounded-t-xl"
         />
-        <div className="p-4">
-          <div className="text-left md:text-center lg:text-left mb-6">
-            <p className="text-gray-600">{type}</p>
-            <h3 className="text-xl font-bold">{name}</h3>
-          </div>
+        <div className="p-6">
+          <h3 className="text-xl font-bold">{name}</h3>
+          <p className="text-gray-600 mb-4">{type}</p>
           <DisplayRate rates={rates} />
           <ul
             className="flex justify-center gap-4 text-gray-500 mb-4"
@@ -50,8 +47,8 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
             </li>
           </ul>
           <AvailableRentalTypes rates={rates} />
-          <div className="border border-gray-100 mb-5"></div>
-          <div className="flex flex-col lg:flex-row justify-between mb-4">
+          <div className="border border-gray-200 mb-5"></div>
+          <div className="flex flex-col lg:flex-row justify-between">
             <div className="flex align-middle gap-2 mb-4 lg:mb-0">
               <FaMapMarker className="text-orange-700 mt-1" />
               <p className="text-orange-700">

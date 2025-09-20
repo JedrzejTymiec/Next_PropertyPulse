@@ -2,10 +2,10 @@ import { type Rates } from '@/types/property';
 
 export const getRateDisplay = (rates: Rates) => {
   if (rates.monthly) {
-    return `$${rates.monthly}/mo`;
+    return { text: `$${rates.monthly}`, time: '/mo', value: rates.monthly };
   } else if (rates.weekly) {
-    return `$${rates.weekly}/wk`;
+    return { text: `$${rates.weekly}`, time: '/wk', value: rates.weekly };
   } else {
-    return `$${rates.nightly}/night`;
+    return { text: `$${rates.nightly}`, time: '/night', value: rates.nightly };
   }
 };

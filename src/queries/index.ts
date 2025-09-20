@@ -4,3 +4,4 @@ export { getUserProperties } from './getUserProperties';
 export { getPagedProperties } from './getPagedProperties';
 export { getUser } from './getUser';
 export { getUserWithBookmarks } from './getUserWithBookmarks';
+export { getProperty } from './getProperty';

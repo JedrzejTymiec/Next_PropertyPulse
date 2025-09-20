@@ -9,12 +9,12 @@ import { useSession, signOut } from 'next-auth/react';
 export const ProfileMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { data: session } = useSession();
-  const menuRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
   const profileImage = session?.user?.image;
 
   useEffect(() => {
     if (isOpen) {
-      menuRef.current?.focus();
+      menuRef.current?.querySelector<HTMLElement>('[role="menuitem"]')?.focus();
     }
   }, [isOpen]);
 
@@ -22,7 +22,7 @@ export const ProfileMenu = () => {
     setIsOpen(prevState => !prevState);
   }, []);
 
-  const handleBlur: FocusEventHandler<HTMLDivElement> = useCallback(e => {
+  const handleBlur: FocusEventHandler<HTMLUListElement> = useCallback(e => {
     if (e.currentTarget.contains(e.relatedTarget as Node)) {
       return;
     }
@@ -41,8 +41,9 @@ export const ProfileMenu = () => {
           type="button"
           className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
           id="user-menu-button"
-          aria-expanded="false"
-          aria-haspopup="true"
+          aria-expanded={isOpen}
+          aria-haspopup="menu"
+          aria-controls="user-menu"
           onClick={toggleMenu}
         >
           <span className="absolute -inset-1.5"></span>
@@ -57,7 +58,7 @@ export const ProfileMenu = () => {
         </button>
       </div>
       {isOpen ? (
-        <div
+        <ul
           ref={menuRef}
           id="user-menu"
           className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -65,18 +66,23 @@ export const ProfileMenu = () => {
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
           onBlur={handleBlur}
-          tabIndex={-1}
         >
-          <MenuItem href={paths.profile} onClick={toggleMenu} id="user-menu-item-0">
-            Your Profile
-          </MenuItem>
-          <MenuItem href={paths.savedProperties} onClick={toggleMenu} id="user-menu-item-1">
-            Saved Properties
-          </MenuItem>
-          <MenuItem onClick={handleSignOut} id="user-menu-item-2">
-            Sign Out
-          </MenuItem>
-        </div>
+          <li>
+            <MenuItem href={paths.profile} onClick={toggleMenu} id="user-menu-item-0">
+              Your Profile
+            </MenuItem>
+          </li>
+          <li>
+            <MenuItem href={paths.savedProperties} onClick={toggleMenu} id="user-menu-item-1">
+              Saved Properties
+            </MenuItem>
+          </li>
+          <li>
+            <MenuItem onClick={handleSignOut} id="user-menu-item-2">
+              Sign Out
+            </MenuItem>
+          </li>
+        </ul>
       ) : null}
     </div>
   );

@@ -42,6 +42,7 @@ export const SearchForm = ({ initialSearch, initialType }: SearchFormProps) => {
     <form
       onSubmit={handleSubmit}
       className="mt-3 mx-auto max-w-2xl w-full flex flex-col md:flex-row items-center"
+      role="search"
     >
       <Input
         type="text"
