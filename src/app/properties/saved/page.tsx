@@ -12,11 +12,13 @@ const SavedPropertiesPage = async () => {
   const user = await getUserWithBookmarks(userId);
 
   return (
-    <section className="px-4 py-6">
-      <div className="container lg:container m-auto px-4 py-6">
-        <h1 className="text-2xl mb-4">Saved Properties</h1>
+    <section aria-labelledby="saved-properties-header" className="px-4 py-6">
+      <div className="container m-auto px-4 py-6">
+        <h1 id="saved-properties-header" className="text-2xl mb-4">
+          Saved Properties
+        </h1>
         {user?.bookmarks.length === 0 ? (
-          <p>No saved properties</p>
+          <p role="status">No saved properties</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {user?.bookmarks.map(bookmarked => (
