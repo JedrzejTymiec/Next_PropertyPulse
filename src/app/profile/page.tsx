@@ -14,10 +14,12 @@ const ProfilePage = async () => {
   const properties = await getUserProperties(userId);
 
   return (
-    <section className="bg-blue-50">
+    <section aria-labelledby="profile-header" className="bg-blue-50">
       <div className="container m-auto py-24">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
-          <h1 className="text-3xl font-bold mb-4">Your Profile</h1>
+          <h1 id="profile-header" className="text-3xl font-bold mb-4">
+            Your Profile
+          </h1>
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/4 mx-20 mt-10">
               <div className="mb-4">
@@ -29,13 +31,11 @@ const ProfilePage = async () => {
                   alt="User picture"
                 />
               </div>
-
-              <h2 className="text-2xl mb-4">
-                <span className="font-bold block">Name: </span> {sessionUser.user?.name}
-              </h2>
-              <h2 className="text-2xl">
-                <span className="font-bold block">Email: </span> {sessionUser.user?.email}
-              </h2>
+              <dl className="text-2xl">
+                <dt className="font-bold block">Name: </dt>{' '}
+                <dd className="mb-4">{sessionUser.user?.name}</dd>
+                <dt className="font-bold block">Email: </dt> <dd>{sessionUser.user?.email}</dd>
+              </dl>
             </div>
 
             <div className="md:w-3/4 md:pl-4">
