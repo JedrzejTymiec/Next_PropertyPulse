@@ -52,6 +52,7 @@ export const SearchForm = ({ initialSearch, initialType }: SearchFormProps) => {
         onChange={handleLocationChange}
         className="w-full md:w-3/5 md:pr-2 mb-4 md:mb-0"
         variant="search"
+        ariaLabel="Location"
       />
       <Select
         id="property-type"
@@ -60,6 +61,7 @@ export const SearchForm = ({ initialSearch, initialType }: SearchFormProps) => {
         options={searchSelectOptions}
         value={propertyType}
         onChange={handleTypeChange}
+        ariaLabel="Property Type"
       />
       <button
         type="submit"

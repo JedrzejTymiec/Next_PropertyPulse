@@ -1,23 +1,22 @@
-import { type ChangeEvent } from 'react';
 import { selectVariants } from './selectVariants';
+import { type WithLabel } from '@/components/Forms/types/WithLabel';
+import { type Control } from '@/components/Forms/types/Control';
 
 interface Option {
   value: string;
   label: string;
 }
 
-interface SelectProps {
+interface BaseSelect {
   options: Option[];
   id: string;
   variant?: 'property' | 'search';
-  value?: string;
-  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
-  label?: string;
   name?: string;
   required?: boolean;
-  initialValue?: string;
   className?: string;
 }
+
+type SelectProps = BaseSelect & Control<HTMLSelectElement> & WithLabel;
 
 export const Select = ({
   id,
@@ -35,7 +34,7 @@ export const Select = ({
     <div className={className}>
       {label ? (
         <label htmlFor={id} className="block text-gray-700 font-bold mb-2">
-          {label}
+          {label.text}
         </label>
       ) : null}
       <select

@@ -72,7 +72,6 @@ export const MessageCard = ({ message }: MessageCardProps) => {
         onClick={handleSetRead}
         className="mt-4 mr-3 bg-blue-500 text-white py-1 px-3 rounded-md"
         disabled={isLoading}
-        aria-live="polite"
       >
         {isLoading ? (
           <Spinner size={12} margin="0px 5px 0px 0px" display="inline-block" color="#FFF" />

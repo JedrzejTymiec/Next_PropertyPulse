@@ -20,9 +20,9 @@ export const FeaturedPropertyCard = ({ property }: FreaturedPropertyCardProps) =
         <Image
           src={images[0]}
           alt={generateAltText(location.city, type)}
-          className="w-full h-auto rounded-t-xl md:rounded-tr-none md:rounded-l-xl w-full md:w-2/5"
-          width="0"
-          height="0"
+          className="w-full h-auto rounded-t-xl md:rounded-tr-none md:rounded-l-xl w-full md:w-2/5 object-cover"
+          width="1280"
+          height="720"
           sizes="100vw"
         />
         <div className="p-6">

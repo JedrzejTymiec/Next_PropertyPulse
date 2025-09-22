@@ -36,7 +36,11 @@ export const ContactForm = ({ propertyId, ownerId }: ContactFormProps) => {
   }
 
   if (isSubmitted) {
-    return <p className="text-green-500 mb-4">Message sent</p>;
+    return (
+      <p role="status" className="text-green-500 mb-4">
+        Message sent
+      </p>
+    );
   }
 
   return (

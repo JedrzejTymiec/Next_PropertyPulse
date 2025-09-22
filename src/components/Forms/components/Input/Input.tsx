@@ -1,27 +1,20 @@
 import { type ChangeEvent, useCallback, useState } from 'react';
 import { labelVariants, inputVariants } from './inputVariants';
 import { clsx } from 'clsx';
+import { type WithLabel } from '@/components/Forms/types/WithLabel';
+import { type Control } from '@/components/Forms/types/Control';
 
-interface Label {
-  text: string;
-  placement?: 'top' | 'left';
-  font?: 'bold' | 'normal';
-  color?: 'grey' | 'black';
-}
-
-interface InputProps {
+interface BaseInput {
   type: HTMLInputElement['type'];
   id: string;
   variant?: 'property' | 'search' | 'contact';
-  label?: Label;
   placeholder?: string;
   name?: string;
   required?: boolean;
   className?: string;
-  initialValue?: string | number;
-  value?: string | number;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
+
+type InputProps = BaseInput & Control<HTMLInputElement> & WithLabel;
 
 export const Input = ({
   label,
@@ -35,13 +28,13 @@ export const Input = ({
   variant = 'property',
   value: externalValue,
   onChange: externalOnChange,
+  ariaLabel,
 }: InputProps) => {
   const [value, setValue] = useState<string | number>(initialValue ?? '');
   const isLabelHorizontal = label?.placement === 'left';
   const isFileInput = type === 'file';
 
   const handleOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     setValue(e.currentTarget.value);
   }, []);
 
@@ -69,7 +62,7 @@ export const Input = ({
         placeholder={placeholder}
         required={required}
         {...(isFileInput ? { accept: 'image/*', multiple: true } : undefined)}
-        {...(label ? undefined : { 'aria-label': id })}
+        {...(label ? undefined : { 'aria-label': ariaLabel })}
       />
     </div>
   );

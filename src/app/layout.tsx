@@ -19,7 +19,7 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html>
+    <html lang="en">
       <body>
         <AuthProvier>
           <MessagesContextProvider>

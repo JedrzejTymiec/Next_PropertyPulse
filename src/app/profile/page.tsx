@@ -24,10 +24,10 @@ const ProfilePage = async () => {
             <div className="md:w-1/4 mx-20 mt-10">
               <div className="mb-4">
                 <Image
-                  className="h-32 w-32 md:h-48 md:w-48 rounded-full mx-auto md:mx-0"
+                  className="h-24 w-24 rounded-full mx-auto md:mx-0"
                   src={sessionUser.user?.image ?? profileDefault}
-                  width={200}
-                  height={200}
+                  width={96}
+                  height={96}
                   alt="User picture"
                 />
               </div>
