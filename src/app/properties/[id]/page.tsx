@@ -1,5 +1,4 @@
-import { connectDB } from '@/lib/connectDB';
-import { PropertyModel } from '@/models/Property';
+import { connectDB } from '@/lib';
 import { isValidId } from '@/utils/isValidId';
 import { notFound } from 'next/navigation';
 import { PropertyHeaderImage } from '@/components/PropertyHeaderImage';
@@ -13,6 +12,7 @@ import { ShareButtons } from '@/components/ShareButtons';
 import { ContactForm } from '@/components/Forms/ContactForm';
 import { convertToSerializableObject } from '@/utils/convertToObject';
 import { type Property as PropertyType } from '@/types/property';
+import { getProperty } from '@/queries/getProperty';
 
 interface Params {
   id: string;
@@ -28,7 +28,7 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
   }
 
   await connectDB();
-  const propertyDoc = await PropertyModel.findById(id);
+  const propertyDoc = await getProperty(id);
 
   if (propertyDoc === null) {
     notFound();
@@ -49,7 +49,7 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
             href={paths.properties}
             className="text-blue-500 hover:text-blue-600 flex items-center"
           >
-            <FaArrowLeft className="mr-3" /> Back to Properties
+            <FaArrowLeft aria-hidden="true" className="mr-3" /> Back to Properties
           </Link>
         </div>
       </section>

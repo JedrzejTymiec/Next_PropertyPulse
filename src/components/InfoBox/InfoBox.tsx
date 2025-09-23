@@ -22,7 +22,7 @@ export const InfoBox = ({
 }: InfoBoxProps) => {
   return (
     <div className={`${variants[variant].background} p-6 rounded-lg shadow-md`}>
-      <h2 className="text-2xl font-bold">{title}</h2>
+      <h3 className="text-2xl font-bold">{title}</h3>
       <p className="mt-2 mb-4">{children}</p>
       <Link
         href={link.href}

@@ -10,7 +10,7 @@ export const SubmitButton = () => {
       type="submit"
       disabled={pending}
     >
-      <FaPaperPlane className="mr-2" />
+      <FaPaperPlane aria-hidden="true" className="mr-2 text-white" />
       {pending ? 'Sending...' : 'Send Message'}
     </button>
   );

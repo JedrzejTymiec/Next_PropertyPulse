@@ -25,14 +25,17 @@ const PropertiesPage = async ({
 
   return (
     <>
+      <h1 className="sr-only">Browse Properties</h1>
       <section className="bg-blue-700 py-4">
+        <h2 className="sr-only">Search form</h2>
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-start ms:px-6 lg:px-8">
           <SearchForm initialSearch={search} initialType={type} />
         </div>
       </section>
       <section className="container-xl lg:container m-auto px-4 py-6">
+        <h2 className="sr-only">List of results</h2>
         {properties.length === 0 ? (
-          <p>No properties found</p>
+          <p role="status">No properties found</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {properties.map(property => (

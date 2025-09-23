@@ -18,10 +18,9 @@ export const TextArea = ({
   initialValue,
   variant,
 }: TextAreaProps) => {
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>(initialValue ?? '');
 
   const handleOnChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    e.preventDefault();
     setValue(e.currentTarget.value);
   }, []);
 
@@ -38,7 +37,6 @@ export const TextArea = ({
         className={textAreaVariants({ variant })}
         rows={rows}
         placeholder={placeholder}
-        defaultValue={initialValue}
       ></textarea>
     </div>
   );

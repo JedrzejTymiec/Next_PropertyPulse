@@ -70,23 +70,26 @@ export const Map = ({ property }: MapProps) => {
     fetchCoords();
   }, [property.location]);
 
-  if (error) return <div>No location data found</div>;
+  if (error) return <p role="status">No location data found</p>;
 
   if (loading) return <Spinner />;
 
   return (
     !loading && (
-      <MapGl
-        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-        mapLib={import('mapbox-gl')}
-        initialViewState={viewport}
-        style={{ width: '100%', height: 500 }}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-      >
-        <Marker longitude={longitude} latitude={latitude} anchor="bottom">
-          <Image src={pin} alt="location-pin" width={40} height={40} />
-        </Marker>
-      </MapGl>
+      <figure>
+        <MapGl
+          mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+          mapLib={import('mapbox-gl')}
+          initialViewState={viewport}
+          style={{ width: '100%', height: 500 }}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+        >
+          <Marker longitude={longitude} latitude={latitude} anchor="bottom">
+            <Image src={pin} alt="" width={40} height={40} />
+          </Marker>
+        </MapGl>
+        <figcaption className="sr-only">{`Map showing ${property.name} at ${property.location.street}, ${property.location.city}`}</figcaption>
+      </figure>
     )
   );
 };

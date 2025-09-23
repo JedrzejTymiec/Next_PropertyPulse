@@ -46,7 +46,8 @@ export const BookmarkButton = ({ id, ownerId }: BookmarkButtonProps) => {
       onClick={onClick}
       className={`${color} text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center`}
     >
-      <FaBookmark className="mr-2" /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark Property'}
+      <FaBookmark aria-hidden="true" className="mr-2" />{' '}
+      {isBookmarked ? 'Remove Bookmark' : 'Bookmark Property'}
     </button>
   );
 };

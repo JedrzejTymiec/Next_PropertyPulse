@@ -17,18 +17,20 @@ export const ProfileProperty = ({ property, deleteProperty }: ProfilePropertyPro
   }, [deleteProperty, property]);
 
   return (
-    <div key={property._id} className="mb-10">
+    <article className="mb-10">
       <Link href={createUrl(paths.property, { id: property._id })}>
         <Image
           className="h-32 w-full rounded-md object-cover"
           src={property.images[0]}
-          width={1000}
-          height={200}
+          width={1280}
+          height={720}
+          sizes="(min-width: 768px) 67vw,
+          100vw"
           alt={generateAltText(property.location.city, property.type)}
         />
       </Link>
       <div className="mt-2">
-        <p className="text-lg font-semibold">{property.name}</p>
+        <h3 className="text-lg font-semibold">{property.name}</h3>
         <p className="text-gray-600">
           Address: {property.location.street} {property.location.city} {property.location.state}
         </p>
@@ -44,10 +46,11 @@ export const ProfileProperty = ({ property, deleteProperty }: ProfilePropertyPro
           className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
           onClick={handleDeleteProperty}
           type="button"
+          aria-label={`Delete property ${property.name}`}
         >
           Delete
         </button>
       </div>
-    </div>
+    </article>
   );
 };

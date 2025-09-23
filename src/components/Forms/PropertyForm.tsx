@@ -34,12 +34,12 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
 
   return (
     <form action={handleAction}>
-      <h2 className="text-3xl text-center font-semibold mb-6">
+      <h1 id="form-header" className="text-3xl text-center font-semibold mb-6">
         {isEdit ? 'Edit Property' : 'Add Property'}
-      </h2>
+      </h1>
       <Select
         id="type"
-        label="Property Type"
+        label={{ text: 'Property Type' }}
         options={propertyTypeSelectOptions}
         initialValue={initialValue?.type}
       />
@@ -48,7 +48,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         id="name"
         placeholder="eg. Beautiful Apartment In Miami"
         label={{ text: 'Listing Name' }}
-        initialValue={initialValue?.name}
+        initialValue={initialValue?.name ?? ''}
       />
       <TextArea
         id="description"
@@ -58,8 +58,8 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         initialValue={initialValue?.description}
       />
 
-      <div className="mb-4 bg-blue-50 p-4">
-        <label className="block text-gray-700 font-bold mb-2">Location</label>
+      <fieldset className="mb-4 bg-blue-50 p-4">
+        <legend className="block text-gray-700 font-bold mb-2">Location</legend>
         <Input
           type="text"
           id="street"
@@ -67,6 +67,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
           placeholder="Street"
           className="mb-4"
           initialValue={initialValue?.location.street}
+          ariaLabel="Street"
         />
         <Input
           type="text"
@@ -75,6 +76,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
           placeholder="City"
           initialValue={initialValue?.location.city}
           className="mb-4"
+          ariaLabel="City"
         />
         <Input
           type="text"
@@ -83,6 +85,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
           placeholder="State"
           className="mb-4"
           initialValue={initialValue?.location.state}
+          ariaLabel="State"
         />
         <Input
           type="text"
@@ -90,8 +93,9 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
           name="location.zipcode"
           placeholder="Zipcode"
           initialValue={initialValue?.location.zipcode}
+          ariaLabel="Zip code"
         />
-      </div>
+      </fieldset>
 
       <div className="mb-4 flex flex-wrap">
         <Input
@@ -117,19 +121,19 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         />
       </div>
 
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Amenities</label>
+      <fieldset className="mb-4">
+        <legend className="block text-gray-700 font-bold mb-2">Amenities</legend>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {initialAmenities.map(amenity => (
             <Amenity key={amenity.id} {...amenity} />
           ))}
         </div>
-      </div>
+      </fieldset>
 
-      <div className="mb-4 bg-blue-50 p-4">
-        <label className="block text-gray-700 font-bold mb-2">
+      <fieldset className="mb-4 bg-blue-50 p-4">
+        <legend className="block text-gray-700 font-bold mb-2">
           Rates (Leave blank if not applicable)
-        </label>
+        </legend>
         <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
           <Input
             type="number"
@@ -153,36 +157,37 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
             label={{ text: 'Nightly', font: 'normal', color: 'black', placement: 'left' }}
           />
         </div>
-      </div>
-
-      <Input
-        type="text"
-        id="seller_name"
-        name="seller_info.name"
-        placeholder="Name"
-        className="mb-4"
-        label={{ text: 'Seller Name' }}
-        initialValue={initialValue?.seller_info.name}
-      />
-      <Input
-        type="text"
-        id="seller_email"
-        name="seller_info.email"
-        placeholder="Email address"
-        className="mb-4"
-        label={{ text: 'Seller Email' }}
-        initialValue={initialValue?.seller_info.email}
-      />
-      <Input
-        type="text"
-        id="seller_phone"
-        name="seller_info.phone"
-        placeholder="Phone"
-        className="mb-4"
-        label={{ text: 'Seller Phone' }}
-        initialValue={initialValue?.seller_info.phone}
-      />
-
+      </fieldset>
+      <fieldset>
+        <legend className="sr-only">Seller info</legend>
+        <Input
+          type="text"
+          id="seller_name"
+          name="seller_info.name"
+          placeholder="Name"
+          className="mb-4"
+          label={{ text: 'Seller Name' }}
+          initialValue={initialValue?.seller_info.name}
+        />
+        <Input
+          type="text"
+          id="seller_email"
+          name="seller_info.email"
+          placeholder="Email address"
+          className="mb-4"
+          label={{ text: 'Seller Email' }}
+          initialValue={initialValue?.seller_info.email}
+        />
+        <Input
+          type="text"
+          id="seller_phone"
+          name="seller_info.phone"
+          placeholder="Phone"
+          className="mb-4"
+          label={{ text: 'Seller Phone' }}
+          initialValue={initialValue?.seller_info.phone}
+        />
+      </fieldset>
       {isEdit ? null : (
         <Input
           type="file"

@@ -31,7 +31,10 @@ export const Pagination = ({ page, pageSize, total }: PaginationProps) => {
   }, [page, router, searchParams]);
 
   return (
-    <section className="container mx-auto flex justify-center items-center my-8">
+    <nav
+      aria-label="pagination"
+      className="container mx-auto flex justify-center items-center my-8"
+    >
       <button
         onClick={handlePrevious}
         className="mr-2 px-2 py-1 border border-gray-300 rounded disabled:text-gray-500"
@@ -39,7 +42,7 @@ export const Pagination = ({ page, pageSize, total }: PaginationProps) => {
       >
         Previous
       </button>
-      <span className="mx-2">
+      <span className="mx-2" aria-live="polite">
         Page {page} of {totalPages}
       </span>
       <button
@@ -49,6 +52,6 @@ export const Pagination = ({ page, pageSize, total }: PaginationProps) => {
       >
         Next
       </button>
-    </section>
+    </nav>
   );
 };

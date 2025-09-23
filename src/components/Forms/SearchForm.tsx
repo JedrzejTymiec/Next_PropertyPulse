@@ -42,6 +42,7 @@ export const SearchForm = ({ initialSearch, initialType }: SearchFormProps) => {
     <form
       onSubmit={handleSubmit}
       className="mt-3 mx-auto max-w-2xl w-full flex flex-col md:flex-row items-center"
+      role="search"
     >
       <Input
         type="text"
@@ -51,6 +52,7 @@ export const SearchForm = ({ initialSearch, initialType }: SearchFormProps) => {
         onChange={handleLocationChange}
         className="w-full md:w-3/5 md:pr-2 mb-4 md:mb-0"
         variant="search"
+        ariaLabel="Location"
       />
       <Select
         id="property-type"
@@ -59,6 +61,7 @@ export const SearchForm = ({ initialSearch, initialType }: SearchFormProps) => {
         options={searchSelectOptions}
         value={propertyType}
         onChange={handleTypeChange}
+        ariaLabel="Property Type"
       />
       <button
         type="submit"

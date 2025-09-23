@@ -3,7 +3,10 @@ import { InfoBox } from '@/components/InfoBox/InfoBox';
 
 export const InfoBoxes = () => {
   return (
-    <section>
+    <section aria-labelledby="cta-heading">
+      <h2 id="cta-heading" className="sr-only">
+        Get Started
+      </h2>
       <div className="container-xl lg:container m-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg">
           <InfoBox

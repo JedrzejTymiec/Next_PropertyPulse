@@ -1,5 +1,5 @@
 import { getFeaturedProperties } from '@/queries/getFeaturedProperties';
-import { FeaturedPropertyCard } from '@/components/FeaturedProperties/FeaturedPropertyCard';
+import { FeaturedPropertyCard } from '@/components/PropertyCard/FeaturedPropertyCard';
 import { type Property } from '@/types/property';
 
 export const FeaturedProperties = async () => {
