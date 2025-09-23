@@ -6,7 +6,7 @@ import { CacheTag } from '@/constants/CacheTag';
 export const getProperty = unstable_cache(
   async (id: string) => {
     await connectDB();
-    return await PropertyModel.findById(id);
+    return await PropertyModel.findById(id).lean();
   },
   [CacheTag.Property],
   { revalidate: 86400 },

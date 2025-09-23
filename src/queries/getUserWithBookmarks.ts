@@ -6,7 +6,7 @@ import { CacheTag } from '@/constants/CacheTag';
 export const getUserWithBookmarks = unstable_cache(
   async (id: string) => {
     await connectDB();
-    return await UserModel.findById(id).populate('bookmarks');
+    return await UserModel.findById(id).populate('bookmarks').lean();
   },
   [CacheTag.User],
   { revalidate: 86400 },

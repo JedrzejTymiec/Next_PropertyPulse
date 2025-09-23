@@ -5,8 +5,8 @@ import { NotFoundException } from '@/exceptions';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { isValidId } from '@/utils';
 import { revalidateTag } from 'next/cache';
-import { getUser } from '@/queries';
 import { CacheTag } from '@/constants/CacheTag';
+import { UserModel } from '@/models';
 
 export async function bookmarkProperty(id: string) {
   const sessionUser = await getSessionUser();
@@ -18,7 +18,7 @@ export async function bookmarkProperty(id: string) {
 
   await connectDB();
   const { userId } = sessionUser;
-  const user = await getUser(userId);
+  const user = await UserModel.findById(userId);
   const isBookmarked = user!.bookmarks?.some(bmrk => bmrk.equals(id));
   let message;
 
