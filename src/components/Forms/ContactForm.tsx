@@ -45,7 +45,7 @@ export const ContactForm = ({ propertyId, ownerId }: ContactFormProps) => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
-      <h3 className="text-xl font-bold mb-6">Contact Property Manager</h3>
+      <h2 className="text-xl font-bold mb-6">Contact Property Manager</h2>
       <form action={handleFromSubmit}>
         <input type="hidden" id="property" name="property" defaultValue={propertyId} />
         <input type="hidden" id="recipient" name="recipient" defaultValue={ownerId} />

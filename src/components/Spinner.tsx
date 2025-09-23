@@ -22,7 +22,8 @@ export const Spinner = ({
         margin,
       }}
       size={size}
-      aria-label="Loading Spinner"
+      aria-label="Loading"
+      role="status"
     />
   );
 };

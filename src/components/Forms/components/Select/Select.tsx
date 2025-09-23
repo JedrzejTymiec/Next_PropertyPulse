@@ -45,6 +45,7 @@ export const Select = ({
         className={selectVariants({ variant })}
         defaultValue={initialValue}
         required={required}
+        aria-required={required}
         {...(label ? undefined : { 'aria-label': id })}
       >
         {options.map(({ value, label }) => (

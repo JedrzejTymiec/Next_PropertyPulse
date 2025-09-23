@@ -61,6 +61,7 @@ export const Input = ({
         className={inputVariants({ variant })}
         placeholder={placeholder}
         required={required}
+        aria-required={required}
         {...(isFileInput ? { accept: 'image/*', multiple: true } : undefined)}
         {...(label ? undefined : { 'aria-label': ariaLabel })}
       />
