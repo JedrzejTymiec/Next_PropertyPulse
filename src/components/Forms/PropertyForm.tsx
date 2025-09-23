@@ -141,6 +141,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
             name="rates.weekly"
             initialValue={initialValue?.rates.weekly}
             label={{ text: 'Weekly', font: 'normal', color: 'black', placement: 'left' }}
+            required={false}
           />
           <Input
             type="number"
@@ -148,6 +149,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
             name="rates.monthly"
             initialValue={initialValue?.rates.monthly}
             label={{ text: 'Monthly', font: 'normal', color: 'black', placement: 'left' }}
+            required={false}
           />
           <Input
             type="number"
@@ -155,6 +157,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
             name="rates.nightly"
             initialValue={initialValue?.rates.nightly}
             label={{ text: 'Nightly', font: 'normal', color: 'black', placement: 'left' }}
+            required={false}
           />
         </div>
       </fieldset>

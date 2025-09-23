@@ -9,5 +9,5 @@ export async function isBookmarked(id: string) {
   assertUser(sessionUser);
   const user = await getUser(sessionUser.userId);
 
-  return user?.bookmarks.some(bmrk => bmrk.equals(id));
+  return user?.bookmarks.some(bmrk => bmrk.toString() === id);
 }
