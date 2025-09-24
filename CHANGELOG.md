@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/JedrzejTymiec/Next_PropertyPulse/compare/v1.0.0...v1.5.0) (2025-09-24)
+
+
+### Features
+
+* aria accurate profile menu, keyboard navigation ([#72](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/72)) ([835023c](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/835023c3af6708126e1e25060b9ddc6001e48054))
+* cached data ([#64](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/64)) ([fde6e32](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/fde6e32243e4796a2fd06fa3c6f705dcfa818a1d))
+
+
+### Bug Fixes
+
+* button with spinner on loading ([#57](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/57)) ([43e83b5](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/43e83b54d28c6a8bb68c2258f554998edc884a90))
+* contact form, bookmark button hidden for property owners ([#46](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/46)) ([7f37f3a](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/7f37f3a29d4819e8ea2d61ab2276021fdcde33a1))
+* images alt texts ([#62](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/62)) ([2f21722](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/2f217221e4468757376dcc963f03f8292e772f54))
+* mapped rental types ([137af70](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/137af70471345d23bac0e4385ecdbd3b2de2e06e))
+* messages unread on top ([16e69ef](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/16e69efb7e2a3d4dcb38b4b4c6fe33497ac0fe4c))
+* semantic html ([#68](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/68)) ([5386a80](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/5386a802f929872289b124f06ca65c7bdd693a83))
+* styles, profile menu blur ([#66](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/66)) ([849e223](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/849e22310f6bff017ca2442c31fff2506f01032f))
+* various fixes ([#70](https://github.com/JedrzejTymiec/Next_PropertyPulse/issues/70)) ([26008a8](https://github.com/JedrzejTymiec/Next_PropertyPulse/commit/26008a84cf19842b0366454e7fc9574ebb9bc679))
+
 ## [1.4.0](https://github.com/JedrzejTymiec/Next_PropertyPulse/compare/v1.0.0...v1.4.0) (2025-09-23)
 
 
