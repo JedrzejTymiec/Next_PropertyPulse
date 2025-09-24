@@ -6,22 +6,31 @@ import { getPagedProperties } from '@/queries/getPagedProperties';
 import { type PropertyType } from '@/types';
 
 interface PropertiesPageProps {
-  searchParams: {
+  searchParams: Promise<{
     search: string;
     type: PropertyType;
     page: string;
     size: string;
-  };
+  }>;
 }
 
-const PropertiesPage = async ({
-  searchParams: { search, type, page: pageParam = '1', size: sizeParam = '9' },
-}: PropertiesPageProps) => {
+const PropertiesPage = async ({ searchParams }: PropertiesPageProps) => {
+  const {
+    search,
+    type,
+    page: pageParam = '1',
+    size: sizeParam = '9',
+  } = await searchParams;
   await connectDB();
   const page = Number(pageParam);
   const size = Number(sizeParam);
   const skip = (page - 1) * size;
-  const { properties, total } = await getPagedProperties(search, type, skip, size);
+  const { properties, total } = await getPagedProperties(
+    search,
+    type,
+    skip,
+    size,
+  );
 
   return (
     <>
