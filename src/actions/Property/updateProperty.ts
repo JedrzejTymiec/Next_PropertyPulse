@@ -50,6 +50,6 @@ export async function updateProperty(id: string, formData: FormData) {
   await PropertyModel.findByIdAndUpdate(id, updatedPropertyData);
 
   revalidateTag(CacheTag.Properties);
-  revalidateTag(CacheTag.Property);
+  revalidateTag(`${CacheTag.Property}:${id}`);
   redirect(createUrl(paths.property, { id }));
 }

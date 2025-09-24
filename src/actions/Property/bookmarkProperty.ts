@@ -32,7 +32,6 @@ export async function bookmarkProperty(id: string) {
 
   await user?.save();
   revalidateTag(CacheTag.User);
-  revalidateTag(CacheTag.Property);
 
   return message;
 }
