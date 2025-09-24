@@ -9,6 +9,7 @@ import { Notifications } from './components/Notifications/Notifications';
 import { Logo } from './components/Logo';
 import { LogIn } from './components/LogIn/LogIn';
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated';
+import { ProfileMenuContextProvider } from '@/context/ProfileMenuContext';
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
@@ -36,7 +37,9 @@ export const Navbar = () => {
           {isAuthenticated ? (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
               <Notifications />
-              <ProfileMenu />
+              <ProfileMenuContextProvider>
+                <ProfileMenu />
+              </ProfileMenuContextProvider>
             </div>
           ) : (
             <LogIn />

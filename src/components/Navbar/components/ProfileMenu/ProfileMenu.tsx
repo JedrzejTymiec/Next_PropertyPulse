@@ -1,38 +1,77 @@
 'use client';
 import Image from 'next/image';
 import profileDefault from '@/assets/images/profile.png';
-import { useCallback, useRef, useState, useEffect, type FocusEventHandler } from 'react';
+import { useCallback, type FocusEventHandler, type KeyboardEvent } from 'react';
 import { MenuItem } from './MenuItem';
 import { paths } from '@/constants/paths';
 import { useSession, signOut } from 'next-auth/react';
+import { useProfileMenuContext } from '@/context/ProfileMenuContext';
 
 export const ProfileMenu = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { data: session } = useSession();
-  const menuRef = useRef<HTMLUListElement>(null);
   const profileImage = session?.user?.image;
+  const {
+    isOpen,
+    close,
+    toggle,
+    increaseActiveIndex,
+    decreaseActiveIndex,
+    goToFirst,
+    goToLast,
+    activateCurrentItem,
+  } = useProfileMenuContext();
 
-  useEffect(() => {
-    if (isOpen) {
-      menuRef.current?.querySelector<HTMLElement>('[role="menuitem"]')?.focus();
-    }
-  }, [isOpen]);
+  const handleBlur: FocusEventHandler<HTMLUListElement> = useCallback(
+    e => {
+      if (e.currentTarget.contains(e.relatedTarget as Node)) {
+        return;
+      }
+      close();
+    },
+    [close],
+  );
 
-  const toggleMenu = useCallback(() => {
-    setIsOpen(prevState => !prevState);
-  }, []);
-
-  const handleBlur: FocusEventHandler<HTMLUListElement> = useCallback(e => {
-    if (e.currentTarget.contains(e.relatedTarget as Node)) {
-      return;
-    }
-    setIsOpen(false);
-  }, []);
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLUListElement>) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        increaseActiveIndex();
+      }
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        decreaseActiveIndex();
+      }
+      if (e.key === 'Home') {
+        e.preventDefault();
+        goToFirst();
+      }
+      if (e.key === 'End') {
+        e.preventDefault();
+        goToLast();
+      }
+      if (e.key === ' ') {
+        e.preventDefault();
+        activateCurrentItem();
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        close();
+      }
+    },
+    [
+      increaseActiveIndex,
+      decreaseActiveIndex,
+      goToFirst,
+      goToLast,
+      activateCurrentItem,
+      close,
+    ],
+  );
 
   const handleSignOut = useCallback(() => {
     signOut();
-    setIsOpen(false);
-  }, []);
+    close();
+  }, [close]);
 
   return (
     <div className="relative ml-3">
@@ -44,7 +83,7 @@ export const ProfileMenu = () => {
           aria-expanded={isOpen}
           aria-haspopup="menu"
           aria-controls="user-menu"
-          onClick={toggleMenu}
+          onClick={toggle}
         >
           <span className="absolute -inset-1.5"></span>
           <span className="sr-only">Open user menu</span>
@@ -59,21 +98,29 @@ export const ProfileMenu = () => {
       </div>
       {isOpen ? (
         <ul
-          ref={menuRef}
           id="user-menu"
           className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
           onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
         >
           <li>
-            <MenuItem href={paths.profile} onClick={toggleMenu} id="user-menu-item-0">
+            <MenuItem
+              href={paths.profile}
+              onClick={toggle}
+              id="user-menu-item-0"
+            >
               Your Profile
             </MenuItem>
           </li>
           <li>
-            <MenuItem href={paths.savedProperties} onClick={toggleMenu} id="user-menu-item-1">
+            <MenuItem
+              href={paths.savedProperties}
+              onClick={toggle}
+              id="user-menu-item-1"
+            >
               Saved Properties
             </MenuItem>
           </li>
