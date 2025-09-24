@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  fieldset {
+    @apply border-0 m-0 p-0 min-w-0;
+  }
+
+  legend {
+    @apply float-left p-0;
+  }
+}

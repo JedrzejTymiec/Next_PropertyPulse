@@ -19,10 +19,12 @@ interface Params {
 }
 
 export interface PropertyPageProps {
-  params: Params;
+  params: Promise<Params>;
 }
 
-const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
+const PropertyPage = async ({ params }: PropertyPageProps) => {
+  const { id } = await params;
+
   if (!isValidId(id)) {
     notFound();
   }
@@ -49,7 +51,8 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
             href={paths.properties}
             className="text-blue-500 hover:text-blue-600 flex items-center"
           >
-            <FaArrowLeft aria-hidden="true" className="mr-3" /> Back to Properties
+            <FaArrowLeft aria-hidden="true" className="mr-3" /> Back to
+            Properties
           </Link>
         </div>
       </section>
@@ -59,13 +62,21 @@ const PropertyPage = async ({ params: { id } }: PropertyPageProps) => {
             <PropertyDetails property={property} />
             <aside className="space-y-4">
               <BookmarkButton id={property._id} ownerId={property.owner} />
-              <ShareButtons id={property._id} name={property.name} type={property.type} />
+              <ShareButtons
+                id={property._id}
+                name={property.name}
+                type={property.type}
+              />
               <ContactForm ownerId={property.owner} propertyId={property._id} />
             </aside>
           </div>
         </div>
       </section>
-      <Gallery images={property.images} city={property.location.city} type={property.type} />
+      <Gallery
+        images={property.images}
+        city={property.location.city}
+        type={property.type}
+      />
     </>
   );
 };

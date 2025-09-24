@@ -42,6 +42,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         label={{ text: 'Property Type' }}
         options={propertyTypeSelectOptions}
         initialValue={initialValue?.type}
+        className="mb-4"
       />
       <Input
         type="text"
@@ -49,6 +50,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         placeholder="eg. Beautiful Apartment In Miami"
         label={{ text: 'Listing Name' }}
         initialValue={initialValue?.name ?? ''}
+        className="mb-4"
       />
       <TextArea
         id="description"
@@ -121,8 +123,10 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         />
       </div>
 
-      <fieldset className="mb-4">
-        <legend className="block text-gray-700 font-bold mb-2">Amenities</legend>
+      <fieldset className="mb-4 flex flex-col">
+        <legend className="block text-gray-700 font-bold mb-2">
+          Amenities
+        </legend>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {initialAmenities.map(amenity => (
             <Amenity key={amenity.id} {...amenity} />
@@ -130,7 +134,7 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
         </div>
       </fieldset>
 
-      <fieldset className="mb-4 bg-blue-50 p-4">
+      <fieldset className="mb-4 bg-blue-50 p-4 flex flex-col">
         <legend className="block text-gray-700 font-bold mb-2">
           Rates (Leave blank if not applicable)
         </legend>
@@ -140,7 +144,12 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
             id="weekly_rate"
             name="rates.weekly"
             initialValue={initialValue?.rates.weekly}
-            label={{ text: 'Weekly', font: 'normal', color: 'black', placement: 'left' }}
+            label={{
+              text: 'Weekly',
+              font: 'normal',
+              color: 'black',
+              placement: 'left',
+            }}
             required={false}
           />
           <Input
@@ -148,7 +157,12 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
             id="monthly_rate"
             name="rates.monthly"
             initialValue={initialValue?.rates.monthly}
-            label={{ text: 'Monthly', font: 'normal', color: 'black', placement: 'left' }}
+            label={{
+              text: 'Monthly',
+              font: 'normal',
+              color: 'black',
+              placement: 'left',
+            }}
             required={false}
           />
           <Input
@@ -156,7 +170,12 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
             id="nightly_rate"
             name="rates.nightly"
             initialValue={initialValue?.rates.nightly}
-            label={{ text: 'Nightly', font: 'normal', color: 'black', placement: 'left' }}
+            label={{
+              text: 'Nightly',
+              font: 'normal',
+              color: 'black',
+              placement: 'left',
+            }}
             required={false}
           />
         </div>
