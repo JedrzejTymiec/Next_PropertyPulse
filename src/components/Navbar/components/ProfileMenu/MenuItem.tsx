@@ -38,7 +38,7 @@ export const MenuItem = ({ id, children, href, onClick }: MenuItemProps) => {
     <Element
       ref={ref}
       className="block px-4 py-2 text-sm text-gray-700 w-full text-left"
-      href={href ?? ''}
+      href={href ?? null}
       onClick={onClick}
       role="menuitem"
       tabIndex={index === activeIndex ? 0 : -1}

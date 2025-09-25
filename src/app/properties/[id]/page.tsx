@@ -1,4 +1,3 @@
-import { connectDB } from '@/lib';
 import { isValidId } from '@/utils/isValidId';
 import { notFound } from 'next/navigation';
 import { PropertyHeaderImage } from '@/components/PropertyHeaderImage';
@@ -10,8 +9,6 @@ import { Gallery } from '@/components/PropertyDetails/components/Gallery';
 import { BookmarkButton } from '@/components/BookmarkButton';
 import { ShareButtons } from '@/components/ShareButtons';
 import { ContactForm } from '@/components/Forms/ContactForm';
-import { convertToSerializableObject } from '@/utils/convertToObject';
-import { type Property as PropertyType } from '@/types/property';
 import { getProperty } from '@/queries/getProperty';
 
 interface Params {
@@ -29,14 +26,7 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
     notFound();
   }
 
-  await connectDB();
-  const propertyDoc = await getProperty(id);
-
-  if (propertyDoc === null) {
-    notFound();
-  }
-
-  const property = convertToSerializableObject<PropertyType>(propertyDoc);
+  const property = await getProperty(id);
 
   return (
     <>

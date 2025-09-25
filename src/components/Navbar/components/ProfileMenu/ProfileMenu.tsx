@@ -83,7 +83,7 @@ export const ProfileMenu = () => {
           aria-expanded={isOpen}
           aria-haspopup="menu"
           aria-controls="user-menu"
-          onClick={toggle}
+          onMouseDown={toggle}
         >
           <span className="absolute -inset-1.5"></span>
           <span className="sr-only">Open user menu</span>
