@@ -5,3 +5,4 @@ dist/
 coverage/
 commitlint.config.cjs
 next-env.d.ts
+next.config.mjs

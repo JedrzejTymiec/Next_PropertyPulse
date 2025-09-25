@@ -1,10 +1,11 @@
 'use server';
-import { connectDB, getSessionUser, cloudinaryClient } from '@/lib';
+import { connectDB, getSessionUser } from '@/lib';
 import { PropertyModel } from '@/models';
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { assertUser } from '@/utils/asserts/assertUser';
 import { CacheTag } from '@/constants/CacheTag';
+import { uploadImages } from '@/lib/uploadImages';
 
 export async function addProperty(formData: FormData) {
   const sessionUser = await getSessionUser();
@@ -40,23 +41,11 @@ export async function addProperty(formData: FormData) {
     images: [''],
   };
 
-  const imageUrls = [];
-  const images = (formData.getAll('images') as File[]).filter(image => image.name !== '');
+  const images = (formData.getAll('images') as File[]).filter(
+    image => image.name !== '',
+  );
 
-  for (const imageFile of images) {
-    const imageBuffer = await imageFile.arrayBuffer();
-    const imageArray = Array.from(new Uint8Array(imageBuffer));
-    const imageData = Buffer.from(imageArray);
-
-    //Convert to base64
-    const imageBase64 = imageData.toString('base64');
-
-    const result = await cloudinaryClient.uploader.upload(`data:image/png;base64,${imageBase64}`, {
-      folder: 'propertypulse',
-    });
-
-    imageUrls.push(result.secure_url);
-  }
+  const imageUrls = await uploadImages(images);
 
   propertyData.images = imageUrls;
 

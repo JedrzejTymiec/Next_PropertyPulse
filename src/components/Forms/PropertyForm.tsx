@@ -8,14 +8,20 @@ import { amenities } from './constans/amenities';
 import { Amenity } from './components/Amenity';
 import { type Property } from '@/types/property';
 import { updateProperty } from '@/actions/Property/updateProperty';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { EditImages } from './components/EditImages/EditImages';
+import { FileInput } from './components/FileInput/FileInput';
 
 interface PropertyFormProps {
   initialValue?: Property;
 }
 
+const MAX_IMAGES_NUMBER = 4;
+
 export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
+  const [imagesToDelete, setImagesToDelete] = useState<string[]>([]);
   const isEdit = initialValue !== undefined;
+  const imageLimit = MAX_IMAGES_NUMBER - (initialValue?.images.length ?? 0);
 
   const initialAmenities = amenities.map(amenity => {
     if (isEdit && initialValue?.amenities?.includes(amenity.value)) {
@@ -27,9 +33,11 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
 
   const handleAction = useCallback(
     (formData: FormData) => {
-      return isEdit ? updateProperty(initialValue?._id ?? '', formData) : addProperty(formData);
+      return isEdit
+        ? updateProperty(initialValue?._id ?? '', formData, imagesToDelete)
+        : addProperty(formData);
     },
-    [isEdit, initialValue?._id],
+    [isEdit, initialValue?._id, imagesToDelete],
   );
 
   return (
@@ -210,15 +218,26 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
           initialValue={initialValue?.seller_info.phone}
         />
       </fieldset>
-      {isEdit ? null : (
-        <Input
-          type="file"
-          id="images"
-          label={{ text: 'Images (Select up to 4)' }}
-          required={true}
-          className="mb-4"
+      {isEdit ? (
+        <EditImages
+          images={initialValue.images}
+          imagesToDelete={imagesToDelete}
+          setImagesToDelete={setImagesToDelete}
+          city={initialValue.location.city}
+          type={initialValue.type}
         />
-      )}
+      ) : null}
+      {imageLimit > 0 ? (
+        <FileInput
+          id="images"
+          label={{
+            text: `Images (Select up to ${imageLimit})`,
+          }}
+          limit={imageLimit}
+          className="mb-4"
+          required={!isEdit}
+        />
+      ) : null}
 
       <div>
         <button
