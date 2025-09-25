@@ -10,6 +10,7 @@ import { type Property } from '@/types/property';
 import { updateProperty } from '@/actions/Property/updateProperty';
 import { useCallback, useState } from 'react';
 import { EditImages } from './components/EditImages/EditImages';
+import { FileInput } from './components/FileInput/FileInput';
 
 interface PropertyFormProps {
   initialValue?: Property;
@@ -20,6 +21,7 @@ const MAX_IMAGES_NUMBER = 4;
 export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
   const [imagesToDelete, setImagesToDelete] = useState<string[]>([]);
   const isEdit = initialValue !== undefined;
+  const imageLimit = MAX_IMAGES_NUMBER - (initialValue?.images.length ?? 0);
 
   const initialAmenities = amenities.map(amenity => {
     if (isEdit && initialValue?.amenities?.includes(amenity.value)) {
@@ -224,20 +226,18 @@ export const PropertyForm = ({ initialValue }: PropertyFormProps) => {
           city={initialValue.location.city}
           type={initialValue.type}
         />
-      ) : (
-        <Input
-          type="file"
+      ) : null}
+      {imageLimit > 0 ? (
+        <FileInput
           id="images"
           label={{
-            text: `Images (Select up to 4)`,
+            text: `Images (Select up to ${imageLimit})`,
           }}
-          required={true}
+          limit={imageLimit}
           className="mb-4"
+          required={!isEdit}
         />
-      )}
-      {/* {(initialValue?.images.length ?? 0) < MAX_IMAGES_NUMBER ? (
-        
-      ) : null} */}
+      ) : null}
 
       <div>
         <button

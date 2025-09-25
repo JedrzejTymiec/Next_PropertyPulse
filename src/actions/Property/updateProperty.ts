@@ -8,6 +8,7 @@ import { createUrl } from '@/utils';
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { CacheTag } from '@/constants/CacheTag';
+import { uploadImages } from '@/lib/uploadImages';
 
 export async function updateProperty(
   id: string,
@@ -27,6 +28,14 @@ export async function updateProperty(
   const newImages = property.images.filter(
     img => !imagesToDelete.includes(img),
   );
+
+  const imagesFromForm = (formData.getAll('images') as File[]).filter(
+    image => image.name !== '',
+  );
+
+  const imageUrls = await uploadImages(imagesFromForm);
+
+  newImages.push(...imageUrls);
 
   const updatedPropertyData = {
     owner: userId,
