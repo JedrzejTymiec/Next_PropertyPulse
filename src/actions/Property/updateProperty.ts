@@ -1,5 +1,5 @@
 'use server';
-import { connectDB, getSessionUser } from '@/lib';
+import { cloudinaryClient, connectDB, getSessionUser } from '@/lib';
 import { paths } from '@/constants/paths';
 import { UnauthorizedException } from '@/exceptions';
 import { PropertyModel } from '@/models';
@@ -9,7 +9,11 @@ import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { CacheTag } from '@/constants/CacheTag';
 
-export async function updateProperty(id: string, formData: FormData) {
+export async function updateProperty(
+  id: string,
+  formData: FormData,
+  imagesToDelete: string[],
+) {
   const sessionUser = await getSessionUser();
   assertUser(sessionUser);
   await connectDB();
@@ -19,6 +23,10 @@ export async function updateProperty(id: string, formData: FormData) {
   if (property?.owner.toString() !== userId) {
     throw new UnauthorizedException();
   }
+
+  const newImages = property.images.filter(
+    img => !imagesToDelete.includes(img),
+  );
 
   const updatedPropertyData = {
     owner: userId,
@@ -45,7 +53,19 @@ export async function updateProperty(id: string, formData: FormData) {
       email: formData.get('seller_info.email'),
       phone: formData.get('seller_info.phone'),
     },
+    images: newImages,
   };
+
+  const publicIds = imagesToDelete.map(imageUrl => {
+    const parts = imageUrl.split('/');
+    return parts.at(-1)?.split('.').at(0);
+  });
+
+  if (publicIds.length > 0) {
+    for (const publicId of publicIds) {
+      await cloudinaryClient.uploader.destroy('propertypulse/' + publicId);
+    }
+  }
 
   await PropertyModel.findByIdAndUpdate(id, updatedPropertyData);
 
